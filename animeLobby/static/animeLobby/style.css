@@ -1,0 +1,8 @@
+
+li{
+    margin: 0 0 3px 0;
+}
+
+div > ul > li{
+    cursor: pointer
+}

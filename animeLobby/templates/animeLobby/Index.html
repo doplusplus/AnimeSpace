@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>The Anime bar</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> --> 
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'animeLobby/style.css' %}">
+  <script type = "text/javascript" src="{% static '/vue.js' %}" ></script>
+  
+</head>
+
+<body>
+  
+  <h3>Welcome to the anime bar</h3>
+  <div id="app">
+    <ul>
+      <li v-on:click="displayAbout">{{about}}</li>
+      <li >{{ranking}}</li>
+      <li >{{account}}</li>
+      <li >{{rate}}</li>
+      <li >{{advised}}</li>
+      <li >{{shop}}</li>
+    </ul>
+  </div>
+
+  <span v-html="content"></span>
+  
+  <script type = "text/javascript" src="{% static 'animeLobby/main.js' %}" ></script>
+</body>
+</html>
