@@ -1,4 +1,4 @@
-1) animeLobby Website access point serving views
+1) webDisplay Website access point serving views
 2) all other apps only serves data
 3) data which are meant to change via json call shall be data binded
 4) value which can be parametered but won't change after loading shall be templated

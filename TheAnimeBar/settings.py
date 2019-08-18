@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'animeLobby.apps.AnimelobbyConfig',
+    'webDisplay.apps.MaindisplayConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

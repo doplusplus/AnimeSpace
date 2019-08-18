@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The Anime bar</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint"> {% load static %}
+    <link rel="stylesheet" type="text/css" href="../../../static/bulma.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/style.css' %}">
+    <script type="text/javascript" src="{% static '/vue.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="!home" class="navbar">
+            <ul>
+                <li class="button" v-on:click="display('about')">{{about}}</li>
+                <li class="button" v-on:click="display('ranking')">{{ranking}}</li>
+                <li class="button" v-on:click="display('account')">{{account}}</li>
+                <li class="button" v-on:click="display('rate')">{{rate}}</li>
+                <li class="button" v-on:click="display('advised')">{{advised}}</li>
+                <li class="button" v-on:click="display('shop')">{{shop}}</li>
+                <li class="button" v-on:click="display('home')">HOME</li>
+            </ul>
+        </div>
+
+        <div v-if="home"> {% include './HomeContent.html' %} </div>
+        <div v-if="about">{% include './AboutContent.html' %}</div>
+        <div v-if="ranking">{% include './RankingContent.html' %}</div>
+        <div v-if="account">{% include './AccountContent.html' %}</div>
+        <div v-if="rate">{% include './RateContent.html' %}</div>
+        <div v-if="advised">{% include './AdvisedContent.html' %}</div>
+        <div v-if="shop">{% include './ShopContent.html' %}</div>
+
+    </div>
+
+
+    <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
+</body>
+
+</html>
