@@ -17,30 +17,103 @@
 
 <body>
     <div id="app">
-        <div v-if="!home" class="navbar">
-            <ul>
-                <li class="button" v-on:click="display('about')">{{about}}</li>
-                <li class="button" v-on:click="display('ranking')">{{ranking}}</li>
-                <li class="button" v-on:click="display('account')">{{account}}</li>
-                <li class="button" v-on:click="display('rate')">{{rate}}</li>
-                <li class="button" v-on:click="display('advised')">{{advised}}</li>
-                <li class="button" v-on:click="display('shop')">{{shop}}</li>
-                <li class="button" v-on:click="display('home')">HOME</li>
-            </ul>
-        </div>
+        <section class="hero is-primary is-bold">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        THE ANIME BAR
+                    </h1>
+                    <h2 class="subtitle">
+                        <div class="columns" v-if="home">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">Home ... Time for a anime shot</p>
+                        </div>
+                        <div class="columns" v-if="about">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">About ... This is what we are all about</p>
+                        </div>
+                        <div class="columns" v-if="ranking">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">Ranking ... The place for the bests</p>
+                        </div>
+                        <div class="columns" v-if="account">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">Account ... Well, just you own space you know...</p>
+                        </div>
+                        <div class="columns" v-if="rate">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">Rate ... Vox populi</p>
+                        </div>
+                        <div class="columns" v-if="advised">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">Advised ... That s#@t is just for you bro</p>
+                        </div>
+                        <div class="columns" v-if="shop">
+                            <p class="column is-6"></p>
+                            <p class="column is-6">Shop ... Here are the goods</p>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+        </section>
 
-        <div v-if="home"> {% include './HomeContent.html' %} </div>
-        <div v-if="about">{% include './AboutContent.html' %}</div>
-        <div v-if="ranking">{% include './RankingContent.html' %}</div>
-        <div v-if="account">{% include './AccountContent.html' %}</div>
-        <div v-if="rate">{% include './RateContent.html' %}</div>
-        <div v-if="advised">{% include './AdvisedContent.html' %}</div>
-        <div v-if="shop">{% include './ShopContent.html' %}</div>
+        <section>
+            <div class="columns">
+
+                <div v-if="!home" class="column is-1">
+                    <aside class="menu sticky">
+                        <p class="clickable menu-label" v-on:click="display('ranking')">{{ranking}}</p>
+                        <p class="clickable menu-label" v-on:click="display('rate')">{{rate}}</p>
+                        <p class="clickable menu-label" v-on:click="display('advised')">{{advised}}</p>
+                        <p class="clickable menu-label" v-on:click="display('shop')">{{shop}}</p>
+                        <p class="clickable menu-label" v-on:click="display('account')">{{account}}</p>
+                        <p class="clickable menu-label" v-on:click="display('about')">{{about}}</p>
+                        <p class="clickable menu-label" v-on:click="display('home')">Home</p>
+                    </aside>
+                </div>
+
+                <div class="column">
+                    <div v-if="home"> {% include './HomeContent.html' %} </div>
+                    <div v-if="about">{% include './AboutContent.html' %}</div>
+                    <div v-if="ranking">{% include './RankingContent.html' %}</div>
+                    <div v-if="account">{% include './AccountContent.html' %}</div>
+                    <div v-if="rate">{% include './RateContent.html' %}</div>
+                    <div v-if="advised">{% include './AdvisedContent.html' %}</div>
+                    <div v-if="shop">{% include './ShopContent.html' %}</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class=" columns">
+                    <div class="column is-2">
+                    </div>
+                    <div class="column is-4">
+                        <p class="clickable content">Feedback</p>
+                        <p class="clickable content">Contact</p>
+                        <p class="clickable content">Donate</p>
+                    </div>
+                    <div class="column is-4">
+                        <p class="clickable content">Other rankings</p>
+                        <p class="clickable content">Where to read mangas</p>
+                        <p class="clickable content">Where to watch animes</p>
+                    </div>
+                    <div class="column is-2">
+                    </div>
+                </div>
+            </div>
+        </footer>
 
     </div>
 
-
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
+    <noscript>
+            <div style="position: fixed; top: 0px; left: 0px; z-index: 3000; 
+                            height: 100%; width: 100%; background-color: #FFFFFF">
+                    <p style="margin-left: 10px">JavaScript is not enabled.</p>
+                </div>
+    </noscript>
 </body>
 
 </html>
