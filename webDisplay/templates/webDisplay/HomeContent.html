@@ -2,17 +2,21 @@
     <!--  <div class=" svg-container " class="image is-square"> -->
     <svg version="1.1" class="svg-content" preserveAspectRatio="xMidYMid meet" viewBox="0 0 800 300">    
             <defs>
-                <filter x="0" y="0" width="1" height="1" id="solid">
-                    <feFlood flood-color="yellow"/>
+                <filter x="0" y="0" width="1" height="1" id="highlight">
+                    <feFlood flood-color="snow" flood-opacity="0.7"/>
                     <feComposite in="SourceGraphic" operator="xor"/>
                 </filter>
+
+                <mask id="round" maskContentUnits="objectBoundingBox">
+                    <rect width="1" height="1" rx="0.2" ry="0.2" />
+                </mask>
              </defs>
-            <text class="clickable highlight" fill="#ffc9fb "  x="510"  y="150"  v-on:click= "display( 'about' )"   >About</text>
-            <text class="clickable " fill="#ffc9fb "  x="400"  y="260"  v-on:click= "display( 'shop' )"    >Shop</text>
-            <text class="clickable " fill="#ffc9fb "  x="20"   y="220"  v-on:click= "display( 'account' )" >Account</text>
-            <text class="clickable " fill="#ffc9fb "  x="220"  y="280"  v-on:click= "display( 'ranking' )" >Ranking</text>
-            <text class="clickable " fill="#ffc9fb "  x="650"  y="250"  v-on:click= "display( 'advised' )" >Advised</text>
-            <text class="clickable " fill="#ffc9fb "  x="680"  y="200"  v-on:click= "display( 'rate' )"    >Rate</text>
+            <text class="clickable " filter="url(#highlight)" x="510"  y="150"  v-on:click= "display( 'about' )"   >About</text>
+            <text class="clickable " filter="url(#highlight)"  x="400"  y="260"  v-on:click= "display( 'shop' )"    >Shop</text>
+            <text class="clickable " filter="url(#highlight)"  x="20"   y="220"  v-on:click= "display( 'account' )" >Account</text>
+            <text class="clickable " filter="url(#highlight)"  x="220"  y="280"  v-on:click= "display( 'ranking' )" >Ranking</text>
+            <text class="clickable " filter="url(#highlight)" x="650"  y="250"  v-on:click= "display( 'advised' )" >Advised</text>
+            <text class="clickable " filter="url(#highlight)" x="680"  y="200"  v-on:click= "display( 'rate' )"    >Rate</text>
      </svg>
     <!--    </div> -->
 </div>
