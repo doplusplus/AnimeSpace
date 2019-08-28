@@ -8,13 +8,14 @@ class IndexView(generic.TemplateView):
         about   = 'About'
         ranking = 'Ranking'
         account = 'Account'
-        rate    = 'Rate'
+        rate    = 'Rate it!'
         advised = 'Advised'
         shop    = 'Shop'
+        home    = 'Home'
 
         return render(
             request,
             'webDisplay/Index.html', 
-            {'about': about, 'ranking':ranking, 'account':account, 'rate':rate , 'advised':advised , 'shop':shop })
+            {'about': about, 'ranking':ranking, 'account':account, 'rate':rate , 'advised':advised , 'shop':shop , 'home':home })
 
 

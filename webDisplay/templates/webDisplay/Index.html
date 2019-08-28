@@ -3,11 +3,9 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-
+    <meta charset="utf-8"> {% load static %}
     <title>The Anime bar</title>
-    <meta name="description" content="The HTML5 Herald">
-    <meta name="author" content="SitePoint"> {% load static %}
+    <meta name="The anime bar" content="Anime referencer , community space and shop">
     <link rel="stylesheet" type="text/css" href="../../../static/bulma.css">
     <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/style.css' %}">
     <script type="text/javascript" src="{% static '/vue.js' %}"></script>
@@ -20,7 +18,10 @@
         <section class="hero is-primary is-bold">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">
+                    <div class="is-block is-pulled-right" v-on:click="display('account')">
+                        <i class="fas fa-user clickable"></i>
+                    </div>
+                    <h1 class="title" v-bind:class="{ clickable: !home }" v-on:click="display('home')">
                         THE ANIME BAR
                     </h1>
                     <h2 class="subtitle">
@@ -42,7 +43,7 @@
                         </div>
                         <div class="columns" v-if="rate">
                             <p class="column is-6"></p>
-                            <p class="column is-6">Rate ... Vox populi</p>
+                            <p class="column is-6">Rate it!... Vox populi</p>
                         </div>
                         <div class="columns" v-if="advised">
                             <p class="column is-6"></p>
@@ -62,13 +63,15 @@
 
                 <div v-if="!home" class="column is-1">
                     <aside class="menu sticky">
-                        <p class="clickable menu-label" v-on:click="display('ranking')">{{ranking}}</p>
-                        <p class="clickable menu-label" v-on:click="display('rate')">{{rate}}</p>
-                        <p class="clickable menu-label" v-on:click="display('advised')">{{advised}}</p>
-                        <p class="clickable menu-label" v-on:click="display('shop')">{{shop}}</p>
-                        <p class="clickable menu-label" v-on:click="display('account')">{{account}}</p>
-                        <p class="clickable menu-label" v-on:click="display('about')">{{about}}</p>
-                        <p class="clickable menu-label" v-on:click="display('home')">Home</p>
+                        <ul class="menu-list">
+                            <li v-on:click="display('ranking')"><a class="has-text-black">{{ranking}}</a></li>
+                            <li v-on:click="display('rate')"> <a class="has-text-black">{{rate}}</a></li>
+                            <li v-on:click="display('advised')"><a class="has-text-black">{{advised}}</a></li>
+                            <li v-on:click="display('shop')"> <a class="has-text-black">{{shop}}</a></li>
+                            <li v-on:click="display('account')"><a class="has-text-grey">{{account}}</a></li>
+                            <li v-on:click="display('about')"><a class="has-text-grey">{{about}}</a></li>
+                            <li v-on:click="display('home')"><a class="has-text-grey">{{home}}</a></li>
+                        </ul>
                     </aside>
                 </div>
 
