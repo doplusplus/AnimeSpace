@@ -20,8 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'f)fg250o6&!d%tcbnk+a5unfpo9!&&b6g!mxevnl!&(a63(qgq'
-
+#SECRET_KEY = 'f)fg250o6&!d%tcbnk+a5unfpo9!&&b6g!mxevnl!&(a63(qgq'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY','f)fg250o6&!d%tcbnk+a5unfpo9!&&b6g!mxevnl!&(a63(qgq')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -123,3 +123,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+STATIC_ROOT = '/home/listman/AnimeSpace/theStaticRoot/'

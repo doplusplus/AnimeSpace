@@ -3,10 +3,11 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8"> {% load static %}
-    <title>The Anime bar</title>
+    <meta charset="utf-8">
     <meta name="The anime bar" content="Anime referencer , community space and shop">
-    <link rel="stylesheet" type="text/css" href="../../../static/bulma.css">
+    {% load static %}
+    <title>The Anime bar</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bulma.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/style.css' %}">
     <script type="text/javascript" src="{% static '/vue.js' %}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
@@ -112,7 +113,7 @@
 
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
     <noscript>
-            <div style="position: fixed; top: 0px; left: 0px; z-index: 3000; 
+            <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
                             height: 100%; width: 100%; background-color: #FFFFFF">
                     <p style="margin-left: 10px">JavaScript is not enabled.</p>
                 </div>
