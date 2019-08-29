@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['localhost','listman.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'ranking.apps.RankingConfig',
     'webDisplay.apps.MaindisplayConfig',
     'django.contrib.admin',
     'django.contrib.auth',
