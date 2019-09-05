@@ -1,7 +1,11 @@
-from django.shortcuts import render
+import json
 from django.http import HttpResponse
-from .models import Anime
 from django.core import serializers
+
+from django.shortcuts import render
+from .models import Anime
+from django.http import JsonResponse
+
 
 def index(request):
     animelist = Anime.objects.all()
@@ -9,5 +13,7 @@ def index(request):
     return HttpResponse(output)
 
 def animeDetails(request):
-    data = serializers.serialize("json", Anime.objects.all())
-    return HttpResponse(data)
+    animelist = Anime.objects.all()
+    rawData = serializers.serialize('python', animelist)
+    data = [d['fields'] for d in rawData]
+    return HttpResponse(json.dumps(data), content_type='application/json')
