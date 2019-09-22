@@ -8,9 +8,9 @@ from django.http import JsonResponse
 
 
 def index(request):
-    animelist = Anime.objects.all()
-    output = ', '.join([q.name for q in animelist])
-    return HttpResponse(output)
+    animelist = Anime.objects.values_list('name', flat=True)
+    data = list(animelist)
+    return JsonResponse(data,  safe = False)
 
 def animeDetails(request):
     animelist = Anime.objects.all()

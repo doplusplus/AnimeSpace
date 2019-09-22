@@ -1,3 +1,7 @@
+'use strict';
+
+
+
 var app = new Vue({
     el: '#app',
     delimiters: ['[[', ']]'],
@@ -22,7 +26,8 @@ var app = new Vue({
             this.shop = element == 'shop';
         }
 
-
-
     },
+    components: {
+        'ranking-display': rankingComponent
+    }
 })

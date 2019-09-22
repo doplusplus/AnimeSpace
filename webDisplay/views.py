@@ -19,3 +19,9 @@ class IndexView(generic.TemplateView):
             {'about': about, 'ranking':ranking, 'account':account, 'rate':rate , 'advised':advised , 'shop':shop , 'home':home })
 
 
+class RankingView(generic.TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        return render(request , 'webDisplay/RankingContent.html')
+
+

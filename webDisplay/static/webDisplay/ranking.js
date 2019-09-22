@@ -1,0 +1,48 @@
+'use strict';
+
+const animePerPage = 4;
+var rankingHtml;
+axios.get("rankingTemplate").then(response => {
+    rankingHtml = response.data
+    rankingComponent.template = rankingHtml;
+});
+
+var rankingComponent = {
+    delimiters: ['[[', ']]'],
+    data: function() {
+        return {
+            animeList: [],
+            currentSelection: 0,
+            animeDetails: []
+        }
+    },
+    methods: {
+        selectAnime: function(index) {
+            this.currentSelection = index;
+        },
+        updateAnimeList: function(start, size) {
+
+        }
+    },
+    mounted: function() {
+        /*  axios.get("ranking")
+              .then(response => {
+                  this.animeList = response.data
+              });*/
+
+        axios.get("ranking/details")
+            .then(response => {
+                var otherself = this;
+                this.animeDetails = response.data;
+                this.animeList = extractNames(this.animeDetails);
+            });
+    },
+    template: 'THE RANKING'
+}
+
+
+
+
+var extractNames = function(list) {
+    return list.map(element => element.name);
+}

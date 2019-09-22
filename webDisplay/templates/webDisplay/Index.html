@@ -11,6 +11,7 @@
     <title>The Anime bar</title>
     <link rel="stylesheet" type="text/css" href="{% static 'bulma.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/style.css' %}">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="{% static '/vue.js' %}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
@@ -80,7 +81,8 @@
                 <div class="column">
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
                     <div v-if="about">{% include './AboutContent.html' %}</div>
-                    <div v-if="ranking">{% include './RankingContent.html' %}</div>
+                    <!-- <div >{% include './RankingContent.html' %}</div>-->
+                    <ranking-display v-if="ranking"></ranking-display>
                     <div v-if="account">{% include './AccountContent.html' %}</div>
                     <div v-if="rate">{% include './RateContent.html' %}</div>
                     <div v-if="advised">{% include './AdvisedContent.html' %}</div>
@@ -111,7 +113,7 @@
         </footer>
 
     </div>
-
+    <script type="text/javascript" src="{% static 'webDisplay/ranking.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
     <noscript>
             <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
