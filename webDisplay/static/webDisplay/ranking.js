@@ -13,12 +13,14 @@ var rankingComponent = {
         return {
             animeList: [],
             currentSelection: 0,
-            animeDetails: []
+            animeDetails: [],
+            toPlay: "",
         }
     },
     methods: {
         selectAnime: function(index) {
             this.currentSelection = index;
+            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1';
         },
         updateAnimeList: function(start, size) {
 
@@ -35,6 +37,7 @@ var rankingComponent = {
                 var otherself = this;
                 this.animeDetails = response.data;
                 this.animeList = extractNames(this.animeDetails);
+                this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1';
             });
     },
     template: 'THE RANKING'
