@@ -1,2 +1,2 @@
 # AnimeSpace
-website and modules for anime consumers
+website and modules for anime lovers
