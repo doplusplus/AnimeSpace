@@ -6,13 +6,13 @@
         <li class="columns" v-for="(anime,index) in animeDetails" @click="selectAnime(index)">
             <div class="column is-2 "></div>
             <div class="column is-7">
-                <div><strong>[[anime.name]]</strong> </div>
-                <div class="has-text-light" v-if="currentSelection == index">
+                <div><strong v-bind:class="{'has-text-light' : lightTextRequired} ">[[anime.name]]</strong> </div>
+                <div class="has-background-grey-lighter has-text-black" v-if="currentSelection == index">
                     <div>Genre: [[anime.genre]]</div>
                     <div>[[anime.description]]</div>
                 </div>
             </div>
-            <div class=" column is-3 " title="score over 100"> [[anime.popularity]]</div>
+            <div class=" column is-3  has-text-light " title="score over 100"> [[anime.popularity]]</div>
         </li>
     </ul>
 </div>

@@ -17,6 +17,11 @@ var rankingComponent = {
             toPlay: "",
         }
     },
+    computed: {
+        lightTextRequired: function() {
+            return this.animeDetails[this.currentSelection].darkVideoBackground;
+        }
+    },
     methods: {
         selectAnime: function(index) {
             this.currentSelection = index;
