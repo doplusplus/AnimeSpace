@@ -25,7 +25,7 @@ var rankingComponent = {
     methods: {
         selectAnime: function(index) {
             this.currentSelection = index;
-            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1';
+            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1&amp;controls=0&amp;rel=0';
         },
         updateAnimeList: function(start, size) {
 

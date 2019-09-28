@@ -64,28 +64,42 @@
         <section id="mainDisplay">
             <div class="columns">
 
-                <div v-if="!home" class="column is-1">
+                <div v-if="!home" class="column is-2">
                     <aside class="menu sticky">
                         <ul class="menu-list">
-                            <li v-on:click="display('ranking')"><a class="has-text-black">{{ranking}}</a></li>
-                            <li v-on:click="display('rate')"> <a class="has-text-black">{{rate}}</a></li>
-                            <li v-on:click="display('advised')"><a class="has-text-black">{{advised}}</a></li>
-                            <li v-on:click="display('shop')"> <a class="has-text-black">{{shop}}</a></li>
-                            <li v-on:click="display('account')"><a class="has-text-grey">{{account}}</a></li>
-                            <li v-on:click="display('about')"><a class="has-text-grey">{{about}}</a></li>
-                            <li v-on:click="display('home')"><a class="has-text-grey">{{home}}</a></li>
+                            <li>
+                                <a v-on:click="display('ranking')" class="clickable has-text-black">{{ranking}}</a>
+                            </li>
+                            <li v-on:click="display('rate')">
+                                <a class="clickable has-text-black">{{rate}}</a>
+                            </li>
+                            <li v-on:click="display('advised')">
+                                <a class="clickable has-text-black">{{advised}}</a>
+                            </li>
+                            <li v-on:click="display('shop')">
+                                <a class="clickable has-text-black">{{shop}}</a>
+                            </li>
+                            <li v-on:click="display('account')">
+                                <a class="clickable has-text-grey">{{account}}</a>
+                            </li>
+                            <li v-on:click="display('about')">
+                                <a class="clickable has-text-grey">{{about}}</a>
+                            </li>
+                            <li v-on:click="display('home')">
+                                <a class="clickable has-text-grey">{{home}}</a>
+                            </li>
                         </ul>
                     </aside>
                 </div>
 
                 <div class="column">
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
-                    <div v-if="about">{% include './AboutContent.html' %}</div>
+                    <div v-if="about">{% include './aboutContent.html' %}</div>
                     <!-- <div >{% include './RankingContent.html' %}</div>-->
                     <ranking-display v-if="ranking"></ranking-display>
-                    <div v-if="account">{% include './AccountContent.html' %}</div>
+                    <div v-if="account">{% include './accountContent.html' %}</div>
                     <div v-if="rate">{% include './RateContent.html' %}</div>
-                    <div v-if="advised">{% include './AdvisedContent.html' %}</div>
+                    <div v-if="advised">{% include './advisedContent.html' %}</div>
                     <div v-if="shop">{% include './ShopContent.html' %}</div>
                 </div>
             </div>

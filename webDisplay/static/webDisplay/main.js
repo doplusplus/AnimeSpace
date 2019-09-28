@@ -1,7 +1,5 @@
 'use strict';
 
-
-
 var app = new Vue({
     el: '#app',
     delimiters: ['[[', ']]'],
@@ -25,6 +23,7 @@ var app = new Vue({
             this.advised = element == 'advised';
             this.shop = element == 'shop';
         }
+
 
     },
     components: {
