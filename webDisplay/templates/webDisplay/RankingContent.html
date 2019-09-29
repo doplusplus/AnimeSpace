@@ -10,9 +10,24 @@
                 <div class="lightTransparentBackground has-text-black" v-if="currentSelection == index">
                     <div>Genre: [[anime.genre]]</div>
                     <div>[[anime.description]]</div>
+                    <div>
+                        <h7 class="title is-7  has-text-centered" v-bind:class="{'has-text-light' : lightTextRequired}">---- STATS /10 ----</h7>
+                        <div class="columns ">
+                            <div class="column is-6 ">
+                                <p>visuals: 4</p>
+                                <p>audio: 2</p>
+                                <p>fight: 5</p>
+                            </div>
+                            <div class="column is-6 ">
+                                <p>story: 5</p>
+                                <p>violence: 9</p>
+                                <p>blood: 7</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class=" column is-3  has-text-light " title="score over 100"> [[anime.popularity]]</div>
+            <div class=" column is-3 has-text-light " title="score over 100 "> [[anime.popularity]]</div>
         </li>
     </ul>
 </div>

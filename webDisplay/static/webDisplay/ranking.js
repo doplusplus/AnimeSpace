@@ -42,13 +42,11 @@ var rankingComponent = {
                 var otherself = this;
                 this.animeDetails = response.data;
                 this.animeList = extractNames(this.animeDetails);
-                this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1';
+                this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1&amp;controls=0';
             });
     },
     template: 'THE RANKING'
 }
-
-
 
 
 var extractNames = function(list) {
