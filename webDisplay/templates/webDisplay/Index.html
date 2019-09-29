@@ -67,25 +67,25 @@
                 <div v-if="!home" class="column is-2">
                     <aside class="menu sticky">
                         <ul class="menu-list">
-                            <li>
+                            <li v-bind:class={selected:ranking}>
                                 <a v-on:click="display('ranking')" class="clickable has-text-black">{{ranking}}</a>
                             </li>
-                            <li v-on:click="display('rate')">
+                            <li v-bind:class={selected:rate} v-on:click="display('rate')">
                                 <a class="clickable has-text-black">{{rate}}</a>
                             </li>
-                            <li v-on:click="display('advised')">
+                            <li v-bind:class={selected:advised} v-on:click="display('advised')">
                                 <a class="clickable has-text-black">{{advised}}</a>
                             </li>
-                            <li v-on:click="display('shop')">
+                            <li v-bind:class={selected:shop} v-on:click="display('shop')">
                                 <a class="clickable has-text-black">{{shop}}</a>
                             </li>
-                            <li v-on:click="display('account')">
+                            <li v-bind:class={selected:account} v-on:click="display('account')">
                                 <a class="clickable has-text-grey">{{account}}</a>
                             </li>
-                            <li v-on:click="display('about')">
+                            <li v-bind:class={selected:about} v-on:click="display('about')">
                                 <a class="clickable has-text-grey">{{about}}</a>
                             </li>
-                            <li v-on:click="display('home')">
+                            <li v-bind:class={selected:home} v-on:click="display('home')">
                                 <a class="clickable has-text-grey">{{home}}</a>
                             </li>
                         </ul>

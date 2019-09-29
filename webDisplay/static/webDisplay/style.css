@@ -63,3 +63,7 @@ div>ul>li {
     top: 10%;
     z-index: 2;
 }
+
+.selected {
+    background-image: linear-gradient(to right, aquamarine, white);
+}
