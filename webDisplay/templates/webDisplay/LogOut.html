@@ -1,0 +1,7 @@
+<div class="modal" v-bind:class="{'is-active':logout}">
+    <div class="box">
+        <h4> Would you like to log out? </h4>
+        <span class="button" v-on:click="logOut()">Log out</span>
+        <span class="button" v-on:click="logout=false">Cancel</span>
+    </div>
+</div>

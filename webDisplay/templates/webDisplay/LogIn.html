@@ -1,0 +1,24 @@
+<div class="modal " v-bind:class="{ 'is-active':identify} ">
+    <div class="modal-background "></div>
+    <div class="modal-content ">
+        <div class="box">
+            <h4> Would you like to log In? </h4>
+            <p class="field">
+                <span class="control">
+                        <label>Username:</label>
+                        <input class="input" type="text" placeholder="ex: kurococo" width="15">
+                </span>
+            </p>
+            <p class="field">
+                <span class="control">
+                            <label>Password:</label>
+                            <input class="input" type="password"   width="15">
+                </span>
+            </p>
+            <div>
+                <span class="button is-primary" v-on:click="identified=true">Log in</span>
+                <span class="button is-danger" v-on:click="identify=false">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

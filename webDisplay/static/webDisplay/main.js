@@ -11,8 +11,25 @@ var app = new Vue({
         rate: false,
         advised: false,
         shop: false,
+        identify: false,
+        identified: false,
+        logout: false,
     },
     methods: {
+        logIn: function() {
+            if (this.identified) {
+                this.logout = true;
+            } else {
+                this.identify = !this.identify;
+            }
+        },
+
+        logOut: function() {
+            this.display('home');
+            this.logout = false;
+            this.identify = false;
+            this.identified = false;
+        },
 
         display: function(element) {
             this.home = element == 'home';
