@@ -23,7 +23,10 @@ var app = new Vue({
                 this.identify = !this.identify;
             }
         },
-
+        authenticate: function() {
+            this.identified = true;
+            this.display('account');
+        },
         logOut: function() {
             this.display('home');
             this.logout = false;
