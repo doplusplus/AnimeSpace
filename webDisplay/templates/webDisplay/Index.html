@@ -63,7 +63,6 @@
 
         <section id="mainDisplay">
             <div class="columns">
-
                 <div v-if="!home" class="column is-2">
                     <aside class="menu sticky">
                         <ul class="menu-list">
@@ -88,15 +87,16 @@
                         </ul>
                     </aside>
                     <button class="button" v-bind:class={selected:home} v-on:click="display('home')">
-                                <i class="fas fa-home clickable"></i>
-                     </button>
+                        <i class="fas fa-home clickable"></i>
+                    </button>
                 </div>
+
                 <div v-if="!identified"> {% include './LogIn.html' %}</div>
                 <div v-if="identified"> {% include './LogOut.html' %}</div>
+
                 <div class="column">
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
                     <div v-if="about">{% include './AboutContent.html' %}</div>
-                    <!-- <div >{% include './RankingContent.html' %}</div>-->
                     <ranking-display v-if="ranking"></ranking-display>
                     <div v-if="account">{% include './AccountContent.html' %}</div>
                     <div v-if="rate">{% include './RateContent.html' %}</div>
@@ -105,36 +105,33 @@
                 </div>
             </div>
         </section>
-
-        <footer class="footer">
-            <div class="container">
-                <div class=" columns">
-                    <div class="column is-2">
-                    </div>
-                    <div class="column is-4">
-                        <p class="clickable content">Feedback</p>
-                        <p class="clickable content">Contact</p>
-                        <p class="clickable content">Donate</p>
-                    </div>
-                    <div class="column is-4">
-                        <p class="clickable content">Other rankings</p>
-                        <p class="clickable content">Where to read mangas</p>
-                        <p class="clickable content">Where to watch animes</p>
-                    </div>
-                    <div class="column is-2">
-                    </div>
-                </div>
-            </div>
-        </footer>
-
     </div>
+    <footer id="footer" class="footer">
+        <div> {% include './FooterModal.html' %}</div>
+        <div class="container">
+            <div class=" columns">
+                <div class="column is-2"></div>
+                <div class="column is-4">
+                    <p class="clickable content" v-on:click="display('contact')">Contact</p>
+                    <p class="clickable content" v-on:click="display('donate')">Donate</p>
+                    <p class="clickable content" v-on:click="display('feedback')">Feedback</p>
+                </div>
+                <div class="column is-4">
+                    <p class="clickable content" v-on:click="display('otherrankings')">Other rankings</p>
+                    <p class="clickable content" v-on:click="display('wheretoread')">Where to read mangas</p>
+                    <p class="clickable content" v-on:click="display('wheretowatch')">Where to watch animes</p>
+                </div>
+                <div class="column is-2"></div>
+            </div>
+        </div>
+    </footer>
     <script type="text/javascript" src="{% static 'webDisplay/ranking.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
     <noscript>
-            <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
-                            height: 100%; width: 100%; background-color: #FFFFFF">
-                    <p style="margin-left: 10px">JavaScript is not enabled.</p>
-                </div>
+        <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
+                        height: 100%; width: 100%; background-color: #FFFFFF">
+                <p style="margin-left: 10px">JavaScript is not enabled.</p>
+        </div>
     </noscript>
 </body>
 

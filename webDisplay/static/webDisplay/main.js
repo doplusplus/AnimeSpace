@@ -49,4 +49,31 @@ var app = new Vue({
     components: {
         'ranking-display': rankingComponent
     }
-})
+});
+
+
+var footer = new Vue({
+    el: '#footer',
+    delimiters: ['[[', ']]'],
+    data: {
+        showModal: false,
+        contact: false,
+        donate: false,
+        feedback: false,
+        otherrankings: false,
+        wheretoread: false,
+        wheretowatch: false,
+    },
+    methods: {
+        display: function(element) {
+            this.contact = element == 'contact';
+            this.donate = element == 'donate';
+            this.feedback = element == 'feedback';
+            this.otherrankings = element == 'otherrankings';
+            this.wheretoread = element == 'wheretoread';
+            this.wheretowatch = element == 'wheretowatch';
+
+            this.showModal = true;
+        }
+    },
+});

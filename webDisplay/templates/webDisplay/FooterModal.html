@@ -1,0 +1,16 @@
+<div class="modal" v-bind:class="{'is-active':showModal}">
+    <div class="modal-background "></div>
+    <div class="modal-content ">
+        <div class="box">
+            <div v-show="contact"> {% include './Contact.html' %}</div>
+            <div v-show="donate"> {% include './Donate.html' %}</div>
+            <div v-show="feedback"> {% include './FeedBack.html' %}</div>
+            <div v-show="otherrankings"> {% include './OtherRankings.html' %}</div>
+            <div v-show="wheretoread"> {% include './WhereToRead.html' %}</div>
+            <div v-show="wheretowatch"> {% include './WhereToWatch.html' %}</div>
+
+            <span class="button" v-on:click="">SEND</span>
+            <span class="button" v-on:click="showModal=false">Cancel</span>
+        </div>
+    </div>
+</div>
