@@ -28,7 +28,7 @@ var app = new Vue({
             this.display('account');
         },
         logOut: function() {
-            this.display('home');
+            if (this.account) { this.display('home'); }
             this.logout = false;
             this.identify = false;
             this.identified = false;
