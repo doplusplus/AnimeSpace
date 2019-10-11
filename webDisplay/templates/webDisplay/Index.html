@@ -85,10 +85,10 @@
                                 <a class="clickable has-text-grey">{{about}}</a>
                             </li>
                         </ul>
+                        <button id="homebutton" class="button" v-bind:class={selected:home} v-on:click="display('home')">
+                            <i class="fas fa-home clickable"></i>
+                        </button>
                     </aside>
-                    <button class="button" v-bind:class={selected:home} v-on:click="display('home')">
-                        <i class="fas fa-home clickable"></i>
-                    </button>
                 </div>
 
                 <div v-if="!identified"> {% include './LogIn.html' %}</div>

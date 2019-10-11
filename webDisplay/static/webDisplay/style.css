@@ -67,3 +67,9 @@ div>ul>li {
 .selected {
     background-image: linear-gradient(to right, aquamarine, white);
 }
+
+#homebutton {
+    display: block;
+    position: absolute;
+    bottom: 50%;
+}
