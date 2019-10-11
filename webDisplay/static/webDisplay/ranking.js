@@ -32,11 +32,6 @@ var rankingComponent = {
         }
     },
     mounted: function() {
-        /*  axios.get("ranking")
-              .then(response => {
-                  this.animeList = response.data
-              });*/
-
         axios.get("ranking/details")
             .then(response => {
                 var otherself = this;
