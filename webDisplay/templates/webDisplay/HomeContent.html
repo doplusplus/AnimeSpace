@@ -5,12 +5,9 @@
                     <feFlood flood-color="snow" flood-opacity="0.7"/>
                     <feComposite in="SourceGraphic" operator="xor"/>
                 </filter>
-
-                <mask id="round" maskContentUnits="objectBoundingBox">
-                    <rect width="1" height="1" rx="0.2" ry="0.2" />
-                </mask>
              </defs>
-            <text class="clickable " filter="url(#highlight)" x="510"  y="150"  @click= "display( 'about' )"                            >About</text>
+             
+            <text class="clickable "  mask="url(#round)" filter="url(#highlight)" x="510"  y="150"  @click= "display( 'about' )"                            >About</text>
            <!--
                <text class="clickable " filter="url(#highlight)" x="400"  y="260"  @click= "display( 'shop' )">Shop</text>
            --> 
