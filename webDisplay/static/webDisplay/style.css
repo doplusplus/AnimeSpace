@@ -83,5 +83,5 @@ div>ul>li {
     left: 0;
     background-image: url("../../static/webDisplay/bar.jpg");
     background-size: cover;
-    text-decoration: aqua,
+    font-weight: 700;
 }
