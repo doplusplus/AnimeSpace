@@ -86,7 +86,13 @@
                             </li>
                         </ul>
                     </aside>
+                    <div id="toolBar">
+                        <button class="button" v-show="ranking && playing" @click="playing=false">Stop</button>
+                        <button class="button" v-show="ranking && !playing" @click="playing=true">Start</button>
+                    </div>
                 </div>
+                <div v-if=" !identified "> {% include './LogIn.html' %}</div>
+                <div v-if="identified "> {% include './LogOut.html' %}</div>
 
                 <div v-if="!identified"> {% include './LogIn.html' %}</div>
                 <div v-if="identified"> {% include './LogOut.html' %}</div>

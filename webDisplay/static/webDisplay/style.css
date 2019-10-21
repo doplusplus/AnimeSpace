@@ -85,3 +85,8 @@ div>ul>li {
     background-size: cover;
     font-weight: 700;
 }
+
+#toolBar {
+    top: 70%;
+    position: fixed;
+}

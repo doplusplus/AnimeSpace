@@ -14,6 +14,7 @@ var app = new Vue({
         identify: false,
         identified: false,
         logout: false,
+        playing: true,
     },
     methods: {
         logIn: function() {
@@ -42,8 +43,7 @@ var app = new Vue({
             this.rate = element == 'rate';
             this.advised = element == 'advised';
             this.shop = element == 'shop';
-        }
-
+        },
 
     },
     components: {
