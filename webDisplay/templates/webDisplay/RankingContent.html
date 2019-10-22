@@ -1,17 +1,19 @@
 <div id="ranking">
-    <div id="bg_container">
-        <iframe id="rankingFrame" v-bind:src="toPlay" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
     <ul id="rankingContent">
-        <li class="columns" v-for="(anime,index) in animeDetails" @click="selectAnime(index)">
-            <div class="column is-2 "></div>
-            <div class="column is-7">
-                <div><strong class="is-size-6 is-uppercase" v-bind:class="{'has-text-light' : lightTextRequired} ">[[anime.name]]</strong> </div>
-                <div class="lightTransparentBackground has-text-black" v-if="currentSelection == index">
+        <li class="columns" v-for="(anime,index) in animeDetails">
+
+            <div class="column is-2 ">
+                <div>
+                    <iframe id="rankingFrame" v-bind:src=" anime.videoLink + '?autoplay=0&amp;controls=0' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="column is-7 clickable" @click="selectAnime(index)">
+                <div><strong class="is-size-6 is-uppercase">[[anime.name]]</strong> </div>
+                <div v-if="currentSelection == index">
                     <div>Genre: [[anime.genre]]</div>
                     <div>[[anime.description]]</div>
                     <div>
-                        <h6 class="title is-6  has-text-centered" v-bind:class="{'has-text-light' : lightTextRequired}"> ---- STATS /10 ---- </h6>
+                        <h6 class="title is-6  has-text-centered"> ---- STATS /10 ---- </h6>
                         <div class="columns ">
                             <div class="column is-6 ">
                                 <p>visuals: 4</p>
@@ -27,7 +29,12 @@
                     </div>
                 </div>
             </div>
-            <div class=" column is-3 has-text-light " title="score over 100 "> [[anime.popularity]]</div>
+            <div id="rankingMiscelleanous" class=" column is-3 ">
+                <div title="score over 100">[[anime.popularity]]</div>
+                <div class="clickable" id="expand">
+                    <i title="full screen" class="fas fa-expand-arrows-alt"></i>
+                </div>
+            </div>
         </li>
     </ul>
 </div>

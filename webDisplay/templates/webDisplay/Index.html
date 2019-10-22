@@ -87,8 +87,10 @@
                         </ul>
                     </aside>
                     <div id="toolBar">
-                        <button class="button" v-show="ranking && playing" @click="playing=false">Stop</button>
-                        <button class="button" v-show="ranking && !playing" @click="playing=true">Start</button>
+                        <button class="button" title="text only"><i class="fas fa-bars"></i></button>
+                        <button class="button" title="with miniplayer"><i class="fas fa-list"></i></button>
+                        <button class="button" title="expand all descriptions"><i class="fas fa-arrows-alt-v"></i></button>
+                        <button class="button" title="collapse all descriptions"><i class="far fa-minus-square"></i></button>
                     </div>
                 </div>
                 <div v-if=" !identified "> {% include './LogIn.html' %}</div>
