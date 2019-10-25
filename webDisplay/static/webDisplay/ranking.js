@@ -15,21 +15,29 @@ var rankingComponent = {
             currentSelection: 0,
             animeDetails: [],
             toPlay: "",
+            extended: false,
+            unfold: true,
         }
     },
     computed: {
         lightTextRequired: function() {
             return this.animeDetails[this.currentSelection].darkVideoBackground;
-        }
+        },
     },
     methods: {
-        selectAnime: function(index) {
+        toggleAnime: function(index) {
             this.currentSelection = this.currentSelection == index ? -1 : index;
-            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1&amp;controls=0&amp;rel=0';
+            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0&amp;rel=0';
         },
         updateAnimeList: function(start, size) {
 
+        },
+        expand: function(index) {
+            this.currentSelection = index;
+            this.extended = true;
+            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0&amp;rel=0';
         }
+
     },
     mounted: function() {
         axios.get("ranking/details")
@@ -37,7 +45,7 @@ var rankingComponent = {
                 var otherself = this;
                 this.animeDetails = response.data;
                 this.animeList = extractNames(this.animeDetails);
-                this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=1&amp;controls=0';
+                this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0';
             });
     },
     template: 'THE RANKING'
