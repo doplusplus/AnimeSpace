@@ -91,3 +91,13 @@ li {
     width: 100%;
     height: 100vh;
 }
+
+.announcement {
+    color: rgba(74, 204, 143, 1);
+}
+
+.fullScreen {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}

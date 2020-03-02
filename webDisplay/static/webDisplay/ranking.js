@@ -2,10 +2,15 @@
 
 const animePerPage = 4;
 var rankingHtml;
-axios.get("rankingTemplate").then(response => {
-    rankingHtml = response.data
-    rankingComponent.template = rankingHtml;
-});
+if (axios != undefined) {
+
+    axios.get("rankingTemplate").then(response => {
+        rankingHtml = response.data
+        rankingComponent.template = rankingHtml;
+    });
+} else {
+    alert('Issue with fetching data (Axios is undefined)');
+}
 
 var rankingComponent = {
     delimiters: ['[[', ']]'],
@@ -36,7 +41,10 @@ var rankingComponent = {
             this.currentSelection = index;
             this.extended = true;
             this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0&amp;rel=0';
-        }
+        },
+        selected: function(index) {
+            return this.currentSelection == index;
+        },
 
     },
     mounted: function() {

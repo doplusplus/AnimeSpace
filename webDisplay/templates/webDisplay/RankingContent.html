@@ -1,13 +1,15 @@
 <div id="ranking">
-    <div v-if="extended">
-        <iframe id="fullRankingFrame" v-bind:src="toPlay" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    <!-- 
+       <div v-if="extended">
+           <iframe id="fullRankingFrame" v-bind:src="toPlay" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div> 
+    -->
     <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
         <li class="columns" v-for="(anime,index) in animeDetails">
 
             <div class="column is-2 ">
-                <div v-show="!extended">
-                    <iframe id="rankingFrame" v-bind:src=" anime.videoLink + '?autoplay=0&amp;controls=0' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div v-show="!extended || selected(index)">
+                    <iframe id="rankingFrame" v-bind:class="{fullScreen : extended }" v-bind:src=" anime.videoLink + '?autoplay=0&amp;controls=0' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="column is-7" v-bind:class="{clickable : !extended}" @click="if(!extended) {toggleAnime(index);}">
@@ -43,13 +45,13 @@
     <div id="toolBar">
         <div v-show="extended">
             <button class="button" @click="extended=false">
-                <i class="fas fa-compress is-size-3"></i>
+                <i class="fas fa-compress"></i>
             </button>
             <button v-show="unfold" class="button" @click="unfold=false">
-                <i class="far fa-caret-square-up is-size-3"></i>
+                <i class="far fa-caret-square-up"></i>
             </button>
             <button v-show="!unfold" class="button" @click="unfold=true">
-                <i class="fas fa-minus is-size-3"></i>
+                <i class="fas fa-minus"></i>
             </button>
         </div>
         <div>

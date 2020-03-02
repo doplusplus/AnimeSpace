@@ -18,3 +18,4 @@ ranking/migrations/__pycache__/0003_auto_20190924_2039.cpython-37.pyc
 .vscode/launch.json
 updateAnime.sql
 InsertAnime.sql
+webDisplay/templates/webDisplay/RankingContentOld.html
