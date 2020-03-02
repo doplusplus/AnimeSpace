@@ -67,7 +67,7 @@ li {
 }
 
 #toolBar {
-    bottom: 5%;
+    bottom: 20%;
     left: 0;
     position: fixed;
 }
@@ -88,6 +88,7 @@ li {
 }
 
 #fullRankingFrame {
+    /*to remove?*/
     width: 100%;
     height: 100vh;
 }
@@ -100,4 +101,10 @@ li {
     position: absolute;
     height: 100%;
     width: 100%;
+    left: 0;
+    top: 0;
+}
+
+.listed {
+    height: 100%;
 }

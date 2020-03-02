@@ -1,6 +1,7 @@
 'use strict';
 
 const animePerPage = 4;
+const messageTiming = 1000 //ms
 var rankingHtml;
 if (axios != undefined) {
 
@@ -18,6 +19,7 @@ var rankingComponent = {
         return {
             animeList: [],
             currentSelection: 0,
+            hoveredItem: -1,
             animeDetails: [],
             toPlay: "",
             extended: false,
@@ -45,7 +47,13 @@ var rankingComponent = {
         selected: function(index) {
             return this.currentSelection == index;
         },
-
+        hovered: async function(index) {
+            this.hoveredItem = index;
+            await sleep(messageTiming);
+            if (this.hoveredItem == index) {
+                this.hoveredItem = -1;
+            };
+        },
     },
     mounted: function() {
         axios.get("ranking/details")
@@ -62,4 +70,9 @@ var rankingComponent = {
 
 var extractNames = function(list) {
     return list.map(element => element.name);
+}
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }

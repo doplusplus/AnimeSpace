@@ -1,21 +1,17 @@
 <div id="ranking">
-    <!-- 
-       <div v-if="extended">
-           <iframe id="fullRankingFrame" v-bind:src="toPlay" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div> 
-    -->
     <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
         <li class="columns" v-for="(anime,index) in animeDetails">
 
             <div class="column is-2 ">
-                <div v-show="!extended || selected(index)">
-                    <iframe id="rankingFrame" v-bind:class="{fullScreen : extended }" v-bind:src=" anime.videoLink + '?autoplay=0&amp;controls=0' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="listed" v-show="!extended || selected(index)">
+                    <iframe id="rankingFrame" v-bind:class="{fullScreen : extended , listed:!extended }" v-bind:src=" anime.videoLink + '?autoplay=0&amp;controls=0' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
                 </div>
             </div>
-            <div class="column is-7" v-bind:class="{clickable : !extended}" @click="if(!extended) {toggleAnime(index);}">
-                <div v-show="currentSelection == index || !extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong> </div>
-                <div v-show="currentSelection == index">
-                    <div>Genre: [[anime.genre]]</div>
+            <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="if(!extended) {expand(index);}">
+                <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - CLICK FOR WIDE DISPLAY</span> </div>
+                <div v-show="!extended">
+                    <div>Genre: [[anime.genre]] </div>
                     <div>[[anime.description]]</div>
                     <div>
                         <h6 class="title is-6  has-text-centered"> ---- STATS /10 ---- </h6>
@@ -35,30 +31,17 @@
                 </div>
             </div>
             <div id="rankingMiscelleanous" class=" column is-3 ">
-                <div v-show="currentSelection == index || !extended" title="score over 100">[[anime.popularity]]</div>
-                <div v-show="!extended" class="clickable" id="expand" @click="expand(index)">
-                    <i title="full screen" class="fas fa-expand-arrows-alt"></i>
-                </div>
+                <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
             </div>
         </li>
     </ul>
-    <div id="toolBar">
-        <div v-show="extended">
-            <button class="button" @click="extended=false">
-                <i class="fas fa-compress"></i>
-            </button>
-            <button v-show="unfold" class="button" @click="unfold=false">
-                <i class="far fa-caret-square-up"></i>
-            </button>
-            <button v-show="!unfold" class="button" @click="unfold=true">
-                <i class="fas fa-minus"></i>
-            </button>
-        </div>
-        <div>
-            <button class="button" title="text only"><i class="fas fa-bars"></i></button>
-            <button class="button" title="with miniplayer"><i class="fas fa-list"></i></button>
-            <button class="button" title="expand all descriptions"><i class="fas fa-arrows-alt-v"></i></button>
-            <button class="button" title="collapse all descriptions"><i class="far fa-minus-square"></i></button>
-        </div>
+    <div id="toolBar" v-show="extended">
+        <div> Score : [[animeDetails[currentSelection].popularity]] - Ranking : [[currentSelection + 1 ]] </div>
+        <button class="button" @click="extended=false" title="reduce display">
+            <i class="fas fa-compress-alt"></i>
+        </button>
+        <button class="button" title="show/hide description">
+            <i class="fas fa-bars"></i>
+        </button>
     </div>
 </div>
