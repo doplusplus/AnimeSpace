@@ -35,13 +35,42 @@
             </div>
         </li>
     </ul>
-    <div id="toolBar" v-show="extended">
-        <div> Score : [[animeDetails[currentSelection].popularity]] - Ranking : [[currentSelection + 1 ]] </div>
-        <button class="button" @click="extended=false" title="reduce display">
-            <i class="fas fa-compress-alt"></i>
+    <div id="toolBar" class="has-background-light" v-show="extended">
+        <div id="compactAnimeInfo">
+            Score : [[animeDetails[currentSelection].popularity]] - Ranking : [[currentSelection + 1 ]]
+        </div>
+        <div v-show="compactDetails">
+            <div>
+                Genre : [[animeDetails[currentSelection].genre]]
+            </div>
+            <div>
+                Description : [[animeDetails[currentSelection].description]]
+            </div>
+        </div>
+        <div class="field is-grouped">
+            <button class="button" @click="extended=false;compactDetails=false" title="reduce display">
+                <i class="fas fa-compress-alt"></i>
+            </button>
+            <button class="button" @click="compactDetails=!compactDetails" title="show/hide description">
+                <i class="fas fa-bars"></i>
+            </button>
+            <button class="button" @mouseover="compactNav('buttonHovered')" @mouseleave="compactNav('buttonLeft')" title="navigate through menus">
+                <i class="far fa-compass"></i>
+            </button>
+        </div>
+    </div>
+    <div id="compactNav" class="field is-grouped" v-show="buttonHovered || navMenuHovered" @mouseover="compactNav('menuHovered')" @mouseleave="compactNav('menuLeft')">
+        <button class="button" @click="" title="Account">
+            <i class="fa fa-user"></i>
         </button>
-        <button class="button" title="show/hide description">
-            <i class="fas fa-bars"></i>
+        <button class="button" @click="" title="About">
+            <i class="fas fa-info"></i>
+        </button>
+        <button class="button" @click="" title="Rate it!">
+            <i class="far fa-star"></i>
+        </button>
+        <button class="button" @click="" title="Advised">
+            <i class="far fa-grin-wink"></i>
         </button>
     </div>
 </div>

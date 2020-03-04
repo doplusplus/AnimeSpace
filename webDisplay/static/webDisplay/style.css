@@ -70,6 +70,14 @@ li {
     bottom: 20%;
     left: 0;
     position: fixed;
+    border-radius: 5px;
+}
+
+#compactNav {
+    bottom: 10%;
+    left: 0;
+    position: fixed;
+    border-radius: 5px;
 }
 
 #expand {
@@ -107,4 +115,8 @@ li {
 
 .listed {
     height: 100%;
+}
+
+#compactAnimeInfo {
+    color: navy;
 }

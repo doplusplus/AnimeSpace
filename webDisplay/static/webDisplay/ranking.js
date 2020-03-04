@@ -23,7 +23,10 @@ var rankingComponent = {
             animeDetails: [],
             toPlay: "",
             extended: false,
+            compactDetails: false,
             unfold: true,
+            buttonHovered: false,
+            navMenuHovered: false,
         }
     },
     computed: {
@@ -54,6 +57,24 @@ var rankingComponent = {
                 this.hoveredItem = -1;
             };
         },
+        compactNav: async function(element) {
+            switch (element) {
+                case 'buttonHovered':
+                    this.buttonHovered = true;
+                    break;
+                case 'menuHovered':
+                    this.navMenuHovered = true;
+                    break;
+                case 'buttonLeft':
+                    await sleep(messageTiming);
+                    this.buttonHovered = false;
+                    break;
+                case 'menuLeft':
+                    await sleep(messageTiming);
+                    this.navMenuHovered = false;
+                    break;
+            }
+        }
     },
     mounted: function() {
         axios.get("ranking/details")
