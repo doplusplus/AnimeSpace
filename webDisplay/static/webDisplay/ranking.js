@@ -74,7 +74,26 @@ var rankingComponent = {
                     this.navMenuHovered = false;
                     break;
             }
+        },
+        switchTo: function(element) {
+            let target = '';
+            switch (element) {
+                case 'Account':
+                    target = 'account';
+                    break;
+                case 'About':
+                    target = 'about';
+                    break;
+                case 'RateIt':
+                    target = 'rate';
+                    break;
+                case 'Advised':
+                    target = 'advised';
+                    break;
+            }
+            this.$parent.display(target);
         }
+
     },
     mounted: function() {
         axios.get("ranking/details")

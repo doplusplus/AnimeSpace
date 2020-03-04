@@ -60,16 +60,16 @@
         </div>
     </div>
     <div id="compactNav" class="field is-grouped" v-show="buttonHovered || navMenuHovered" @mouseover="compactNav('menuHovered')" @mouseleave="compactNav('menuLeft')">
-        <button class="button" @click="" title="Account">
+        <button class="button" @click="switchTo('Account')" title="Account">
             <i class="fa fa-user"></i>
         </button>
-        <button class="button" @click="" title="About">
+        <button class="button" @click="switchTo('About')" title="About">
             <i class="fas fa-info"></i>
         </button>
-        <button class="button" @click="" title="Rate it!">
+        <button class="button" @click="switchTo('RateIt')" title="Rate it!">
             <i class="far fa-star"></i>
         </button>
-        <button class="button" @click="" title="Advised">
+        <button class="button" @click="switchTo('Advised')" title="Advised">
             <i class="far fa-grin-wink"></i>
         </button>
     </div>
