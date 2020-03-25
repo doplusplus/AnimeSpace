@@ -1,17 +1,61 @@
 'use strict';
 
-const animePerPage = 4;
-const messageTiming = 1000 //ms
+const animePerPage = 6;
+const messageTiming = 1000; //ms
+
 var rankingHtml;
 if (axios != undefined) {
 
     axios.get("rankingTemplate").then(response => {
-        rankingHtml = response.data
+        rankingHtml = response.data;
         rankingComponent.template = rankingHtml;
     });
 } else {
     alert('Issue with fetching data (Axios is undefined)');
 }
+
+
+var players = [];
+var videoIds = [];
+
+function loadYoutubeAPI(divName) {
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementById(divName);
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+};
+
+function onYouTubeIframeAPIReady() {
+    displayVideos(animePerPage);
+};
+
+function displayVideos(animesNumber) {
+    for (let indx = 0; indx < animesNumber; indx++) {
+        players[indx] = new YT.Player('player' + indx, {
+            height: '500',
+            width: '2000',
+            enablejsapi: 1,
+            origin: 'http://localhost:8000',
+            host: 'https://www.youtube-nocookie.com',
+            videoId: videoIds[indx],
+            events: {
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+};
+
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.PLAYING) {
+        let playerId = event.target.l.id;
+        for (let indx = 0; indx < animePerPage; indx++) {
+            if (players[indx].l.id != playerId) {
+                players[indx].pauseVideo();
+            }
+        }
+    }
+};
+
 
 var rankingComponent = {
     delimiters: ['[[', ']]'],
@@ -21,7 +65,6 @@ var rankingComponent = {
             currentSelection: 0,
             hoveredItem: -1,
             animeDetails: [],
-            toPlay: "",
             extended: false,
             compactDetails: false,
             unfold: true,
@@ -45,7 +88,6 @@ var rankingComponent = {
         expand: function(index) {
             this.currentSelection = index;
             this.extended = true;
-            this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0&amp;rel=0';
         },
         selected: function(index) {
             return this.currentSelection == index;
@@ -92,27 +134,34 @@ var rankingComponent = {
                     break;
             }
             this.$parent.display(target);
-        }
+        },
 
     },
     mounted: function() {
-        axios.get("ranking/details")
+        loadYoutubeAPI('ranking'); //Loads youtube <script> just before <ranking>
+
+        axios.get("ranking/details/1/" + animePerPage)
             .then(response => {
                 var otherself = this;
                 this.animeDetails = response.data;
                 this.animeList = extractNames(this.animeDetails);
                 this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0';
+                fillVideoIds(videoIds, this.animeDetails);
             });
     },
     template: 'THE RANKING'
-}
+};
 
-
+var fillVideoIds = function(emptyList, responseData) {
+    for (let indx = 0; indx < animePerPage; indx++) {
+        emptyList[indx] = responseData[indx].videoId;
+    }
+};
 var extractNames = function(list) {
     return list.map(element => element.name);
-}
+};
 
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-}
+};

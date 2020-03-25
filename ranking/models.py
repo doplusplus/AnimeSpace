@@ -6,5 +6,5 @@ class Anime(models.Model):
     genre = models.CharField(max_length=20, default="to be defined")
     description = models.TextField(default="no description for now")
     popularity = models.IntegerField(default=0)
-    videoLink= models.URLField()
+    videoId = models.CharField(max_length=20)
     darkVideoBackground = models.BooleanField()

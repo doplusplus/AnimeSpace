@@ -1,20 +1,24 @@
 <div id="ranking">
+
+    <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
     <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
         <li class="columns" v-for="(anime,index) in animeDetails">
 
+            <!-- In large display, only the selected video is shown.-->
             <div class="column is-2 ">
-                <div class="listed" v-show="!extended || selected(index)">
-                    <iframe id="rankingFrame" v-bind:class="{fullScreen : extended , listed:!extended }" v-bind:src=" anime.videoLink + '?autoplay=0&amp;controls=0' " frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                    </iframe>
+                <div v-bind:class="{fullWrapper : extended , listed:!extended }" v-show="!extended || selected(index)">
+                    <div v-bind:id="'player' + index" v-bind:class="{fullScreen : extended , listed:!extended }">
+                        <!-- the 'player#' divs will become iframes-->
+                    </div>
                 </div>
             </div>
-            <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="if(!extended) {expand(index);}">
+            <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
                 <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - CLICK FOR WIDE DISPLAY</span> </div>
                 <div v-show="!extended">
                     <div>Genre: [[anime.genre]] </div>
                     <div>[[anime.description]]</div>
                     <div>
-                        <h6 class="title is-6  has-text-centered"> ---- STATS /10 ---- </h6>
+                        <h6 class="title is-6 has-text-centered"> ---- STATS /10 ---- </h6>
                         <div class="columns ">
                             <div class="column is-6 ">
                                 <p>visuals: 4</p>
@@ -35,11 +39,14 @@
             </div>
         </li>
     </ul>
-    <div id="toolBar" class="has-background-light" v-show="extended">
+    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
+    <!--Toolbar with descriptions and navigation for fullscreen mode-->
+    <div id="toolBar" class="has-background-light" v-if="extended">
         <div id="compactAnimeInfo">
             Score : [[animeDetails[currentSelection].popularity]] - Ranking : [[currentSelection + 1 ]]
         </div>
-        <div v-show="compactDetails">
+        <div v-if="compactDetails">
             <div>
                 Genre : [[animeDetails[currentSelection].genre]]
             </div>
@@ -73,4 +80,5 @@
             <i class="far fa-grin-wink"></i>
         </button>
     </div>
+    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 </div>

@@ -12,8 +12,8 @@ def index(request):
     data = list(animelist)
     return JsonResponse(data,  safe = False)
 
-def animeDetails(request):
-    animelist = Anime.objects.all()
+def animeDetails(request ,first=0, last=0):
+    animelist = Anime.objects.filter(id__gte = first , id__lte = last )
     rawData = serializers.serialize('python', animelist)
     data = [d['fields'] for d in rawData]
     return HttpResponse(json.dumps(data), content_type='application/json')
