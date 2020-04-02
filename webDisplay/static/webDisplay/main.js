@@ -1,55 +1,59 @@
 'use strict';
 
-var app = new Vue({
-    el: '#app',
-    delimiters: ['[[', ']]'],
-    data: {
-        home: true,
-        about: false,
-        ranking: false,
-        account: false,
-        rate: false,
-        advised: false,
-        shop: false,
-        identify: false,
-        identified: false,
-        logout: false,
-        playing: true,
-    },
-    methods: {
-        logIn: function() {
-            if (this.identified) {
-                this.logout = true;
-            } else {
-                this.identify = !this.identify;
-            }
-        },
-        authenticate: function() {
-            this.identified = true;
-            this.display('account');
-        },
-        logOut: function() {
-            if (this.account) { this.display('home'); }
-            this.logout = false;
-            this.identify = false;
-            this.identified = false;
-        },
 
-        display: function(element) {
-            this.home = element == 'home';
-            this.about = element == 'about';
-            this.ranking = element == 'ranking';
-            this.account = element == 'account';
-            this.rate = element == 'rate';
-            this.advised = element == 'advised';
-            this.shop = element == 'shop';
-        },
+var getmainVue = function(rankingHtml) {
 
-    },
-    components: {
-        'ranking-display': rankingComponent
-    }
-});
+    return new Vue({
+        el: '#app',
+        delimiters: ['[[', ']]'],
+        data: {
+            home: true,
+            about: false,
+            ranking: false,
+            account: false,
+            rate: false,
+            advised: false,
+            shop: false,
+            identify: false,
+            identified: false,
+            logout: false,
+            playing: true,
+        },
+        methods: {
+            logIn: function() {
+                if (this.identified) {
+                    this.logout = true;
+                } else {
+                    this.identify = !this.identify;
+                }
+            },
+            authenticate: function() {
+                this.identified = true;
+                this.display('account');
+            },
+            logOut: function() {
+                if (this.account) { this.display('home'); }
+                this.logout = false;
+                this.identify = false;
+                this.identified = false;
+            },
+
+            display: function(element) {
+                this.home = element == 'home';
+                this.about = element == 'about';
+                this.ranking = element == 'ranking';
+                this.account = element == 'account';
+                this.rate = element == 'rate';
+                this.advised = element == 'advised';
+                this.shop = element == 'shop';
+            },
+
+        },
+        components: {
+            'ranking-display': rankingComponent(rankingHtml)
+        }
+    });
+}
 
 
 var footer = new Vue({

@@ -17,6 +17,7 @@
 </head>
 
 <body>
+    <script type="text/javascript" src="{% static 'webDisplay/init.js' %}"></script>
     <div id="app">
         <section class="hero is-primary is-bold">
             <div class="hero-body">
@@ -96,7 +97,7 @@
                 <div class="column">
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
                     <div v-if="about">{% include './AboutContent.html' %}</div>
-                    <ranking-display v-if="ranking"></ranking-display>
+                    <ranking-display v-show="ranking"></ranking-display>
                     <div v-if="account">{% include './AccountContent.html' %}</div>
                     <div v-if="advised">{% include './AdvisedContent.html' %}</div>
                     <div v-if="rate">{% include './RateContent.html' %}</div>
