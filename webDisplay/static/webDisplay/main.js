@@ -38,7 +38,6 @@ var getmainVue = function(rankingHtml) {
                 this.identify = false;
                 this.identified = false;
             },
-
             display: function(element) {
                 this.home = element == 'home';
                 this.about = element == 'about';
@@ -48,8 +47,9 @@ var getmainVue = function(rankingHtml) {
                 this.advised = element == 'advised';
                 this.shop = element == 'shop';
 
+                // players generated on first ranking display
                 if (!this.playersGenerated && this.ranking) {
-                    generatePlayers(videoIds.length);
+                    videoService.generatePlayers(videoService.videoIds.length);
                     this.playersGenerated = true;
                 }
             },

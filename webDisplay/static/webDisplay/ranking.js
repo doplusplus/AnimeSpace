@@ -4,13 +4,8 @@ const animePerPage = 6;
 const messageTiming = 1000; //ms
 
 
-
-
-
-
-
-
 var rankingComponent = function(HTMLTemplate) {
+
     return {
         delimiters: ['[[', ']]'],
         data: function() {
@@ -91,26 +86,25 @@ var rankingComponent = function(HTMLTemplate) {
             },
 
         },
+
         mounted: function() {
-            loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
+            videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
             axios.get("ranking/details/1/" + animePerPage)
                 .then(response => {
                     var otherself = this;
                     this.animeDetails = response.data;
                     this.animeList = extractNames(this.animeDetails);
                     this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0';
-                    fillVideoIds(videoIds, this.animeDetails);
+                    videoService.fillVideoIds(videoService.videoIds, this.animeDetails);
                 });
         },
         template: HTMLTemplate
     };
 }
 
-
 var extractNames = function(list) {
     return list.map(element => element.name);
 };
-
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));

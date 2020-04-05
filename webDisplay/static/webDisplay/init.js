@@ -1,5 +1,6 @@
 'use strict';
 
+// loads mainvue as a function after retrieving its ranking template
 if (axios != undefined) {
     axios.get("rankingTemplate").then(response => {
         let rankingHtml = response.data;
