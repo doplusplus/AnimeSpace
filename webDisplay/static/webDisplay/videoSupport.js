@@ -3,6 +3,8 @@ var players = [];
 var videoIds = [];
 var YouTubeReady = false;
 
+//Loading api from js instead of html for better better control of the loading.
+// avois interupting the rendering flow as well
 function loadYoutubeAPI(divName) {
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
@@ -14,15 +16,14 @@ function onYouTubeIframeAPIReady() {
     YouTubeReady = true;
 };
 
-function displayVideos(animesNumber) {
-    if (!YouTubeReady) { setTimeout(() => displayVideos(animesNumber), 3000); return; }
+function generatePlayers(animesNumber) {
+    if (!YouTubeReady) { setTimeout(() => generatePlayers(animesNumber), 3000); return; }
 
     for (let indx = 0; indx < animesNumber; indx++) {
         let player = new YT.Player('player' + indx, {
             height: '500',
             width: '2000',
             enablejsapi: 1,
-            origin: 'http://localhost:8000',
             host: 'https://www.youtube-nocookie.com',
             videoId: videoIds[indx],
             events: {

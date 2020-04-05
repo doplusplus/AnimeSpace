@@ -100,7 +100,6 @@ var rankingComponent = function(HTMLTemplate) {
                     this.animeList = extractNames(this.animeDetails);
                     this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0';
                     fillVideoIds(videoIds, this.animeDetails);
-                    displayVideos(videoIds.length);
                 });
         },
         template: HTMLTemplate

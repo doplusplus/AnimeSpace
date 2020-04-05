@@ -18,6 +18,7 @@ var getmainVue = function(rankingHtml) {
             identified: false,
             logout: false,
             playing: true,
+            playersGenerated: false,
         },
         methods: {
             logIn: function() {
@@ -46,6 +47,11 @@ var getmainVue = function(rankingHtml) {
                 this.rate = element == 'rate';
                 this.advised = element == 'advised';
                 this.shop = element == 'shop';
+
+                if (!this.playersGenerated && this.ranking) {
+                    generatePlayers(videoIds.length);
+                    this.playersGenerated = true;
+                }
             },
 
         },
