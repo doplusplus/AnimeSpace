@@ -31,12 +31,11 @@ var rankingComponent = function(HTMLTemplate) {
                 this.currentSelection = this.currentSelection == index ? -1 : index;
                 this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0&amp;rel=0';
             },
-            updateAnimeList: function(start, size) {
-
-            },
             expand: function(index) {
                 this.currentSelection = index;
                 this.extended = true;
+                var bannerheight = document.getElementById("heroBanner").scrollHeight;
+                window.scrollTo(0, bannerheight);
             },
             selected: function(index) {
                 return this.currentSelection == index;
