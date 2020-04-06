@@ -5,22 +5,27 @@ function onYouTubeIframeAPIReady() {
 };
 
 function onPlayerStateChange(event) {
+
+    //Playing only one video at a time
     if (event.data == YT.PlayerState.PLAYING) {
         let playerId = event.target.l.id;
         for (let indx = 0; indx < animePerPage; indx++) {
             if (videoService.players[indx].l.id != playerId) {
                 videoService.players[indx].pauseVideo();
+            } else {
+                videoService.playingVideoIndex = indx;
             }
         }
+
     }
 };
-
 
 var videoService = {
 
     players: [],
     videoIds: [],
     YouTubeReady: false,
+    playingVideoIndex: -1,
 
     // Loading api from js instead of html for better control of the loading. It avoids interupting the rendering flow as well
     loadYoutubeAPI: function(divName) {
@@ -52,8 +57,18 @@ var videoService = {
             emptyList[indx] = responseData[indx].videoId;
         }
     },
-
     play: function(index) {
         this.players[index].playVideo();
-    }
+        this.playingVideoIndex = index;
+    },
+    playing: function() {
+        return this.playingVideoIndex > -1;
+    },
+    ResumeVideo: function() {
+        this.players[this.playingVideoIndex].playVideo();
+    },
+    PauseVideo: function(reset = false) {
+        this.players[this.playingVideoIndex].pauseVideo();
+        if (reset) { this.playingVideoIndex = -1; }
+    },
 }

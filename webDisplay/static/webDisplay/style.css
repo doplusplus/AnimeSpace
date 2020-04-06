@@ -128,3 +128,9 @@ li {
 #compactAnimeInfo {
     color: navy;
 }
+
+#playerControl {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}

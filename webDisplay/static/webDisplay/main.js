@@ -17,7 +17,7 @@ var getmainVue = function(rankingHtml) {
             identify: false,
             identified: false,
             logout: false,
-            playing: true,
+            playing: false,
             playersGenerated: false,
         },
         methods: {
@@ -52,6 +52,20 @@ var getmainVue = function(rankingHtml) {
                     videoService.generatePlayers(videoService.videoIds.length);
                     this.playersGenerated = true;
                 }
+
+                if (this.playersGenerated) {
+                    this.playing = videoService.playing();
+                }
+            },
+            ResumeVideo: function() {
+                videoService.ResumeVideo();
+            },
+            PauseVideo: function() {
+                videoService.PauseVideo();
+            },
+            RemovePlayer: function() {
+                videoService.PauseVideo(true);
+                this.playing = false;
             },
 
         },

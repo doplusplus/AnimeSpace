@@ -103,6 +103,18 @@
                     <div v-if="shop">{% include './ShopContent.html' %}</div>
                 </div>
             </div>
+
+            <div id="playerControl" class="has-background-light" v-if="!ranking && playing">
+                <button class="button" @click="ResumeVideo()" title="Resume">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button class="button" @click="PauseVideo()" title="Pause">
+                    <i class="fas fa-pause"></i>
+                </button>
+                <button class="button" @click="RemovePlayer()" title="Remove player">
+                    <i class="fas fa-eject"></i>
+                </button>
+            </div>
         </section>
     </div>
     <footer id="footer" class="footer">
