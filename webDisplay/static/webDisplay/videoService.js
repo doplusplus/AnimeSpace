@@ -52,4 +52,8 @@ var videoService = {
             emptyList[indx] = responseData[indx].videoId;
         }
     },
+
+    play: function(index) {
+        this.players[index].playVideo();
+    }
 }

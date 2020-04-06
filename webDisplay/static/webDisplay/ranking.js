@@ -34,8 +34,14 @@ var rankingComponent = function(HTMLTemplate) {
             expand: function(index) {
                 this.currentSelection = index;
                 this.extended = true;
+
+                //aligns top of the video to top of the screen
                 var bannerheight = document.getElementById("heroBanner").scrollHeight;
                 window.scrollTo(0, bannerheight);
+
+                //launches video on wide display
+                videoService.play(index);
+
             },
             selected: function(index) {
                 return this.currentSelection == index;
