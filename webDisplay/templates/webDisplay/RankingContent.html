@@ -1,44 +1,48 @@
-<div id="ranking">
+<div class="columns" id="ranking">
+    <div class="column is-10">
+        <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
+        <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
+            <li class="columns" v-for="(anime,index) in animeDetails">
 
-    <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
-    <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
-        <li class="columns" v-for="(anime,index) in animeDetails">
-
-            <!-- In large display, only the selected video is shown.-->
-            <div class="column is-2 ">
-                <div v-bind:class="{fullWrapper : extended , listed:!extended }" v-show="!extended || selected(index)">
-                    <div v-bind:id="'player' + index" v-bind:class="{fullScreen : extended , listed:!extended }">
-                        <!-- the 'player#' divs will become iframes-->
+                <!-- In large display, only the selected video is shown.-->
+                <div class="column is-2 ">
+                    <div v-bind:class="{fullWrapper : extended , listed:!extended }" v-show="!extended || selected(index)">
+                        <div v-bind:id="'player' + index" v-bind:class="{fullScreen : extended , listed:!extended }">
+                            <!-- the 'player#' divs will become iframes-->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
-                <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - LAUNCH IN WIDE DISPLAY</span> </div>
-                <div v-show="!extended">
-                    <div>Genre: [[anime.genre]] </div>
-                    <div>[[anime.description]]</div>
-                    <div>
-                        <h6 class="title is-6 has-text-centered"> ---- STATS /10 ---- </h6>
-                        <div class="columns ">
-                            <div class="column is-6 ">
-                                <p>visuals: 4</p>
-                                <p>audio: 2</p>
-                                <p>fight: 5</p>
-                            </div>
-                            <div class="column is-6 ">
-                                <p>story: 5</p>
-                                <p>violence: 9</p>
-                                <p>blood: 7</p>
+                <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
+                    <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - LAUNCH IN WIDE DISPLAY</span> </div>
+                    <div v-show="!extended">
+                        <div>Genre: [[anime.genre]] </div>
+                        <div>[[anime.description]]</div>
+                        <div>
+                            <h6 class="title is-6 has-text-centered"> ---- STATS /10 ---- </h6>
+                            <div class="columns ">
+                                <div class="column is-6 ">
+                                    <p>visuals: 4</p>
+                                    <p>audio: 2</p>
+                                    <p>fight: 5</p>
+                                </div>
+                                <div class="column is-6 ">
+                                    <p>story: 5</p>
+                                    <p>violence: 9</p>
+                                    <p>blood: 7</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="rankingMiscelleanous" class=" column is-3 ">
-                <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
-            </div>
-        </li>
-    </ul>
+                <div id="rankingMiscelleanous" class="column">
+                    <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="column is-2">
+        <input class="scrollSlider" step="1" min="0" max="100" v-model:value="scrollPosition" type="range" orient="vertical">
+    </div>
     <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
     <!--Toolbar with descriptions and navigation for fullscreen mode-->

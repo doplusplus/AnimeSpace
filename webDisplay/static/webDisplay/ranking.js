@@ -1,8 +1,9 @@
 'use strict';
 
-const animePerPage = 6;
+const animePerPage = 7;
 const messageTiming = 1000; //ms
-
+var rankingCutHeight = null;
+var rankingContentDiv = null;
 
 var rankingComponent = function(HTMLTemplate) {
 
@@ -19,11 +20,21 @@ var rankingComponent = function(HTMLTemplate) {
                 unfold: true,
                 buttonHovered: false,
                 navMenuHovered: false,
+                scrollPosition: 100,
             }
         },
         computed: {
             lightTextRequired: function() {
                 return this.animeDetails[this.currentSelection].darkVideoBackground;
+            },
+        },
+        watch: {
+            scrollPosition: function(newPosition, oldposition) {
+                if (rankingContentDiv) {
+                    if (!rankingCutHeight) { rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight; }
+                    let rate = rankingCutHeight * (100 - newPosition) / 100;
+                    rankingContentDiv.scrollTo(0, rate);
+                }
             },
         },
         methods: {
@@ -91,7 +102,6 @@ var rankingComponent = function(HTMLTemplate) {
             },
 
         },
-
         mounted: function() {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
             axios.get("ranking/details/1/" + animePerPage)
@@ -102,6 +112,7 @@ var rankingComponent = function(HTMLTemplate) {
                     this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0';
                     videoService.fillVideoIds(videoService.videoIds, this.animeDetails);
                 });
+            rankingContentDiv = document.getElementById("rankingContent");
         },
         template: HTMLTemplate
     };
