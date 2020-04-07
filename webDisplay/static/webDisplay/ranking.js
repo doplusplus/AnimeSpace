@@ -21,6 +21,7 @@ var rankingComponent = function(HTMLTemplate) {
                 buttonHovered: false,
                 navMenuHovered: false,
                 scrollPosition: 100,
+                sliderMoved: false,
             }
         },
         computed: {
@@ -33,6 +34,7 @@ var rankingComponent = function(HTMLTemplate) {
                 if (rankingContentDiv) {
                     if (!rankingCutHeight) { rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight; }
                     let rate = rankingCutHeight * (100 - newPosition) / 100;
+                    this.sliderMoved = true;
                     rankingContentDiv.scrollTo(0, rate);
                 }
             },
@@ -100,7 +102,12 @@ var rankingComponent = function(HTMLTemplate) {
                 }
                 this.$parent.display(target);
             },
-
+            onScroll: function(pos) {
+                if (this.sliderMoved) { this.sliderMoved = false; return; }
+                rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;
+                let scrollY = pos.target.scrollTop;
+                this.scrollPosition = 100.0 * (1 - scrollY / rankingCutHeight);
+            }
         },
         mounted: function() {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay

@@ -1,7 +1,7 @@
 <div class="columns" id="ranking">
     <div class="column is-10">
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
-        <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
+        <ul id="rankingContent" v-on:scroll="onScroll" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
 
                 <!-- In large display, only the selected video is shown.-->
