@@ -20,7 +20,7 @@ var rankingComponent = function(HTMLTemplate) {
                 unfold: true,
                 buttonHovered: false,
                 navMenuHovered: false,
-                scrollPosition: 100,
+                scrollPosition: 100, //up at 100 , down at 0
                 sliderMoved: false,
             }
         },
@@ -107,7 +107,14 @@ var rankingComponent = function(HTMLTemplate) {
                 rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;
                 let scrollY = pos.target.scrollTop;
                 this.scrollPosition = 100.0 * (1 - scrollY / rankingCutHeight);
-            }
+            },
+            goUp: function() {
+                this.scrollPosition = 100;
+            },
+            goDown: function() {
+                this.scrollPosition = 0;
+
+            },
         },
         mounted: function() {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay

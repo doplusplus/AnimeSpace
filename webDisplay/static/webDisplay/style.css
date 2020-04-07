@@ -145,7 +145,7 @@ li {
     appearance: none;
     width: 15px;
     /* Specified width */
-    height: 80%;
+    height: 100%;
     /* Full- height */
     background: #23da9d;
     /* Greenish background */
@@ -192,4 +192,22 @@ li {
     /* Green background */
     cursor: pointer;
     /* Cursor on hover */
+}
+
+#sliderTop {
+    height: 5%;
+    cursor: pointer;
+}
+
+#sliderContainer {
+    height: 90%;
+}
+
+#sliderBottom {
+    height: 5%;
+    cursor: pointer;
+}
+
+#sliderWrapper {
+    height: 80%;
 }

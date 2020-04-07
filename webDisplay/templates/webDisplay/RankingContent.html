@@ -41,7 +41,17 @@
         </ul>
     </div>
     <div class="column is-2">
-        <input class="scrollSlider" step="1" min="0" max="100" v-model:value="scrollPosition" type="range" orient="vertical">
+        <div id="sliderWrapper">
+            <div id="sliderTop" @click="goUp()">
+                <i class="fas fa-angle-double-up"></i>
+            </div>
+            <div id=sliderContainer>
+                <input class="scrollSlider" step="1" min="0" max="100" v-model:value="scrollPosition" type="range" orient="vertical">
+            </div>
+            <div id="sliderBottom" @click="goDown()">
+                <i class="fas fa-angle-double-down"></i>
+            </div>
+        </div>
     </div>
     <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
