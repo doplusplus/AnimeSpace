@@ -71,4 +71,12 @@ var videoService = {
         this.players[this.playingVideoIndex].pauseVideo();
         if (reset) { this.playingVideoIndex = -1; }
     },
+
+
+    UpdateVideos: function() {
+        for (let indx = 0; indx < this.videoIds.length; indx++) {
+            this.players[indx].cueVideoById({ videoId: this.videoIds[indx] });
+        }
+    }
+
 }

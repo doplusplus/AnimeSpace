@@ -1,6 +1,6 @@
 'use strict';
 
-const animePerPage = 7;
+const animePerPage = 4;
 const messageTiming = 1000; //ms
 var rankingCutHeight = null;
 var rankingContentDiv = null;
@@ -22,6 +22,9 @@ var rankingComponent = function(HTMLTemplate) {
                 navMenuHovered: false,
                 scrollPosition: 100, //up at 100 , down at 0
                 sliderMoved: false,
+                displayedPage: 1,
+                firstDisplayed: 0,
+                lastDisplayed: 0,
             }
         },
         computed: {
@@ -115,17 +118,35 @@ var rankingComponent = function(HTMLTemplate) {
                 this.scrollPosition = 0;
 
             },
+            loadAnimePage: function(page, NbOfAnimesPerPage, refreshPlayers = false) {
+                this.firstDisplayed = 1 + (page - 1) * NbOfAnimesPerPage;
+                this.lastDisplayed = this.firstDisplayed + NbOfAnimesPerPage - 1;
+                axios.get("ranking/details/" + this.firstDisplayed + "/" + this.lastDisplayed)
+                    .then(response => {
+                        var otherself = this;
+                        videoService.fillVideoIds(videoService.videoIds, response.data);
+                        if (refreshPlayers) {
+                            videoService.UpdateVideos();
+                        }
+                        this.loadDetails(response.data);
+                    });
+            },
+            loadDetails: function(data) {
+                this.animeDetails = data;
+                this.animeList = extractNames(this.animeDetails);
+            },
+            nextPage: function() {
+                this.displayedPage++; // todo : add condition for maxed out capacity
+                this.loadAnimePage(this.displayedPage, animePerPage, true);
+            },
+            previousPage: function() {
+                this.displayedPage = this.displayedPage == 1 ? 1 : this.displayedPage - 1;
+                this.loadAnimePage(this.displayedPage, animePerPage, true);
+            },
         },
         mounted: function() {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
-            axios.get("ranking/details/1/" + animePerPage)
-                .then(response => {
-                    var otherself = this;
-                    this.animeDetails = response.data;
-                    this.animeList = extractNames(this.animeDetails);
-                    this.toPlay = this.animeDetails[this.currentSelection].videoLink + '?autoplay=0&amp;controls=0';
-                    videoService.fillVideoIds(videoService.videoIds, this.animeDetails);
-                });
+            this.loadAnimePage(this.displayedPage, animePerPage);
             rankingContentDiv = document.getElementById("rankingContent");
         },
         template: HTMLTemplate

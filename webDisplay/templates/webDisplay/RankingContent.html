@@ -1,5 +1,5 @@
 <div class="columns" id="ranking">
-    <div class="column is-10">
+    <div class="column is-9">
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
         <ul id="rankingContent" v-on:scroll="onScroll" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
@@ -40,7 +40,7 @@
             </li>
         </ul>
     </div>
-    <div class="column is-2">
+    <div class="column is-1">
         <div id="sliderWrapper">
             <div id="sliderTop" @click="goUp()">
                 <i class="fas fa-angle-double-up"></i>
@@ -50,6 +50,25 @@
             </div>
             <div id="sliderBottom" @click="goDown()">
                 <i class="fas fa-angle-double-down"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="column is-2">
+        <p>
+            <span @click="previousPage()"><i class="fas fa-angle-left clickable"></i></span> Page [[displayedPage]]
+            <span @click="nextPage()"> <i class="fas fa-angle-right clickable"></i></span>
+        </p>
+        <p>Rank [[firstDisplayed]] to [[lastDisplayed]]</p>
+        <div class="field has-addons">
+            <label class="label">GO TO</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Page" maxlength="2" size="2">
+            </div>
+            <div class="control">
+                <a class="button is-info">
+                Go!
+                </a>
             </div>
         </div>
     </div>
