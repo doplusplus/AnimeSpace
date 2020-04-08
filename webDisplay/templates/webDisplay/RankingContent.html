@@ -4,8 +4,8 @@
         <ul id="rankingContent" v-on:scroll="onScroll" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
 
-                <!-- In large display, only the selected video is shown.-->
-                <div class="column is-2 ">
+                <!-- When in large display, only the selected video is shown.-->
+                <div v-show="!anime.fake" class="column is-2 ">
                     <div v-bind:class="{fullWrapper : extended , listed:!extended }" v-show="!extended || selected(index)">
                         <div v-bind:id="'player' + index" v-bind:class="{fullScreen : extended , listed:!extended }">
                             <!-- the 'player#' divs will become iframes-->
@@ -14,7 +14,7 @@
                 </div>
                 <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
                     <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - LAUNCH IN WIDE DISPLAY</span> </div>
-                    <div v-show="!extended">
+                    <div v-show="!anime.fake && !extended">
                         <div>Genre: [[anime.genre]] </div>
                         <div>[[anime.description]]</div>
                         <div>

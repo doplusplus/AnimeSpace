@@ -45,7 +45,7 @@ var videoService = {
                 host: 'https://www.youtube-nocookie.com',
                 videoId: this.videoIds[indx],
                 events: {
-                    'onStateChange': onPlayerStateChange
+                    'onStateChange': onPlayerStateChange,
                 }
             });
 
@@ -53,7 +53,7 @@ var videoService = {
         }
     },
     fillVideoIds: function(emptyList, responseData) {
-        for (let indx = 0; indx < animePerPage; indx++) {
+        for (let indx = 0; indx < responseData.length; indx++) {
             emptyList[indx] = responseData[indx].videoId;
         }
     },
@@ -72,10 +72,15 @@ var videoService = {
         if (reset) { this.playingVideoIndex = -1; }
     },
 
-
     UpdateVideos: function() {
         for (let indx = 0; indx < this.videoIds.length; indx++) {
-            this.players[indx].cueVideoById({ videoId: this.videoIds[indx] });
+            if (this.players[indx].getVideoData().video_id != this.videoIds[indx]) {
+                console.log('PLAYER:' + indx);
+                console.log('before:', this.players[indx].getVideoUrl());
+                this.players[indx].cueVideoById({ videoId: this.videoIds[indx] });
+            } else {
+                this.players[indx].cueVideoById({ videoId: '' });
+            }
         }
     }
 

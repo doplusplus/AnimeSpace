@@ -1,9 +1,11 @@
 'use strict';
 
-const animePerPage = 4;
+//values used in component but not in the html
+const animePerPage = 3;
 const messageTiming = 1000; //ms
 var rankingCutHeight = null;
 var rankingContentDiv = null;
+var lastPage = 1;
 
 var rankingComponent = function(HTMLTemplate) {
 
@@ -25,6 +27,7 @@ var rankingComponent = function(HTMLTemplate) {
                 displayedPage: 1,
                 firstDisplayed: 0,
                 lastDisplayed: 0,
+                totalAnimes: 0,
             }
         },
         computed: {
@@ -132,15 +135,36 @@ var rankingComponent = function(HTMLTemplate) {
                     });
             },
             loadDetails: function(data) {
+                //Adding empty cells to avoid video iframes destruction in the last page
+                data.forEach(element => element.fake = false);
+                while (data.length < animePerPage) {
+                    data.push({
+                        darkVideoBackground: false,
+                        description: '',
+                        genre: '',
+                        name: '',
+                        popularity: '',
+                        fake: true,
+                    });
+                }
+
                 this.animeDetails = data;
+                this.totalAnimes = 10;
                 this.animeList = extractNames(this.animeDetails);
+
+                let fullpages = this.totalAnimes / animePerPage;
+                let lastpageContentNb = this.totalAnimes % animePerPage
+                lastPage = lastpageContentNb == 0 ? fullpages : fullpages + 1;
             },
             nextPage: function() {
-                this.displayedPage++; // todo : add condition for maxed out capacity
+                //Last page reached
+                if (lastPage - this.displayedPage < 1) { return; }
+                this.displayedPage++;
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
             previousPage: function() {
-                this.displayedPage = this.displayedPage == 1 ? 1 : this.displayedPage - 1;
+                if (this.displayedPage <= 1) { return; }
+                this.displayedPage--;
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
         },
