@@ -75,8 +75,6 @@ var videoService = {
     UpdateVideos: function() {
         for (let indx = 0; indx < this.videoIds.length; indx++) {
             if (this.players[indx].getVideoData().video_id != this.videoIds[indx]) {
-                console.log('PLAYER:' + indx);
-                console.log('before:', this.players[indx].getVideoUrl());
                 this.players[indx].cueVideoById({ videoId: this.videoIds[indx] });
             } else {
                 this.players[indx].cueVideoById({ videoId: '' });
