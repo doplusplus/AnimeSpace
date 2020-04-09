@@ -40,16 +40,8 @@
             </li>
         </ul>
     </div>
-    <div class="column is-1">
-        <div id="topArrow" class="clickable" @click="goUp()">
-            <i class="fas fa-angle-double-up"></i>
-        </div>
-        <div id="downArrow" class="clickable" @click="goDown()">
-            <i class="fas fa-angle-double-down"></i>
-        </div>
-    </div>
-
-    <div class="column is-2">
+    <div class="column is-3">
+        <p>Total pages: [[lastPage]] - Total animes: [[totalAnimes]] </p>
         <p>
             <span @click="previousPage()"><i class="fas fa-angle-left clickable"></i></span> Page [[displayedPage]]
             <span @click="nextPage()"> <i class="fas fa-angle-right clickable"></i></span>
@@ -62,8 +54,16 @@
             </div>
             <div class="control">
                 <button class="button is-info" @click="goToPage(requestedPage)">
-                Go!
+                    Go!
                 </button>
+            </div>
+        </div>
+        <div id="arrowContainer">
+            <div id="topArrow" class="clickable" @click="goUp()">
+                <i class="fas fa-angle-double-up"></i> Page top
+            </div>
+            <div id="downArrow" class="clickable" @click="goDown()">
+                <i class="fas fa-angle-double-down"></i> Page bottom
             </div>
         </div>
     </div>

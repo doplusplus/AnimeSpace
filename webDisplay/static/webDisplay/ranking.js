@@ -1,11 +1,10 @@
 'use strict';
 
 //values used in component but not in the html
-const animePerPage = 3;
+const animePerPage = 9;
 const messageTiming = 1000; //ms
 var rankingCutHeight = null;
 var rankingContentDiv = null;
-var lastPage = 1;
 
 var rankingComponent = function(HTMLTemplate) {
 
@@ -26,8 +25,9 @@ var rankingComponent = function(HTMLTemplate) {
                 displayedPage: 1,
                 firstDisplayed: 0,
                 lastDisplayed: 0,
-                totalAnimes: 0,
+                totalAnimes: null,
                 requestedPage: 1,
+                lastPage: 1,
             }
         },
         computed: {
@@ -106,8 +106,16 @@ var rankingComponent = function(HTMLTemplate) {
             },
             loadAnimePage: function(page, NbOfAnimesPerPage, refreshPlayers = false) {
                 this.firstDisplayed = 1 + (page - 1) * NbOfAnimesPerPage;
-                this.lastDisplayed = this.firstDisplayed + NbOfAnimesPerPage - 1;
-                axios.get("ranking/details/" + this.firstDisplayed + "/" + this.lastDisplayed)
+
+                if (this.totalAnimes) {
+                    this.lastDisplayed = this.firstDisplayed + NbOfAnimesPerPage > this.totalAnimes ?
+                        this.totalAnimes :
+                        this.firstDisplayed + NbOfAnimesPerPage - 1;
+                } else {
+                    this.lastDisplayed = this.firstDisplayed + NbOfAnimesPerPage - 1;
+                }
+
+                axios.get("ranking/details/" + this.firstDisplayed + "/" + (this.firstDisplayed + NbOfAnimesPerPage - 1))
                     .then(response => {
                         var otherself = this;
                         videoService.fillVideoIds(videoService.videoIds, response.data);
@@ -115,7 +123,6 @@ var rankingComponent = function(HTMLTemplate) {
                             videoService.UpdateVideos();
                         }
                         this.loadDetails(response.data);
-
                     });
             },
             loadDetails: function(data) {
@@ -138,11 +145,11 @@ var rankingComponent = function(HTMLTemplate) {
 
                 let fullpages = this.totalAnimes / animePerPage;
                 let lastpageContentNb = this.totalAnimes % animePerPage
-                lastPage = Math.floor(lastpageContentNb == 0 ? fullpages : fullpages + 1);
+                this.lastPage = Math.floor(lastpageContentNb == 0 ? fullpages : fullpages + 1);
             },
             nextPage: function() {
                 //Last page reached
-                if (this.displayedPage >= lastPage) { return; }
+                if (this.displayedPage >= this.lastPage) { return; }
                 this.displayedPage++;
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
@@ -152,9 +159,9 @@ var rankingComponent = function(HTMLTemplate) {
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
             goToPage: function(pageToGo) {
-                let invalid = isNaN(pageToGo) || pageToGo < 1 || lastPage < pageToGo;
+                let invalid = isNaN(pageToGo) || pageToGo < 1 || this.lastPage < pageToGo;
                 if (invalid) {
-                    alert("Invalid value entered. The value is not a number or exceeds the available range( 1 to " + lastPage + " )");
+                    alert("Invalid value entered. The value is not a number or exceeds the available range( 1 to " + this.lastPage + " )");
                     return;
                 }
                 this.displayedPage = pageToGo;
