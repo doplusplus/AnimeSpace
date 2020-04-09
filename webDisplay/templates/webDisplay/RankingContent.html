@@ -58,12 +58,12 @@
         <div class="field has-addons">
             <label class="label">GO TO</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Page" maxlength="2" size="2">
+                <input class="input" type="text" placeholder="Page" v-model:value="requestedPage" maxlength="2" size="2">
             </div>
             <div class="control">
-                <a class="button is-info">
+                <button class="button is-info" @click="goToPage(requestedPage)">
                 Go!
-                </a>
+                </button>
             </div>
         </div>
     </div>

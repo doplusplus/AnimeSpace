@@ -1,7 +1,7 @@
 'use strict';
 
 //values used in component but not in the html
-const animePerPage = 8;
+const animePerPage = 3;
 const messageTiming = 1000; //ms
 var rankingCutHeight = null;
 var rankingContentDiv = null;
@@ -27,6 +27,7 @@ var rankingComponent = function(HTMLTemplate) {
                 firstDisplayed: 0,
                 lastDisplayed: 0,
                 totalAnimes: 0,
+                requestedPage: 1,
             }
         },
         computed: {
@@ -137,17 +138,26 @@ var rankingComponent = function(HTMLTemplate) {
 
                 let fullpages = this.totalAnimes / animePerPage;
                 let lastpageContentNb = this.totalAnimes % animePerPage
-                lastPage = lastpageContentNb == 0 ? fullpages : fullpages + 1;
+                lastPage = Math.floor(lastpageContentNb == 0 ? fullpages : fullpages + 1);
             },
             nextPage: function() {
                 //Last page reached
-                if (lastPage - this.displayedPage < 1) { return; }
+                if (this.displayedPage >= lastPage) { return; }
                 this.displayedPage++;
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
             previousPage: function() {
                 if (this.displayedPage <= 1) { return; }
                 this.displayedPage--;
+                this.loadAnimePage(this.displayedPage, animePerPage, true);
+            },
+            goToPage: function(pageToGo) {
+                let invalid = isNaN(pageToGo) || pageToGo < 1 || lastPage < pageToGo;
+                if (invalid) {
+                    alert("Invalid value entered. The value is not a number or exceeds the available range( 1 to " + lastPage + " )");
+                    return;
+                }
+                this.displayedPage = pageToGo;
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
         },
