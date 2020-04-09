@@ -55,7 +55,33 @@ li {
 .scrollable {
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-width: none;
+    scrollbar-color: white rgba(74, 204, 143, 1);
+    ;
+    scrollbar-width: thin;
+}
+
+
+/* width */
+
+.scrollable::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+.scrollable::-webkit-scrollbar-track {
+    background: #36ce9b;
+    box-shadow: inset 0 0 5px #f1f1f1;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+.scrollable::-webkit-scrollbar-thumb {
+    background: #e8f8f3;
+    border-radius: 10px;
 }
 
 #homeSvg {
@@ -136,78 +162,12 @@ li {
     left: 10px;
 }
 
-
-/* The slider itself */
-
-.scrollSlider {
-    -webkit-appearance: none;
-    /* Override default CSS styles */
-    appearance: none;
-    width: 15px;
-    /* Specified width */
-    height: 100%;
-    /* Full- height */
-    background: #23da9d;
-    /* Greenish background */
-    outline: none;
-    /* Remove outline */
-    opacity: 0.7;
-    /* Set transparency (for mouse-over effects on hover) */
-    -webkit-transition: .2s;
-    /* 0.2 seconds transition on hover */
-    transition: opacity .2s;
+#topArrow {
+    top: 20%;
+    position: absolute;
 }
 
-
-/* Mouse-over effects */
-
-.scrollSlider:hover {
-    opacity: 1;
-    /* Fully shown on mouse-over */
-}
-
-
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-
-.scrollSlider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    /* Override default look */
-    appearance: none;
-    width: 25px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: rgb(214, 243, 227);
-    /* light background */
-    cursor: pointer;
-    /* Cursor on hover */
-}
-
-.scrollSlider::-moz-range-thumb {
-    width: 25px;
-    /* Set a specific slider handle width */
-    height: 25px;
-    /* Slider handle height */
-    background: rgb(214, 243, 227);
-    /* Green background */
-    cursor: pointer;
-    /* Cursor on hover */
-}
-
-#sliderTop {
-    height: 5%;
-    cursor: pointer;
-}
-
-#sliderContainer {
-    height: 90%;
-}
-
-#sliderBottom {
-    height: 5%;
-    cursor: pointer;
-}
-
-#sliderWrapper {
-    height: 80%;
+#downArrow {
+    bottom: 20%;
+    position: absolute;
 }

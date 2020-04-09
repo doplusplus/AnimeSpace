@@ -1,7 +1,7 @@
 <div class="columns" id="ranking">
     <div class="column is-9">
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
-        <ul id="rankingContent" v-on:scroll="onScroll" v-bind:class="{scrollable:!extended}">
+        <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
 
                 <!-- When in large display, only the selected video is shown.-->
@@ -41,16 +41,11 @@
         </ul>
     </div>
     <div class="column is-1">
-        <div id="sliderWrapper">
-            <div id="sliderTop" @click="goUp()">
-                <i class="fas fa-angle-double-up"></i>
-            </div>
-            <div id=sliderContainer>
-                <input class="scrollSlider" step="1" min="0" max="100" v-model:value="scrollPosition" type="range" orient="vertical">
-            </div>
-            <div id="sliderBottom" @click="goDown()">
-                <i class="fas fa-angle-double-down"></i>
-            </div>
+        <div id="topArrow" class="clickable" @click="goUp()">
+            <i class="fas fa-angle-double-up"></i>
+        </div>
+        <div id="downArrow" class="clickable" @click="goDown()">
+            <i class="fas fa-angle-double-down"></i>
         </div>
     </div>
 

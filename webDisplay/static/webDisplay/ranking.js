@@ -1,7 +1,7 @@
 'use strict';
 
 //values used in component but not in the html
-const animePerPage = 3;
+const animePerPage = 8;
 const messageTiming = 1000; //ms
 var rankingCutHeight = null;
 var rankingContentDiv = null;
@@ -22,7 +22,6 @@ var rankingComponent = function(HTMLTemplate) {
                 unfold: true,
                 buttonHovered: false,
                 navMenuHovered: false,
-                scrollPosition: 100, //up at 100 , down at 0
                 sliderMoved: false,
                 displayedPage: 1,
                 firstDisplayed: 0,
@@ -33,16 +32,6 @@ var rankingComponent = function(HTMLTemplate) {
         computed: {
             lightTextRequired: function() {
                 return this.animeDetails[this.currentSelection].darkVideoBackground;
-            },
-        },
-        watch: {
-            scrollPosition: function(newPosition, oldposition) {
-                if (rankingContentDiv) {
-                    if (!rankingCutHeight) { rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight; }
-                    let rate = rankingCutHeight * (100 - newPosition) / 100;
-                    this.sliderMoved = true;
-                    rankingContentDiv.scrollTo(0, rate);
-                }
             },
         },
         methods: {
@@ -108,18 +97,11 @@ var rankingComponent = function(HTMLTemplate) {
                 }
                 this.$parent.display(target);
             },
-            onScroll: function(pos) {
-                if (this.sliderMoved) { this.sliderMoved = false; return; }
-                rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;
-                let scrollY = pos.target.scrollTop;
-                this.scrollPosition = 100.0 * (1 - scrollY / rankingCutHeight);
-            },
             goUp: function() {
-                this.scrollPosition = 100;
+                rankingContentDiv.scrollTo(0, 0);
             },
             goDown: function() {
-                this.scrollPosition = 0;
-
+                rankingContentDiv.scrollTo(0, rankingCutHeight);
             },
             loadAnimePage: function(page, NbOfAnimesPerPage, refreshPlayers = false) {
                 this.firstDisplayed = 1 + (page - 1) * NbOfAnimesPerPage;
@@ -132,6 +114,7 @@ var rankingComponent = function(HTMLTemplate) {
                             videoService.UpdateVideos();
                         }
                         this.loadDetails(response.data);
+
                     });
             },
             loadDetails: function(data) {
@@ -172,6 +155,9 @@ var rankingComponent = function(HTMLTemplate) {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
             this.loadAnimePage(this.displayedPage, animePerPage);
             rankingContentDiv = document.getElementById("rankingContent");
+        },
+        updated: function() {
+            rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;
         },
         template: HTMLTemplate
     };
