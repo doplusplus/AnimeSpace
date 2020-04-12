@@ -22,6 +22,7 @@ class IndexView(generic.TemplateView):
 class RankingView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
-        return render(request , 'webDisplay/RankingContent.html')
+        address= 'webDisplay/MobileRankingContent.html'if request.path.find("rankingMobileTemplate")> -1 else 'webDisplay/RankingContent.html'
+        return render(request , address)
 
 

@@ -1,6 +1,10 @@
 'use strict';
 
 
+
+
+
+
 var getmainVue = function(rankingHtml) {
 
     return new Vue({
