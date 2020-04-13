@@ -40,7 +40,7 @@
             </li>
         </ul>
     </div>
-    <div class="column is-3">
+    <div v-show="!extended" class="column is-3">
         <p>
             <span @click="previousPage()"><i class="fas fa-angle-left clickable"></i></span> Page [[displayedPage]]
             <span @click="nextPage()"> <i class="fas fa-angle-right clickable"></i></span> Rank [[firstDisplayed]] to [[lastDisplayed]]
