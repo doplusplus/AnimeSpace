@@ -12,7 +12,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
+                <div v-show="!anime.fake" class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
                     <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - LAUNCH IN WIDE DISPLAY</span> </div>
                     <div v-show="!anime.fake && !extended">
                         <div>Genre: [[anime.genre]] </div>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="rankingMiscelleanous" class="column">
+                <div v-show="!anime.fake" id="rankingMiscelleanous" class="column">
                     <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
                 </div>
             </li>
@@ -48,7 +48,7 @@
         <div class="field has-addons">
             <label class="label">GO TO </label>
             <div class="control">
-                <input class="input" type="text" placeholder="Page" v-model:value="requestedPage" maxlength="2" size="2">
+                <input class="input" type="text" placeholder="Page" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="2">
             </div>
             <div class="control">
                 <button class="button is-info" @click="goToPage(requestedPage)">
