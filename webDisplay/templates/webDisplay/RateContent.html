@@ -1,11 +1,4 @@
 <div>
-    <!-- turn into a vue component later on and use it in the advised vue-->
-    <div class="field is-pulled-right">
-        <label>Un/Select all
-            <input type="checkbox">
-        </label>
-        <button class="button is-primary">Send</button>
-    </div>
 
     <h5 class="title is-5">Grading </h5>
 
@@ -14,87 +7,29 @@
         <input type="text" placeholder="Anime name" class="input column is-3">
         <div class="select">
             <select>
-                    <option hidden selected>Genre</option>
-                    <option>Any Genre</option>
-                    <option>Harem</option>
-                    <option>Martial Arts</option>
-                </select>
+                <option hidden selected>Genre</option>
+                <option>Any Genre</option>
+                <option>Harem</option>
+                <option>Martial Arts</option>
+            </select>
         </div>
     </div>
 
 
-
-
-    <div id="filterGroups" class="columns">
-        <div id="mainFilters" class="column is-6">
-
-            <p class="field">
-                <span class="control columns">
-                    <label class="column is-2">Visuals</label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange"> 
-                    <span class="column is-1"><input type="checkbox"></span>
-                </span>
-            </p>
-
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Audio</label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
+    <ul id="characteristics">
+        <li class="columns" v-for="( characteritic,index) in characteritics">
+            <label class="column is-2"> [[characteritic]]</label>
+            <div class="control column is-4">
+                <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
             </div>
-
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Violence</label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
+            <div id="charact-box" class="control column is-1">
+                <input type="checkbox" v-model="charactCheckboxes[index]">
             </div>
+        </li>
 
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Sexy M</label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
-            </div>
+    </ul>
 
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Sexy F </label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
-            </div>
-        </div>
 
-        <div id="secondaryFilters" class="column is-6">
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Violence</label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Sexy M</label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
-            </div>
-
-            <div class="field">
-                <div class="control columns">
-                    <label class="column is-2">Sexy F </label>
-                    <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
-                    <span class="column is-1"><input type="checkbox"></span>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <div class="field">
         <div class="control">
@@ -105,6 +40,13 @@
         <span class="tag">fight</span>
         <span class="tag">samurai</span>
         <span class="tag">philosophical</span>
+    </div>
+
+    <div class="field">
+        <label>Un/Select all
+                <input type="checkbox" v-model:value="allTicked">
+            </label>
+        <button class="button is-primary">Send</button>
     </div>
 
     <h2 v-show="statsSent" class="title is-2 announcement has-text-centered">STATS SENT</h2>
