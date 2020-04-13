@@ -26,3 +26,9 @@ class RankingView(generic.TemplateView):
         return render(request , address)
 
 
+class RateAnimesView(generic.TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        address= 'webDisplay/RateContent.html'if request.path.find("rateAnimesTemplate")> -1 else 'webDisplay/RateContent.html'
+        return render(request , address)
+

@@ -21,11 +21,19 @@ var isMobile = detectMob();
 // loads mainvue as a function after retrieving its ranking template
 if (axios != undefined) {
 
-    let template = isMobile ? "rankingMobileTemplate" : "rankingTemplate";
+    let Rankingtemplate = isMobile ? "rankingMobileTemplate" : "rankingTemplate";
+    let rankingRequest = axios.get(Rankingtemplate);
 
-    axios.get(template).then(response => {
-        let rankingHtml = response.data;
-        var app = getmainVue(rankingHtml);
+    let RateAnimestemplate = isMobile ? "rateAnimesTemplate" : "rateAnimesTemplate";
+    let rateAnimesRequest = axios.get(RateAnimestemplate);
+
+    axios.all([rankingRequest, rateAnimesRequest]).then(axios.spread((...responses) => {
+        let rankingHtml = responses[0].data;
+        let rateAnimesHtml = responses[1].data;
+
+        var app = getmainVue(rankingHtml, rateAnimesHtml, isMobile);
+    })).catch(errors => {
+        alert('some error occured');
     });
 } else {
     alert('Issue with fetching data (Axios is undefined)');

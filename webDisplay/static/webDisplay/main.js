@@ -5,7 +5,7 @@
 
 
 
-var getmainVue = function(rankingHtml) {
+var getmainVue = function(rankingHtml, rateAnimesHtml, mobile = false) {
 
     return new Vue({
         el: '#app',
@@ -74,7 +74,8 @@ var getmainVue = function(rankingHtml) {
 
         },
         components: {
-            'ranking-display': rankingComponent(rankingHtml)
+            'ranking-display': rankingComponent(rankingHtml),
+            'anime-rating': rateAnimesComponent(rateAnimesHtml),
         }
     });
 }

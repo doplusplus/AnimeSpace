@@ -97,9 +97,9 @@
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
                     <div v-if="about">{% include './AboutContent.html' %}</div>
                     <ranking-display v-show="ranking"></ranking-display>
+                    <anime-rating v-show="rate"></anime-rating>
                     <div v-if="account">{% include './AccountContent.html' %}</div>
                     <div v-if="advised">{% include './AdvisedContent.html' %}</div>
-                    <div v-if="rate">{% include './RateContent.html' %}</div>
                     <div v-if="shop">{% include './ShopContent.html' %}</div>
                 </div>
             </div>
@@ -139,6 +139,7 @@
     <script type="text/javascript" src="{% static 'webDisplay/init.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/videoService.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/ranking.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/rateAnimes.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
     <noscript>
         <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
