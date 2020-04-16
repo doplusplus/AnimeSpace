@@ -6,7 +6,7 @@
     <div class="field columns">
         <div class="column is-3">
             <input type="text" class="input" placeholder="Anime name" v-model="animeName" list="nameSearch">
-            <datalist id="nameSearch" @click="optionSelected()">
+            <datalist id="nameSearch">
               <option v-for="names in searchList" v-bind:value="names"></option>
             </datalist>
         </div>

@@ -1,21 +1,22 @@
-<div class="columns ">
+<div class="columns">
     <div class="column is-4">
         <h5 class="title is-5">Search by similarities <input type="checkbox" v-model="bySimilarities"> </h5>
         <div class="field has-addons">
             <div class="control">
-                <input class="input" type="text" placeholder="anime name ex: Naruto">
+                <input class="input" type="text" placeholder="anime name ex: Naruto" v-model="animeName" list="advisedNameSearch">
+                <datalist id="advisedNameSearch">
+                  <option v-for="names in searchList" v-bind:value="names"></option>
+                </datalist>
             </div>
             <div class="control">
-                <button class="button">Add</button>
+                <button class="button" @click="addAnime(animeName)"><i class="fas fa-plus"></i></button>
+            </div>
+            <div class="control">
+                <button class="button" @click="clearAll()"><i class="far fa-trash-alt"></i></button>
             </div>
         </div>
         <ul>
-            <li>pref1</li>
-            <li>pref2</li>
-            <li>pref3</li>
-            <li>pref4</li>
-            <li>pref5</li>
-            <li>pref6</li>
+            <li v-for="anime in animeList">[[anime]]</li>
         </ul>
         <div class="control">
             <button class="button is-primary" v-bind:disabled="!filteringMethodTicked" v-bind:title="searchButtonTitle">SEARCH</button>
