@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.views import generic
-
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 class IndexView(generic.TemplateView):
 
+    @method_decorator(ensure_csrf_cookie)
     def get(self, request, *args, **kwargs):
         about   = 'About'
         ranking = 'Ranking'

@@ -21,6 +21,10 @@ var isMobile = detectMob();
 // loads mainvue as a function after retrieving its ranking template
 if (axios != undefined) {
 
+    //cookie necessary to prevent csrf attacks on post requests
+    axios.defaults.xsrfCookieName = 'csrftoken'
+    axios.defaults.xsrfHeaderName = "X-CSRFTOKEN"
+
     let Rankingtemplate = isMobile ? "rankingMobileTemplate" : "rankingTemplate";
     let rankingRequest = axios.get(Rankingtemplate);
 

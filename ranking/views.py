@@ -17,3 +17,8 @@ def animeDetails(request ,first=0, last=0):
     rawData = serializers.serialize('python', animelist)
     data = [d['fields'] for d in rawData]
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+def search(request , start=""):
+    animelist = Anime.objects.values('name').filter(name__startswith = start )
+    data = list(animelist)
+    return HttpResponse(json.dumps(data), content_type='application/json')

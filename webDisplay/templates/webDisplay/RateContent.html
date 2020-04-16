@@ -4,36 +4,42 @@
 
 
     <div class="field columns">
-        <input type="text" placeholder="Anime name" class="input column is-3">
-        <div class="select">
-            <select>
-                <option hidden selected>Genre</option>
-                <option>Any Genre</option>
-                <option>Harem</option>
-                <option>Martial Arts</option>
-            </select>
+        <div class="column is-3">
+            <input type="text" class="input" placeholder="Anime name" v-model="animeName" list="nameSearch">
+            <datalist id="nameSearch" @click="optionSelected()">
+              <option v-for="names in searchList" v-bind:value="names"></option>
+            </datalist>
         </div>
+        <div class="column is-2">
+            <div class="select">
+                <select class="select" v-model="genre">
+                <option hidden selected>Genre</option>
+                <option>No idea &#x1F631</option>    
+                <option v-for="animeGenre in genreList">[[animeGenre]]</option>
+                </select>
+            </div>
+        </div>
+        <div class="column" v-show="!rated"> Not rated yet!!! </div>
     </div>
 
 
     <ul id="characteristics">
-        <li class="columns" v-for="( characteritic,index) in characteritics">
-            <label class="column is-2"> [[characteritic]]</label>
+        <li class="columns" v-for="( characteristic,index) in characteristics">
+            <label class="column is-2"> [[characteristic.name]]</label>
             <div class="control column is-4">
-                <input type="range" min="1" max="10" value="5" class="slider column is-5" id="myRange">
+                <input type="range" min="0" max="10" v-model:value="characteristic.value" class="slider column is-5" id="myRange">
             </div>
             <div id="charact-box" class="control column is-1">
                 <input type="checkbox" v-model="charactCheckboxes[index]">
             </div>
         </li>
-
     </ul>
 
 
 
     <div class="field">
         <div class="control">
-            <input class="input" type="text" placeholder="tags">
+            <input class="input" type="text" placeholder="tags" v-model:value="tagEntry">
         </div>
     </div>
     <div class="tags">
@@ -44,9 +50,9 @@
 
     <div class="field">
         <label>Un/Select all
-                <input type="checkbox" v-model:value="allTicked">
+                <input type="checkbox" v-model="allTicked">
             </label>
-        <button class="button is-primary">Send</button>
+        <button class="button is-primary" @click="SendRatings">Send</button>
     </div>
 
     <h2 v-show="statsSent" class="title is-2 announcement has-text-centered">STATS SENT</h2>
