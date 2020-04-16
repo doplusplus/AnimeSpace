@@ -118,6 +118,7 @@ def getStats(request , animeName):
 
 
 def getVotedGenre(request , animeName):
-    searchResult = Genres.objects.filter( name__iexact = animeName ).order_by('votes').last().genre
-    return HttpResponse(json.dumps(searchResult), content_type = 'application/json')
+    searchResult = Genres.objects.filter( name__iexact = animeName ).order_by('votes')
+    genre = searchResult.last().genre if searchResult.exists() else ""
+    return HttpResponse(json.dumps(genre), content_type = 'application/json')
     
