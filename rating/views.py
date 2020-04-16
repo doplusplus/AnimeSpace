@@ -2,10 +2,12 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.http import HttpResponse
 from django.core import serializers
+from django.db.models import Max
 
 from .models import AnimeStats
 from .models import GenreList
 from .models import Genres
+
 
 import json
 
@@ -17,7 +19,7 @@ import json
 def index(request):
     data =json.loads(request.body.decode("utf-8"))
     targetname=data['name']
-    searchResult = list(AnimeStats.objects.filter(name = targetname))
+    searchResult = list(AnimeStats.objects.filter(name__iexact = targetname))
     
     if len(searchResult) > 1 : 
         return JsonResponse("Problem:several results",  safe = False)
@@ -63,8 +65,8 @@ def index(request):
         stats.votes += 1
 
     stats.save()
-    if stats.genre != "none":
-        pushGenre( stats , stats.genre )
+    if data['genre'] in GenreList:
+        pushGenre( stats , data['genre'] )
 
     return HttpResponse(json.dumps('{message:"Everything is fine"}'), content_type='application/json')
 
@@ -93,7 +95,7 @@ def genres(request):
     return HttpResponse(json.dumps(GenreList), content_type = 'application/json')
 
 def getStats(request , animeName):
-    searchResult = AnimeStats.objects.filter( name = animeName ).values()
+    searchResult = AnimeStats.objects.filter( name__iexact = animeName ).values()
     if len(searchResult) > 1 : raise Exception('too many stats results for ' + animeName)
 
     response = []
@@ -109,4 +111,13 @@ def getStats(request , animeName):
         response.append( { 'name': "fightChoreography", 'value': data['fightChoreography']} )
     
     return HttpResponse(json.dumps(response), content_type = 'application/json')
+    
+
+
+
+
+
+def getVotedGenre(request , animeName):
+    searchResult = Genres.objects.filter( name__iexact = animeName ).order_by('votes').last().genre
+    return HttpResponse(json.dumps(searchResult), content_type = 'application/json')
     

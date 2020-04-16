@@ -19,7 +19,7 @@ var rateAnimesComponent = function(HTMLTemplate) {
         data: function() {
             return {
                 animeName: "",
-                genre: "Select a genre",
+                genre: null,
                 genreList: [],
                 characteristics: defaultCharacteristics,
                 charactCheckboxes: [false, false, false, false, false, false, false, false],
@@ -67,6 +67,7 @@ var rateAnimesComponent = function(HTMLTemplate) {
                             if (response.data.length == 1 && response.data[0].name == this.animeName) {
                                 //using the fact that name selection triggers a call
                                 this.getStats(this.animeName);
+                                this.getGenre(this.animeName);
                                 return;
                             }
 
@@ -82,6 +83,13 @@ var rateAnimesComponent = function(HTMLTemplate) {
                     .then(response => {
                         this.rated = response.data.length > 0;
                         this.characteristics = this.rated ? response.data : defaultCharacteristics;
+                    })
+                    .catch(error => { console.log(error); });
+            },
+            getGenre: async function(name) {
+                axios.get('rating/genre/' + name)
+                    .then(response => {
+                        this.genre = response.data ? response.data : null
                     })
                     .catch(error => { console.log(error); });
             },
