@@ -5,7 +5,7 @@
 
 
 
-var getmainVue = function(rankingHtml, rateAnimesHtml, mobile = false) {
+var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = false) {
 
     return new Vue({
         el: '#app',
@@ -76,6 +76,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, mobile = false) {
         components: {
             'ranking-display': rankingComponent(rankingHtml),
             'anime-rating': rateAnimesComponent(rateAnimesHtml),
+            'advised': adviseComponent(advisedHtml),
         }
     });
 }

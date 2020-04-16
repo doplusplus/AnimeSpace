@@ -31,11 +31,15 @@ if (axios != undefined) {
     let RateAnimestemplate = isMobile ? "rateAnimesTemplate" : "rateAnimesTemplate";
     let rateAnimesRequest = axios.get(RateAnimestemplate);
 
-    axios.all([rankingRequest, rateAnimesRequest]).then(axios.spread((...responses) => {
+    let AdvisedTemplate = isMobile ? "advisedTemplate" : "advisedTemplate";
+    let advisedTRequest = axios.get(AdvisedTemplate);
+
+    axios.all([rankingRequest, rateAnimesRequest, advisedTRequest]).then(axios.spread((...responses) => {
         let rankingHtml = responses[0].data;
         let rateAnimesHtml = responses[1].data;
+        let advisedHtml = responses[2].data;
 
-        var app = getmainVue(rankingHtml, rateAnimesHtml, isMobile);
+        var app = getmainVue(rankingHtml, rateAnimesHtml, advisedHtml, isMobile);
     })).catch(errors => {
         alert('some error occured');
     });

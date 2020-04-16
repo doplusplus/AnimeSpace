@@ -8,4 +8,5 @@ urlpatterns = [
     path('rankingTemplate',views.RankingView.as_view(),name='ranking'),
     path('rankingMobileTemplate',views.RankingView.as_view(),name='mobileRanking'),
     path('rateAnimesTemplate',views.RateAnimesView.as_view(),name='rateAnimes'),
+    path('advisedTemplate',views.AdvisedView.as_view(),name='advisedAnimes'),
 ]
