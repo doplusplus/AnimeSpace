@@ -9,7 +9,7 @@ const defaultCharacteristics = [
     { name: "Violence", value: 5 },
     { name: "Story", value: 5 },
     { name: "CharacterDesign", value: 5 },
-    { name: "fightChoreography", value: 5 }
+    { name: "FightChoreography", value: 5 }
 ];
 
 

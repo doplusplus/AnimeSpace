@@ -7,12 +7,15 @@ var adviseComponent = function(HTMLTemplate) {
         data: function() {
             return {
                 bySimilarities: true,
-                byCharateristics: true,
-
                 animeName: null,
-                animeList: [],
                 searchList: [],
+                animeList: [],
 
+                byCharateristics: true,
+                genre: null,
+                genreList: [],
+                characteristics: defaultCharacteristics,
+                tagEntry: "",
             }
         },
         watch: {
@@ -38,6 +41,12 @@ var adviseComponent = function(HTMLTemplate) {
             filteringMethodTicked: function() {
                 return this.bySimilarities || this.byCharateristics;
             },
+            animeListEmpty: function() {
+                return this.animeList.length == 0;
+            },
+            searchEnabled: function() {
+                //to figure out later on
+            },
             searchButtonTitle: function() {
                 return this.filteringMethodTicked ? "Search for animes" : "Can't search because no filtering method selected"
             },
@@ -49,8 +58,24 @@ var adviseComponent = function(HTMLTemplate) {
             clearAll: function() {
                 this.animeList = [];
             },
+            searchAdvice: function() {
+                let similarAnimesData = this.bySimilarities ? this.animeList : null;
+                let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: this.characteristics, tagEntry: this.tagEntry } : null;
+                let data = {
+                    similarAnimes: similarAnimesData,
+                    characteristics: characteristicsFilter
+                };
+            },
         },
-        mounted: function() {},
+        mounted: function() {
+            axios.get('rating/genres')
+                .then(response => {
+                    this.genreList = response.data;
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        },
         template: HTMLTemplate
     };
 }

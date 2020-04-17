@@ -19,57 +19,32 @@
             <li v-for="anime in animeList">[[anime]]</li>
         </ul>
         <div class="control">
-            <button class="button is-primary" v-bind:disabled="!filteringMethodTicked" v-bind:title="searchButtonTitle">SEARCH</button>
+            <button class="button is-primary" v-bind:disabled="!filteringMethodTicked" v-bind:title="searchButtonTitle" @click="searchAdvice()">SEARCH</button>
         </div>
     </div>
     <div class="column is-4">
         <h5 class="title is-5">Filters <input type="checkbox" v-model="byCharateristics"></h5>
         <div class="field">
             <div class="select">
-                <select>
+                <select v-model="genre"> 
                           <option disabled selected>Genre</option>
-                          <option>Harem</option>
-                          <option>Martial Arts</option>
+                          <option v-for="animeGenre in genreList">[[animeGenre]]</option>
                 </select>
             </div>
         </div>
-        <div class="field">
-            <div class="control columns">
-                <label class="column is-3">visuals</label>
-                <input type="range" min="1" max="100" value="50" class="slider column is-5" id="myRange">
-            </div>
-        </div>
-        <div class="field">
-            <div class="control columns">
-                <label class="column is-3">audio
-                </label>
-                <input type="range" min="1" max="100" value="50" class="slider column is-5" id="myRange">
-            </div>
-        </div>
-        <div class="field">
-            <div class="control columns">
-                <label class="column is-3">violence
-                </label>
-                <input type="range" min="1" max="100" value="50" class="slider column is-5" id="myRange">
-            </div>
-        </div>
-        <div class="field">
-            <div class="control columns">
-                <label class="column is-3">sexy M
-                </label>
-                <input type="range" min="1" max="100" value="50" class="slider column is-5" id="myRange">
-            </div>
-        </div>
-        <div class="field">
-            <div class="control columns">
-                <label class="column is-3">sexy F
-                </label>
-                <input type="range" min="1" max="100" value="50" class="slider column is-5" id="myRange">
-            </div>
-        </div>
+        <ul id="characteristics">
+            <li class="field" v-for="( characteristic,index) in characteristics">
+                <label class="label"> [[characteristic.name]]</label>
+                <div class="control">
+                    <input type="range" min="0" max="10" v-model:value="characteristic.value" id="myRange">
+                </div>
+            </li>
+        </ul>
+
+
         <div class="field">
             <div class="control">
-                <input class="input" type="text" placeholder="tags">
+                <input class="input" type="text" placeholder="tags" v-model:value="tagEntry">
             </div>
         </div>
         <div class="tags">
