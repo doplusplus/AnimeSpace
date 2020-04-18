@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.http import HttpResponse
 from django.core import serializers
 from django.db.models import Max
+from django.db.models import F
 
 from .models import AnimeStats
 from .models import GenreList
@@ -132,6 +133,8 @@ def getAdvice(request):
     similarAnimes = data["similarAnimes"]
     filters = data["characteristics"]
     
+
+    # FETCHING SIMILAR ANIMES------------------------------------------------------------------------------------
     numberOfAnimes = len(similarAnimes)
     if numberOfAnimes > 0:
         visuals = 0
@@ -144,6 +147,7 @@ def getAdvice(request):
         fightChoreography = 0
         genre = []
 
+        #Averaging the different characterisics
         for anime in similarAnimes:
             searchResult = AnimeStats.objects.filter( name__iexact = anime ).values()
             animeValues  = searchResult[0]
@@ -170,16 +174,21 @@ def getAdvice(request):
         characterDesign     /= numberOfAnimes
         fightChoreography   /= numberOfAnimes
 
+        #Identify an anime signature
+        average = (visuals + audio + sexyM + sexyF + violence + story + characterDesign + fightChoreography)/8
+        FAverage=(F('visuals') + F('audio') + F('sexyM') + F('sexyF') + F('violence') + F('story') + F('characterDesign') + F('fightChoreography'))/8
 
-        betterAnimes = AnimeStats.objects.filter( 
-        visuals__gte     = visuals ,
-        audio__gte       = audio ,
-        sexyM__gte       = sexyM ,
-        sexyF__gte       = sexyF ,
-        violence__gte    = violence ,
-        story__gte       = story,
-        characterDesign__gte     = characterDesign ,
-        fightChoreography__gte   = fightChoreography ).exclude(name__in = similarAnimes )
+        allanimes           = AnimeStats.objects.all()  
+        withVisualsFilter   = allanimes.filter( visuals__gte = FAverage )       if visuals > average    else allanimes.filter( visuals__lte = FAverage )
+        andAudioFilter      = withVisualsFilter.filter( audio__gte = FAverage ) if audio > average      else allanimes.filter( audio__lte = FAverage )
+        andSexyMFilter      = andAudioFilter.filter( sexyM__gte = FAverage )    if sexyM > average      else allanimes.filter( sexyM__lte = FAverage )
+        andSexyFFilter      = andSexyMFilter.filter( sexyF__gte = FAverage )    if sexyF > average      else allanimes.filter( sexyF__lte = FAverage )
+        andViolenceFilter   = andSexyFFilter.filter( violence__gte =FAverage )  if violence > average   else allanimes.filter( violence__lte = FAverage )
+        andStoryFilter      = andViolenceFilter.filter( story__gte = FAverage )    if story > average      else allanimes.filter( story__lte = FAverage )
+        andCharacterDesignFilter    = andStoryFilter.filter( characterDesign__gte = FAverage )    if characterDesign > average    else allanimes.filter( characterDesign__lte = FAverage )
+        andFightChoreographyFilter  = andCharacterDesignFilter.filter( fightChoreography__gte = FAverage )if fightChoreography > average  else allanimes.filter( fightChoreography__lte = FAverage )
+
+        betterAnimes = andFightChoreographyFilter.exclude(name__in = similarAnimes )
     
 
         advisedSimilarities = []
