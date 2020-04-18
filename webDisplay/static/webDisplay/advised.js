@@ -62,7 +62,17 @@ var adviseComponent = function(HTMLTemplate) {
             },
             searchAdvice: function() {
                 let similarAnimesData = this.bySimilarities ? this.animeList : null;
-                let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: this.characteristics, tagEntry: this.tagEntry } : null;
+                let characteristicsToSend = {
+                    "visuals": this.characteristics[0]["value"],
+                    "audio": this.characteristics[1]["value"],
+                    "sexyM": this.characteristics[2]["value"],
+                    "sexyF": this.characteristics[3]["value"],
+                    "violence": this.characteristics[4]["value"],
+                    "story": this.characteristics[5]["value"],
+                    "characterDesign": this.characteristics[6]["value"],
+                    "fightChoreography": this.characteristics[7]["value"],
+                }
+                let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: characteristicsToSend, tagEntry: this.tagEntry } : null;
                 let tosend = {
                     similarAnimes: similarAnimesData,
                     characteristics: characteristicsFilter

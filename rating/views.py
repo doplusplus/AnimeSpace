@@ -132,11 +132,14 @@ def getAdvice(request):
     data = json.loads(request.body.decode("utf-8"))
     similarAnimes = data["similarAnimes"]
     filters = data["characteristics"]
-    
 
+
+    response = []
+    advisedSimilarities = []
+    filteredSelection = []
     # FETCHING SIMILAR ANIMES------------------------------------------------------------------------------------
-    numberOfAnimes = len(similarAnimes)
-    if numberOfAnimes > 0:
+    if similarAnimes is not None and len(similarAnimes) > 0:
+        numberOfAnimes = len(similarAnimes)
         visuals = 0
         audio = 0
         sexyM = 0
@@ -164,7 +167,6 @@ def getAdvice(request):
             if potentialGenre != "":
                 genre.append(potentialGenre)
 
-        response = []
         visuals     /= numberOfAnimes
         audio       /= numberOfAnimes
         sexyM       /= numberOfAnimes
@@ -191,7 +193,6 @@ def getAdvice(request):
         betterAnimes = andFightChoreographyFilter.exclude(name__in = similarAnimes )
     
 
-        advisedSimilarities = []
         if len(genre) > 0 :
             genre.sort()
             genrename = [] 
@@ -209,12 +210,32 @@ def getAdvice(request):
                 topanimes = list(betterAnimes.filter(genre__iexact = orderedGenre["name"]).values("name"))
                 nameList = [element["name"] for element in topanimes]
                 advisedSimilarities.extend(nameList)
+    
+
+    #CHECKING MINIMAL CONDITIONS 
+    if filters is not None :
+        minCharacteristics = filters["characteristics"]
+        specidifiedGenre = filters["genre"]
+
+        minFiltered =  AnimeStats.objects.filter( 
+        visuals__gte     = minCharacteristics["visuals"] ,
+        audio__gte       = minCharacteristics["audio"] ,
+        sexyM__gte       = minCharacteristics["sexyM"] ,
+        sexyF__gte       = minCharacteristics["sexyF"] ,
+        violence__gte    = minCharacteristics["violence"] ,
+        story__gte       = minCharacteristics["story"],
+        characterDesign__gte     = minCharacteristics["characterDesign"] ,
+        fightChoreography__gte   = minCharacteristics["fightChoreography"],
+        genre = specidifiedGenre )
 
 
-        
+        filteredSelection = list(minFiltered.filter(name__in = advisedSimilarities).values("name")) if len(advisedSimilarities) > 0 else list(minFiltered.values("name")) 
+
+    #OVERALL RESPONSE LOGIC
+    if filters is not None :
+        response = [element["name"] for element in filteredSelection]
+    elif similarAnimes is not None :
+        response.extend(advisedSimilarities)
 
 
-
-
-
-    return HttpResponse(json.dumps(advisedSimilarities), content_type = 'application/json')
+    return HttpResponse(json.dumps(response), content_type = 'application/json')

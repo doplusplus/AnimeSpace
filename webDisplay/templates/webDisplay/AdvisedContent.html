@@ -27,7 +27,8 @@
         <div class="field">
             <div class="select">
                 <select v-model="genre"> 
-                          <option disabled selected>Genre</option>
+                          <option hidden selected>Genre</option>
+                          <option selected>None </option>
                           <option v-for="animeGenre in genreList">[[animeGenre]]</option>
                 </select>
             </div>
