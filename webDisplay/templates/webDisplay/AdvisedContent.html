@@ -34,11 +34,12 @@
             </div>
         </div>
         <ul id="characteristics">
-            <li class="field" v-for="( characteristic,index) in characteristics">
-                <label class="label"> [[characteristic.name]]</label>
-                <div class="control">
+            <li class="columns" v-for="( characteristic,index) in characteristics">
+                <label class="column is-4"> [[characteristic.name]]</label>
+                <div class="column is-7">
                     <input type="range" min="0" max="10" v-model:value="characteristic.value" id="myRange">
                 </div>
+                <div class="column is-1">[[characteristic.value]]</div>
             </li>
         </ul>
 

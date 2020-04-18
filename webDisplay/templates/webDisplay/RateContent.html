@@ -29,6 +29,7 @@
             <div class="control column is-4">
                 <input type="range" min="0" max="10" v-model:value="characteristic.value" class="slider column is-5" id="myRange">
             </div>
+            <div class="control column is-1">[[characteristic.value]]</div>
             <div id="charact-box" class="control column is-1">
                 <input type="checkbox" v-model="charactCheckboxes[index]">
             </div>
