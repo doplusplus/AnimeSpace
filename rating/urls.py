@@ -7,4 +7,5 @@ urlpatterns = [
     path('genres', views.genres, name='genres'), #returns all available genres
     path('stats/<str:animeName>', views.getStats, name='getStats'),# send stats of a particular anime to the client
     path('genre/<str:animeName>', views.getVotedGenre, name='getStats'),# send the most voted genre
+    path('advised', views.getAdvice, name='getAdvice'),# send the most voted genre
 ]

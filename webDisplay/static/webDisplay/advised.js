@@ -16,6 +16,8 @@ var adviseComponent = function(HTMLTemplate) {
                 genreList: [],
                 characteristics: defaultCharacteristics,
                 tagEntry: "",
+
+                results: null,
             }
         },
         watch: {
@@ -61,10 +63,25 @@ var adviseComponent = function(HTMLTemplate) {
             searchAdvice: function() {
                 let similarAnimesData = this.bySimilarities ? this.animeList : null;
                 let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: this.characteristics, tagEntry: this.tagEntry } : null;
-                let data = {
+                let tosend = {
                     similarAnimes: similarAnimesData,
                     characteristics: characteristicsFilter
                 };
+
+                axios({
+                        method: 'post',
+                        url: 'rating/advised',
+                        data: tosend,
+                    })
+                    .then(response => {
+                        this.results = response.data;
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                    });
+            },
+            gotoRanking: function(name) {
+                alert("going to ranking");
             },
         },
         mounted: function() {

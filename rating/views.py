@@ -95,6 +95,11 @@ def genres(request):
     return HttpResponse(json.dumps(GenreList), content_type = 'application/json')
 
 def getStats(request , animeName):
+    response = queryStats(animeName)
+    return HttpResponse(json.dumps(response), content_type = 'application/json')
+    
+
+def queryStats(animeName):
     searchResult = AnimeStats.objects.filter( name__iexact = animeName ).values()
     if len(searchResult) > 1 : raise Exception('too many stats results for ' + animeName)
 
@@ -110,15 +115,97 @@ def getStats(request , animeName):
         response.append( { 'name': "CharacterDesign"  , 'value': data['characterDesign']}   )
         response.append( { 'name': "fightChoreography", 'value': data['fightChoreography']} )
     
-    return HttpResponse(json.dumps(response), content_type = 'application/json')
-    
-
-
-
+    return response
 
 
 def getVotedGenre(request , animeName):
+    genre = queryVotedGenre(animeName)
+    return HttpResponse(json.dumps(genre), content_type = 'application/json')
+
+def queryVotedGenre(animeName):
     searchResult = Genres.objects.filter( name__iexact = animeName ).order_by('votes')
     genre = searchResult.last().genre if searchResult.exists() else ""
-    return HttpResponse(json.dumps(genre), content_type = 'application/json')
+    return genre
+
+def getAdvice(request):
+    data = json.loads(request.body.decode("utf-8"))
+    similarAnimes = data["similarAnimes"]
+    filters = data["characteristics"]
     
+    numberOfAnimes = len(similarAnimes)
+    if numberOfAnimes > 0:
+        visuals = 0
+        audio = 0
+        sexyM = 0
+        sexyF = 0
+        violence = 0
+        story = 0
+        characterDesign = 0
+        fightChoreography = 0
+        genre = []
+
+        for anime in similarAnimes:
+            searchResult = AnimeStats.objects.filter( name__iexact = anime ).values()
+            animeValues  = searchResult[0]
+            visuals     += animeValues["visuals"]
+            audio       += animeValues["audio"]
+            sexyM       += animeValues["sexyM"]
+            sexyF       += animeValues["sexyF"]
+            violence    += animeValues["violence"]
+            story       += animeValues["story"]
+            characterDesign     += animeValues["characterDesign"]
+            fightChoreography   += animeValues["fightChoreography"]
+
+            potentialGenre = queryVotedGenre(anime)
+            if potentialGenre != "":
+                genre.append(potentialGenre)
+
+        response = []
+        visuals     /= numberOfAnimes
+        audio       /= numberOfAnimes
+        sexyM       /= numberOfAnimes
+        sexyF       /= numberOfAnimes
+        violence    /= numberOfAnimes
+        story       /= numberOfAnimes
+        characterDesign     /= numberOfAnimes
+        fightChoreography   /= numberOfAnimes
+
+
+        betterAnimes = AnimeStats.objects.filter( 
+        visuals__gte     = visuals ,
+        audio__gte       = audio ,
+        sexyM__gte       = sexyM ,
+        sexyF__gte       = sexyF ,
+        violence__gte    = violence ,
+        story__gte       = story,
+        characterDesign__gte     = characterDesign ,
+        fightChoreography__gte   = fightChoreography ).exclude(name__in = similarAnimes )
+    
+
+        advisedSimilarities = []
+        if len(genre) > 0 :
+            genre.sort()
+            genrename = [] 
+            genrename.append({"name":genre[0] , "count":1})
+        
+            for i in range(1 , len(genre)) :
+                if genre[i] == genre[i-1]:
+                    genrename[len(genrename)-1]["count"] += 1
+                else:
+                    genrename.append({"name": genre[i] , "count":1})
+                
+            genrename.sort(key= lambda x: x["count"] )
+
+            for orderedGenre in genrename :
+                topanimes = list(betterAnimes.filter(genre__iexact = orderedGenre["name"]).values("name"))
+                nameList = [element["name"] for element in topanimes]
+                advisedSimilarities.extend(nameList)
+
+
+        
+
+
+
+
+
+    return HttpResponse(json.dumps(advisedSimilarities), content_type = 'application/json')

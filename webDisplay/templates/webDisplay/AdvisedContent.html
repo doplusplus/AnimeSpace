@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="column is-4">
-        <h5 class="title is-5">Filters <input type="checkbox" v-model="byCharateristics"></h5>
+        <h5 class="title is-5">Minimum characteristics filters <input type="checkbox" v-model="byCharateristics"></h5>
         <div class="field">
             <div class="select">
                 <select v-model="genre"> 
@@ -56,9 +56,7 @@
     <div class="column is-4">
         <h5 class="title is-5">Results</h5>
         <ol>
-            <li>My anime 1 <a>see in ranking</a></li>
-            <li>My anime 2 <a>see in ranking</a></li>
-            <li>My anime 3 <a>see in ranking</a></li>
+            <li v-for="result in results">[[result]] <a @click="gotoRanking(result)">see in ranking</a></li>
         </ol>
     </div>
 </div>
