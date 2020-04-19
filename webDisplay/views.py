@@ -40,4 +40,12 @@ class AdvisedView(generic.TemplateView):
         address= 'webDisplay/AdvisedContent.html'if request.path.find("advisedTemplate")> -1 else 'webDisplay/AdvisedContent.html'
         return render(request , address)
 
+class AccountView(generic.TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        address= 'webDisplay/AccountContent.html'if request.path.find("accountTemplate")> -1 else 'webDisplay/AccountContent.html'
+        return render(request , address)
+
+
+
 

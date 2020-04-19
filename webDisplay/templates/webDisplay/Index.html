@@ -99,7 +99,7 @@
                     <ranking-display v-show="ranking"></ranking-display>
                     <anime-rating v-show="rate"></anime-rating>
                     <advised v-show="advised"></advised>
-                    <div v-if="account">{% include './AccountContent.html' %}</div>
+                    <account v-if="account"></account>
                     <div v-if="shop">{% include './ShopContent.html' %}</div>
                 </div>
             </div>
@@ -141,6 +141,7 @@
     <script type="text/javascript" src="{% static 'webDisplay/ranking.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/rateAnimes.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/advised.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/account.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
     <noscript>
         <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;
