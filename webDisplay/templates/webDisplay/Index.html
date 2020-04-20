@@ -87,10 +87,8 @@
                         </ul>
                     </aside>
                 </div>
-                <div v-if=" !identified "> {% include './LogIn.html' %}</div>
-                <div v-if="identified "> {% include './LogOut.html' %}</div>
 
-                <div v-if="!identified"> {% include './LogIn.html' %}</div>
+                <login v-if="!identified" :identify="identify" :confirmed="authenticated"></login>
                 <div v-if="identified"> {% include './LogOut.html' %}</div>
 
                 <div class="column">
@@ -142,6 +140,7 @@
     <script type="text/javascript" src="{% static 'webDisplay/rateAnimes.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/advised.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/account.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/login.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
     <noscript>
         <div style="position: fixed; top: 0px; left: 0px; z-index: 3000;

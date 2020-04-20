@@ -3,21 +3,22 @@
     <div class="modal-content ">
         <div class="box">
             <h4> Would you like to log In? </h4>
+            <div v-html="message"></div>
             <p class="field">
                 <span class="control">
                         <label>Username:</label>
-                        <input class="input" type="text" placeholder="ex: kurococo" width="15">
+                        <input class="input" type="text" placeholder="ex: kurococo" width="15" v-model="login">
                 </span>
             </p>
             <p class="field">
                 <span class="control">
                         <label>Password:</label>
-                        <input class="input" type="password"   width="15">
+                        <input class="input" type="password"   width="15"  v-model="password">
                 </span>
             </p>
             <div>
-                <span class="button is-primary" v-on:click="authenticate()">Log in</span>
-                <span class="button is-danger" v-on:click="identify=false">Cancel</span>
+                <span class="button is-primary" v-on:click="authenticate(true)">Log in</span>
+                <span class="button is-danger" v-on:click="authenticate(false)">Cancel</span>
                 <p class="clickable"> Register </p>
             </div>
         </div>

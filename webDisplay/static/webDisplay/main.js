@@ -32,9 +32,12 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = fal
                     this.identify = !this.identify;
                 }
             },
-            authenticate: function() {
-                this.identified = true;
-                this.display('account');
+            authenticated: function(goOn) {
+                this.identified = goOn;
+                this.identify = false;
+                if (this.identified) {
+                    this.display('account');
+                }
             },
             logOut: function() {
                 if (this.account) { this.display('home'); }
@@ -77,6 +80,8 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = fal
             'ranking-display': rankingComponent(rankingHtml),
             'anime-rating': rateAnimesComponent(rateAnimesHtml),
             'advised': adviseComponent(advisedHtml),
+            'account': accountComponent,
+            'login': loginComponent,
         }
     });
 }

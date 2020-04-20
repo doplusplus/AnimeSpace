@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('webDisplay.urls')),
     path('ranking/', include('ranking.urls')),
     path('rating/', include('rating.urls')),
+    path('accounts/', include('accounts.urls')),
 ]

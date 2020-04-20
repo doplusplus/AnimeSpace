@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import generic
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.contrib.auth import authenticate
+
 
 class IndexView(generic.TemplateView):
 
@@ -46,6 +48,9 @@ class AccountView(generic.TemplateView):
         address= 'webDisplay/AccountContent.html'if request.path.find("accountTemplate")> -1 else 'webDisplay/AccountContent.html'
         return render(request , address)
 
+class LoginView(generic.TemplateView):
 
-
+    def get(self, request, *args, **kwargs):
+        address= 'webDisplay/LogIn.html'if request.path.find("loginTemplate") > -1 else 'webDisplay/LogIn.html'
+        return render(request , address)
 
