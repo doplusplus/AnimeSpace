@@ -60,7 +60,7 @@ var adviseComponent = function(HTMLTemplate) {
             clearAll: function() {
                 this.animeList = [];
             },
-            searchAdvice: function() {
+            searchAdvice: async function() {
                 let similarAnimesData = this.bySimilarities ? this.animeList : null;
                 let characteristicsToSend = {
                     "visuals": this.characteristics[0]["value"],
@@ -73,22 +73,7 @@ var adviseComponent = function(HTMLTemplate) {
                     "fightChoreography": this.characteristics[7]["value"],
                 }
                 let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: characteristicsToSend, tagEntry: this.tagEntry } : null;
-                let tosend = {
-                    similarAnimes: similarAnimesData,
-                    characteristics: characteristicsFilter
-                };
-
-                axios({
-                        method: 'post',
-                        url: 'rating/advised',
-                        data: tosend,
-                    })
-                    .then(response => {
-                        this.results = response.data;
-                    })
-                    .catch(function(error) {
-                        console.log(error);
-                    });
+                this.results = await recommendationService.recommendedAnimes(characteristicsFilter, similarAnimesData);
             },
             gotoRanking: function(name) {
                 alert("going to ranking");
@@ -106,3 +91,30 @@ var adviseComponent = function(HTMLTemplate) {
         template: HTMLTemplate
     };
 }
+
+
+var recommendationService = {
+    recommendedAnimes: async function(characteristics, similarAnimes) {
+        var results = "";
+        let tosend = {
+            similarAnimes: similarAnimes,
+            characteristics: characteristics
+        };
+
+        await axios({
+                method: 'post',
+                url: 'rating/advised',
+                data: tosend,
+            })
+            .then(response => {
+                results = response.data;
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+
+        return results;
+
+    }
+
+};

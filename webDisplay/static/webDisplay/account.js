@@ -25,14 +25,16 @@ var accountComponent = function(accountHTML) {
         methods: {
             sendSuggestedAnime: function() {},
         },
-        mounted: function() {
-            axios.get('accounts/favorite/' + this.userid)
-                .then(response => {
+        mounted: async function() {
+            await axios.get('accounts/favorite/' + this.userid)
+                .then(async response => {
                     let favoriteList = [];
                     response.data.forEach(element => {
                         favoriteList.push(element["animeName"]);
                     });
                     this.top10 = favoriteList;
+                    let suggestions = await recommendationService.recommendedAnimes(null, this.top10);
+                    this.currentSuggestion = suggestions[0];
                 })
                 .catch(error => { console.log(error); });
 

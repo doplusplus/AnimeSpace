@@ -186,30 +186,32 @@ def getAdvice(request):
         andSexyMFilter      = andAudioFilter.filter( sexyM__gte = FAverage )    if sexyM > average      else allanimes.filter( sexyM__lte = FAverage )
         andSexyFFilter      = andSexyMFilter.filter( sexyF__gte = FAverage )    if sexyF > average      else allanimes.filter( sexyF__lte = FAverage )
         andViolenceFilter   = andSexyFFilter.filter( violence__gte =FAverage )  if violence > average   else allanimes.filter( violence__lte = FAverage )
-        andStoryFilter      = andViolenceFilter.filter( story__gte = FAverage )    if story > average      else allanimes.filter( story__lte = FAverage )
+        andStoryFilter      = andViolenceFilter.filter( story__gte = FAverage ) if story > average      else allanimes.filter( story__lte = FAverage )
         andCharacterDesignFilter    = andStoryFilter.filter( characterDesign__gte = FAverage )    if characterDesign > average    else allanimes.filter( characterDesign__lte = FAverage )
         andFightChoreographyFilter  = andCharacterDesignFilter.filter( fightChoreography__gte = FAverage )if fightChoreography > average  else allanimes.filter( fightChoreography__lte = FAverage )
 
         betterAnimes = andFightChoreographyFilter.exclude(name__in = similarAnimes )
-    
-
-        if len(genre) > 0 :
-            genre.sort()
-            genrename = [] 
-            genrename.append({"name":genre[0] , "count":1})
         
-            for i in range(1 , len(genre)) :
-                if genre[i] == genre[i-1]:
-                    genrename[len(genrename)-1]["count"] += 1
-                else:
-                    genrename.append({"name": genre[i] , "count":1})
-                
-            genrename.sort(key= lambda x: x["count"] )
+        # Todo: sort by genre instead of filtering genres
+        advisedSimilarities = [element["name"] for element in list(betterAnimes.values("name"))]
 
-            for orderedGenre in genrename :
-                topanimes = list(betterAnimes.filter(genre__iexact = orderedGenre["name"]).values("name"))
-                nameList = [element["name"] for element in topanimes]
-                advisedSimilarities.extend(nameList)
+        # if len(genre) > 0 :
+        #     genre.sort()
+        #     genrename = [] 
+        #     genrename.append({"name":genre[0] , "count":1})
+        
+        #     for i in range(1 , len(genre)) :
+        #         if genre[i] == genre[i-1]:
+        #             genrename[len(genrename)-1]["count"] += 1
+        #         else:
+        #             genrename.append({"name": genre[i] , "count":1})
+                
+        #     genrename.sort(key= lambda x: x["count"] )
+
+        #     for orderedGenre in genrename :
+        #         topanimes = list(betterAnimes.filter(genre__iexact = orderedGenre["name"]).values("name"))
+        #         nameList = [element["name"] for element in topanimes]
+        #         advisedSimilarities.extend(nameList)
     
 
     #CHECKING MINIMAL CONDITIONS 
