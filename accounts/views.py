@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate
 from django.http import HttpResponse
+from django.contrib.auth.models import User
 
 from .models import Settings
-from .models import Favorite
+from .models import Favorite 
+from .models import RecommendedByUser
 import json
 
 
@@ -37,4 +39,21 @@ def saveSettings(request):
     UserSettings.save()
 
     response = "Account settings succesfully saved"
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def saveSuggestion(request):
+    data    = json.loads(request.body.decode("utf-8"))
+    userID  = data['userID']
+    user    = User.objects.get(id = userID)
+    recommendedAnime = RecommendedByUser( 
+        user        = user,
+        animeName   = data['animeName'],
+        genre       = data['genre'],
+        videoLink   = data['videoLink'],
+        tags        = data['tags']
+    )
+    recommendedAnime.save()
+
+    response = "Recommended Anime succesfully saved"
     return HttpResponse(json.dumps(response), content_type='application/json')

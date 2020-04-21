@@ -19,6 +19,7 @@ var accountComponent = function(accountHTML) {
                 themeColors: ['white', 'pink', 'yellow', 'blue', 'gray', 'cream'],
                 selectedColor: null,
                 extendedVideosAutoplay: "yes",
+                message: ""
             };
         },
         watch: {
@@ -35,7 +36,28 @@ var accountComponent = function(accountHTML) {
         },
         computed: {},
         methods: {
-            sendSuggestedAnime: function() {},
+            sendSuggestedAnime: function() {
+                let tosend = {
+                    "userID": this.userid,
+                    "animeName": this.animeName,
+                    "genre": this.genre,
+                    "videoLink": this.videoLink,
+                    "tags": this.tags,
+                };
+
+                axios({
+                    method: 'post',
+                    url: 'accounts/saveSuggestion',
+                    data: tosend,
+                }).then(response => {
+                    this.message = response.data;
+                    setTimeout(() => { this.message = ''; }, 2000);
+                }).catch(function(error) {
+                    console.log(error);
+                });
+
+
+            },
         },
         mounted: async function() {
             await axios.get('accounts/favorite/' + this.userid)
