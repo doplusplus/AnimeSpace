@@ -9,8 +9,8 @@
                 <li v-for="anime in top10"> [[anime]]</li>
             </ol>
         </div>
-        <h5 class="title is-5">[[currentSuggestion]]</h5>
-        <p title="Based on top ten">kuroko no basket</p>
+        <h5 class="title is-5">Suggestion</h5>
+        <p title="Based on top ten">[[currentSuggestion]]</p>
     </div>
 
     <div class="column is-4">
@@ -60,9 +60,8 @@
             <span class="control">
                 <label class="label">Theme
                     <span class="select">
-                        <select>
-                            <option>Blue</option>
-                            <option>Pink</option>
+                        <select v-model="selectedColor">
+                            <option v-for="color in themeColors">[[color]]</option>
                         </select>
                     </span>
             </label>

@@ -5,7 +5,7 @@
 
 
 
-var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = false) {
+var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, mobile = false) {
 
     return new Vue({
         el: '#app',
@@ -23,6 +23,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = fal
             logout: false,
             playing: false,
             playersGenerated: false,
+            userid: -1,
         },
         methods: {
             logIn: function() {
@@ -32,11 +33,12 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = fal
                     this.identify = !this.identify;
                 }
             },
-            authenticated: function(goOn) {
+            authenticated: function(goOn, userID) {
                 this.identified = goOn;
                 this.identify = false;
                 if (this.identified) {
                     this.display('account');
+                    this.userid = userID;
                 }
             },
             logOut: function() {
@@ -80,8 +82,8 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, mobile = fal
             'ranking-display': rankingComponent(rankingHtml),
             'anime-rating': rateAnimesComponent(rateAnimesHtml),
             'advised': adviseComponent(advisedHtml),
-            'account': accountComponent,
-            'login': loginComponent,
+            'account': accountComponent(accountHTML),
+            'login': loginComponent(loginHtml),
         }
     });
 }

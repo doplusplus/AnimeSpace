@@ -34,12 +34,22 @@ if (axios != undefined) {
     let AdvisedTemplate = isMobile ? "advisedTemplate" : "advisedTemplate";
     let advisedTRequest = axios.get(AdvisedTemplate);
 
-    axios.all([rankingRequest, rateAnimesRequest, advisedTRequest]).then(axios.spread((...responses) => {
+    let accountTemplate = isMobile ? "accountTemplate" : "accountTemplate";
+    let accountRequest = axios.get(accountTemplate);
+
+    let loginTemplate = isMobile ? "loginTemplate" : "loginTemplate";
+    let loginTRequest = axios.get(loginTemplate);
+
+
+
+    axios.all([rankingRequest, rateAnimesRequest, advisedTRequest, accountRequest, loginTRequest]).then(axios.spread((...responses) => {
         let rankingHtml = responses[0].data;
         let rateAnimesHtml = responses[1].data;
         let advisedHtml = responses[2].data;
+        let accountHTML = responses[3].data;
+        let loginHtml = responses[4].data;
 
-        var app = getmainVue(rankingHtml, rateAnimesHtml, advisedHtml, isMobile);
+        var app = getmainVue(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, isMobile);
     })).catch(errors => {
         alert('some error occured');
     });
