@@ -21,6 +21,13 @@ var accountComponent = function(accountHTML) {
                 extendedVideosAutoplay: "yes",
             };
         },
+        watch: {
+            extendedVideosAutoplay: function(val) {
+                let autoplayActive = val == "yes";
+                this.$root.$emit('autoplayChanged', autoplayActive);
+                //and send it to the server
+            },
+        },
         computed: {},
         methods: {
             sendSuggestedAnime: function() {},
@@ -46,5 +53,24 @@ var accountComponent = function(accountHTML) {
                 .catch(error => { console.log(error); });
         },
         template: accountHTML,
+        beforeDestroy: function() {
+            let tosend = {
+                "autoplay": this.extendedVideosAutoplay == "yes",
+                "themeColor": this.selectedColor,
+                "userID": this.userid
+            };
+
+            axios({
+                method: 'post',
+                url: 'accounts/saveSettings',
+                data: tosend,
+            }).then(response => {
+                document.getElementById('toastmessage').innerHTML = response.data;
+                setTimeout(function() { document.getElementById('toastmessage').innerHTML = ''; }, 2000);
+            }).catch(function(error) {
+                console.log(error);
+            });
+
+        }
     };
 };

@@ -28,6 +28,7 @@ var rankingComponent = function(HTMLTemplate) {
                 totalAnimes: null,
                 requestedPage: 1,
                 lastPage: 1,
+                autoplay: true,
             }
         },
         computed: {
@@ -49,7 +50,9 @@ var rankingComponent = function(HTMLTemplate) {
                 window.scrollTo(0, bannerheight);
 
                 //launches video on wide display
-                videoService.play(index);
+                if (this.autoplay) {
+                    videoService.play(index);
+                }
 
             },
             selected: function(index) {
@@ -172,6 +175,9 @@ var rankingComponent = function(HTMLTemplate) {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
             this.loadAnimePage(this.displayedPage, animePerPage);
             rankingContentDiv = document.getElementById("rankingContent");
+            this.$root.$on('autoplayChanged', data => {
+                this.autoplay = data;
+            });
         },
         updated: function() {
             rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;

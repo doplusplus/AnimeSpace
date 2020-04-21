@@ -25,3 +25,16 @@ def favorite(request , userID):
     favoriteQuery = Favorite.objects.filter(user_id = userID).values('animeName')
     response = list(favoriteQuery)
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+
+def saveSettings(request):
+    data = json.loads(request.body.decode("utf-8"))
+    userID = data['userID']
+    UserSettings = Settings.objects.get(user_id = userID)
+    UserSettings.themeColor = data['themeColor']
+    UserSettings.autoPlay = data['autoplay']
+    UserSettings.save()
+
+    response = "Account settings succesfully saved"
+    return HttpResponse(json.dumps(response), content_type='application/json')
