@@ -16,7 +16,7 @@ var accountComponent = function(accountHTML) {
                 tags: "",
 
                 //Display Settings
-                themeColors: ['pink', 'yellow', 'blue', 'gray', 'cream'],
+                themeColors: ['white', 'pink', 'yellow', 'blue', 'gray', 'cream'],
                 selectedColor: null,
                 extendedVideosAutoplay: "yes",
             };
@@ -25,8 +25,13 @@ var accountComponent = function(accountHTML) {
             extendedVideosAutoplay: function(val) {
                 let autoplayActive = val == "yes";
                 this.$root.$emit('autoplayChanged', autoplayActive);
-                //and send it to the server
             },
+            selectedColor: function(val) {
+                if (val) {
+                    document.body.style.backgroundColor = val;
+                }
+            },
+
         },
         computed: {},
         methods: {
