@@ -10,6 +10,7 @@ var rankingComponent = function(HTMLTemplate) {
 
     return {
         delimiters: ['[[', ']]'],
+        props: ['favourites', 'userid'],
         data: function() {
             return {
                 animeList: [],
@@ -29,9 +30,19 @@ var rankingComponent = function(HTMLTemplate) {
                 requestedPage: 1,
                 lastPage: 1,
                 autoplay: true,
+            };
+        },
+        watch: {
+            favourites: function(newlist) {
+
+                //todo change for a more specific function targetting only anime.favourite
+                this.loadAnimePage(this.displayedPage, animePerPage, false);
             }
         },
         computed: {
+            authenticated: function() {
+                return this.userid > -1;
+            },
             lightTextRequired: function() {
                 return this.animeDetails[this.currentSelection].darkVideoBackground;
             },
@@ -53,6 +64,44 @@ var rankingComponent = function(HTMLTemplate) {
                 if (this.autoplay) {
                     videoService.play(index);
                 }
+
+            },
+            favour(name) {
+                axios({
+                        method: 'post',
+                        url: 'accounts/addFavourite',
+                        data: {
+                            name: name,
+                            userID: this.userid,
+                        }
+                    })
+                    .then(
+                        response => {
+                            document.getElementById('toastmessage').innerHTML = response.data["message"];
+                            setTimeout(function() { document.getElementById('toastmessage').innerHTML = ''; }, 2000);
+                            this.$root.$emit('favouritesChanged', response.data["favourites"]);
+                        })
+                    .catch(
+                        error => {
+                            console.log(error);
+                        });
+            },
+            unfavour(name) {
+
+                axios({
+                        method: 'delete',
+                        url: 'accounts/deleteFavourite/' + this.userid + '/' + name,
+                    })
+                    .then(
+                        response => {
+                            document.getElementById('toastmessage').innerHTML = response.data["message"];
+                            setTimeout(function() { document.getElementById('toastmessage').innerHTML = ''; }, 2000);
+                            this.$root.$emit('favouritesChanged', response.data["favourites"]);
+                        })
+                    .catch(
+                        error => {
+                            console.log(error);
+                        });
 
             },
             selected: function(index) {
@@ -129,8 +178,14 @@ var rankingComponent = function(HTMLTemplate) {
                     });
             },
             loadDetails: function(data) {
-                //Adding empty cells to avoid video iframes destruction in the last page
-                data.forEach(element => element.fake = false);
+
+                //conditioning current data
+                data.forEach(element => {
+                    element.fake = false;
+                    element.favourite = this.favourites.includes(element.name);
+                });
+
+                //Adding empty rows to avoid video iframes destruction in the last page
                 while (data.length < animePerPage) {
                     data.push({
                         darkVideoBackground: false,
@@ -139,6 +194,7 @@ var rankingComponent = function(HTMLTemplate) {
                         name: '',
                         popularity: '',
                         fake: true,
+                        favourite: false,
                     });
                 }
 

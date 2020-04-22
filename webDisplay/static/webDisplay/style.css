@@ -76,6 +76,10 @@ li {
     border-radius: 10px;
 }
 
+.favoured {
+    color: goldenrod;
+}
+
 
 /* Handle */
 

@@ -24,7 +24,13 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             playing: false,
             playersGenerated: false,
             userid: -1,
+            favourites: [],
         },
+        // watch: {
+        //     userid: async function(val) {
+        //         this.favourites = await getFavourites(val);
+        //     },
+        // },
         methods: {
             logIn: function() {
                 if (this.identified) {
@@ -76,7 +82,6 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                 videoService.PauseVideo(true);
                 this.playing = false;
             },
-
         },
         components: {
             'ranking-display': rankingComponent(rankingHtml),
@@ -84,6 +89,11 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             'advised': adviseComponent(advisedHtml),
             'account': accountComponent(accountHTML),
             'login': loginComponent(loginHtml),
+        },
+        mounted: function() {
+            this.$root.$on('favouritesChanged', data => {
+                this.favourites = data;
+            });
         }
     });
 }

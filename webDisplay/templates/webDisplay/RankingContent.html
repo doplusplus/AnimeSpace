@@ -1,4 +1,5 @@
 <div class="columns" id="ranking">
+    <!-- ///////////////////////////////////////////////////////////// Actual ranking ////////////////////////////////////////////////////////////////// -->
     <div class="column is-9">
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
         <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
@@ -36,10 +37,13 @@
                 </div>
                 <div v-show="!anime.fake" id="rankingMiscelleanous" class="column">
                     <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
+                    <div v-show="authenticated && !extended && !anime.favourite" title="favourite" class="clickable" @click="favour(anime.name)"><i class="far fa-star"></i></div>
+                    <div v-show="authenticated && !extended && anime.favourite" title="favourite" class="clickable" @click="unfavour(anime.name)"><i class="fas fa-star favoured"></i></div>
                 </div>
             </li>
         </ul>
     </div>
+    <!-------------------------------------------------   Page navigation   -------------------------------------------------------------------------------------- -->
     <div v-show="!extended" class="column is-3">
         <p>
             <span @click="previousPage()"><i class="fas fa-angle-left clickable"></i></span> Page [[displayedPage]]
@@ -66,7 +70,7 @@
             </div>
         </div>
     </div>
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+
 
     <!--Toolbar with descriptions and navigation for fullscreen mode-->
     <div id="toolBar" class="has-background-light" v-if="extended">

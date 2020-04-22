@@ -57,3 +57,37 @@ def saveSuggestion(request):
 
     response = "Recommended Anime succesfully saved"
     return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+def deleteallfavorites(request , userID):
+    favoriteQuery = Favorite.objects.filter(user_id = userID).delete()
+    return HttpResponse(json.dumps("Deletion complete"), content_type='application/json')
+
+
+def addFavourite(request):
+    data    = json.loads(request.body.decode("utf-8"))
+    name    = data["name"]
+    userID  = data["userID"]
+    message = "not created"
+    if len(Favorite.objects.filter(animeName = name , user_id = userID )) == 0:
+        user        = User.objects.get(id = userID)
+        favorite    = Favorite( animeName = name , user_id = userID)
+        favorite.save()
+        message= name +" successfully added to the favourites"
+    else:
+        message="It seems that this is already a favourite"
+
+    favouritesList    = list(Favorite.objects.filter(user_id = userID ).values('animeName'))
+    response        = {'message': message, 'favourites':[ element["animeName"] for element in favouritesList]}
+    
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+def deletefavorites(request , userID , name):
+    favoriteQuery = Favorite.objects.filter(user_id = userID , animeName = name).delete()
+    favouritesList    = list(Favorite.objects.filter(user_id = userID ).values('animeName'))
+    response        = {'message': 'successful deletion', 'favourites':[ element["animeName"] for element in favouritesList]}
+    return HttpResponse(json.dumps(response), content_type='application/json')
+
+
+
+

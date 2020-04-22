@@ -97,7 +97,7 @@
                 <div class="column">
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
                     <div v-if="about">{% include './AboutContent.html' %}</div>
-                    <ranking-display v-show="ranking"></ranking-display>
+                    <ranking-display v-show="ranking" :favourites='favourites' :userid="userid"></ranking-display>
                     <anime-rating v-show="rate"></anime-rating>
                     <advised v-show="advised"></advised>
                     <account v-if="account" :userid="userid"></account>

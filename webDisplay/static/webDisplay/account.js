@@ -7,7 +7,7 @@ var accountComponent = function(accountHTML) {
         data: function() {
             return {
                 top10: [],
-                currentSuggestion: "call advised from top10",
+                currentSuggestion: "Suggested animes will be displayed here once you have some",
 
                 //Ranking suggestion
                 animeName: "",
@@ -55,9 +55,21 @@ var accountComponent = function(accountHTML) {
                 }).catch(function(error) {
                     console.log(error);
                 });
-
-
             },
+
+            deleteFavourites: function() {
+                let tosend = {
+                    "userID": this.userid,
+                };
+                axios.delete('accounts/deleteallfavorites/' + this.userid)
+                    .then(response => {
+                        //todo add if sucessful blablabla
+                        this.top10 = [];
+                        this.$root.$emit('favouritesChanged', []);
+                    })
+                    .catch(error => { console.log(error); });
+            }
+
         },
         mounted: async function() {
             await axios.get('accounts/favorite/' + this.userid)
@@ -67,8 +79,9 @@ var accountComponent = function(accountHTML) {
                         favoriteList.push(element["animeName"]);
                     });
                     this.top10 = favoriteList;
+                    this.$root.$emit('favouritesChanged', favoriteList);
                     let suggestions = await recommendationService.recommendedAnimes(null, this.top10);
-                    this.currentSuggestion = suggestions[0];
+                    this.currentSuggestion = suggestions.length > 0 ? suggestions[0] : "There is no match to your favourites for now.";
                 })
                 .catch(error => { console.log(error); });
 
