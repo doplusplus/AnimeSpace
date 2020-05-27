@@ -12,10 +12,11 @@ var adviseComponent = function(HTMLTemplate) {
                 animeList: [],
 
                 byCharateristics: true,
-                genre: null,
+                genre: 'Genre',
                 genreList: [],
                 characteristics: defaultCharacteristics,
                 tagEntry: "",
+                selectedCharIndex: -1,
 
                 results: null,
             }
@@ -74,6 +75,9 @@ var adviseComponent = function(HTMLTemplate) {
                 }
                 let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: characteristicsToSend, tagEntry: this.tagEntry } : null;
                 this.results = await recommendationService.recommendedAnimes(characteristicsFilter, similarAnimesData);
+            },
+            selectCharIndex: function(index) {
+                this.selectedCharIndex = index != this.selectedCharIndex ? index : -1;
             },
             gotoRanking: function(name) {
                 alert("going to ranking");

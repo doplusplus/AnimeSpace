@@ -2,7 +2,7 @@
     <div class="modal-background "></div>
     <div class="modal-content ">
         <div class="box">
-            <h4> Would you like to log In? </h4>
+            <h4> <b>Would you like to log in? </b></h4>
             <div v-html="message"></div>
             <p class="field">
                 <span class="control">
@@ -16,10 +16,16 @@
                         <input class="input" type="password"   width="15"  v-model="password">
                 </span>
             </p>
-            <div>
-                <span class="button is-primary" v-on:click="authenticate(true)">Log in</span>
-                <span class="button is-danger" v-on:click="authenticate(false)">Cancel</span>
-                <p class="clickable"> Register </p>
+            <div class="field is-grouped">
+                <p class="control">
+                    <button class="button is-primary" v-on:click="authenticate(true)">Log in</button>
+                </p>
+                <p class="control">
+                    <button class="button is-danger" v-on:click="authenticate(false)">Cancel</button>
+                </p>
+                <p class="control">
+                    <span class="clickable"> Register &GT; </span>
+                </p>
             </div>
         </div>
     </div>

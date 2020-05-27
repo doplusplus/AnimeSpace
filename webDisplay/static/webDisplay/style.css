@@ -12,6 +12,11 @@ li {
     margin: 0 0 3px 0;
 }
 
+.title,
+.subtitle {
+    cursor: default;
+}
+
 .clickable {
     cursor: pointer;
 }
@@ -177,4 +182,8 @@ li {
 
 #downArrow {
     bottom: 0
+}
+
+#myRange {
+    width: 100%;
 }

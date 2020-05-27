@@ -26,22 +26,24 @@
         <h5 class="title is-5">Minimum characteristics filters <input type="checkbox" v-model="byCharateristics"></h5>
         <div class="field">
             <div class="select">
-                <select v-model="genre"> 
-                          <option hidden selected>Genre</option>
-                          <option selected>None </option>
-                          <option v-for="animeGenre in genreList">[[animeGenre]]</option>
+                <select v-model="genre">
+                    <option  hidden selected>Genre</option>
+                    <option >None </option>
+                    <option v-for="animeGenre in genreList">[[animeGenre]]</option>
                 </select>
             </div>
         </div>
-        <ul id="characteristics">
-            <li class="columns" v-for="( characteristic,index) in characteristics">
-                <label class="column is-4"> [[characteristic.name]]</label>
-                <div class="column is-7">
-                    <input type="range" min="0" max="10" v-model:value="characteristic.value" id="myRange">
-                </div>
-                <div class="column is-1">[[characteristic.value]]</div>
-            </li>
-        </ul>
+        <div>
+            <ul>
+                <li v-for="( characteristic,index) in characteristics">
+                    <div class="columns clickable" @click="selectCharIndex(index)">
+                        <p class="column is-10"> [[characteristic.name]]</p>
+                        <p class="column is-2">[[characteristic.value]]</p>
+                    </div>
+                    <input id="myRange" v-show="selectedCharIndex == index" type="range" min="0" max="10" v-model:value="characteristic.value">
+                </li>
+            </ul>
+        </div>
 
 
         <div class="field">
