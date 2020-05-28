@@ -219,7 +219,7 @@ def getAdvice(request):
         minCharacteristics = filters["characteristics"]
         specidifiedGenre = filters["genre"]
 
-        minFiltered =  AnimeStats.objects.filter( 
+        minFiltered = AnimeStats.objects.filter( 
         visuals__gte     = minCharacteristics["visuals"] ,
         audio__gte       = minCharacteristics["audio"] ,
         sexyM__gte       = minCharacteristics["sexyM"] ,
@@ -228,7 +228,15 @@ def getAdvice(request):
         story__gte       = minCharacteristics["story"],
         characterDesign__gte     = minCharacteristics["characterDesign"] ,
         fightChoreography__gte   = minCharacteristics["fightChoreography"],
-        genre = specidifiedGenre )
+        genre = specidifiedGenre ) if specidifiedGenre.lower() is not 'none' and  specidifiedGenre.lower() is not 'genre' else   AnimeStats.objects.filter( 
+        visuals__gte     = minCharacteristics["visuals"] ,
+        audio__gte       = minCharacteristics["audio"] ,
+        sexyM__gte       = minCharacteristics["sexyM"] ,
+        sexyF__gte       = minCharacteristics["sexyF"] ,
+        violence__gte    = minCharacteristics["violence"] ,
+        story__gte       = minCharacteristics["story"],
+        characterDesign__gte     = minCharacteristics["characterDesign"] ,
+        fightChoreography__gte   = minCharacteristics["fightChoreography"]) 
 
 
         filteredSelection = list(minFiltered.filter(name__in = advisedSimilarities).values("name")) if len(advisedSimilarities) > 0 else list(minFiltered.values("name")) 

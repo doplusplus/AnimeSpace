@@ -10,6 +10,7 @@ var adviseComponent = function(HTMLTemplate) {
                 animeName: null,
                 searchList: [],
                 animeList: [],
+                message: '',
 
                 byCharateristics: true,
                 genre: 'Genre',
@@ -24,11 +25,13 @@ var adviseComponent = function(HTMLTemplate) {
         watch: {
             //TODO : regroup with the similar function in rate anime and place it in rankings.js
             animeName: function(value) {
+                this.message = '';
                 this.searchList = [];
-                var isalphaNum = universalCharRegex.test(value);
+                let animeName = value.trim();
+                var isalphaNum = universalCharRegex.test(animeName);
 
                 if (isalphaNum) {
-                    axios.get('ranking/search/' + value)
+                    axios.get('ranking/search/' + animeName)
                         .then(response => {
                             // when selecting an anime, a search is automically launched because the name changed
                             if (response.data.length == 1 && response.data[0].name == this.animeName) {
@@ -39,6 +42,9 @@ var adviseComponent = function(HTMLTemplate) {
                         .catch(error => { console.log(error); });
                 }
             },
+            animeList: function() {
+                this.message = '';
+            }
         },
         computed: {
             filteringMethodTicked: function() {
@@ -62,6 +68,11 @@ var adviseComponent = function(HTMLTemplate) {
                 this.animeList = [];
             },
             searchAdvice: async function() {
+
+                if (this.bySimilarities && this.animeList.length == 0) {
+                    this.message = "There is no anime in the searchlist to compare to. <br> Press on the + icon after writting an anime's name if you want to add it to the list."
+                }
+
                 let similarAnimesData = this.bySimilarities ? this.animeList : null;
                 let characteristicsToSend = {
                     "visuals": this.characteristics[0]["value"],
