@@ -8,9 +8,9 @@ function onPlayerStateChange(event) {
 
     //Playing only one video at a time
     if (event.data == YT.PlayerState.PLAYING) {
-        let playerId = event.target.l.id;
+        let playerId = event.target.l;
         for (let indx = 0; indx < animePerPage; indx++) {
-            if (videoService.players[indx].l.id != playerId) {
+            if (videoService.players[indx].l != playerId) {
                 videoService.players[indx].pauseVideo();
             } else {
                 videoService.playingVideoIndex = indx;

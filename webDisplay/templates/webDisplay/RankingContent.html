@@ -98,7 +98,7 @@
         </div>
     </div>
     <div id="compactNav" class="field is-grouped" v-show="buttonHovered || navMenuHovered" @mouseover="compactNav('menuHovered')" @mouseleave="compactNav('menuLeft')">
-        <button class="button" @click="switchTo('Account')" title="Account">
+        <button v-if="userid >-1" class="button" @click="switchTo('Account')" title="Account">
             <i class="fa fa-user"></i>
         </button>
         <button class="button" @click="switchTo('About')" title="About">

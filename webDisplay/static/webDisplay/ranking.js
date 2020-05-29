@@ -157,6 +157,7 @@ var rankingComponent = function(HTMLTemplate) {
                 rankingContentDiv.scrollTo(0, rankingCutHeight);
             },
             loadAnimePage: function(page, NbOfAnimesPerPage, refreshPlayers = false) {
+
                 this.firstDisplayed = 1 + (page - 1) * NbOfAnimesPerPage;
 
                 if (this.totalAnimes) {
@@ -218,6 +219,7 @@ var rankingComponent = function(HTMLTemplate) {
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
             goToPage: function(pageToGo) {
+                if (this.displayedPage == pageToGo) { return; }
                 let invalid = isNaN(pageToGo) || pageToGo < 1 || this.lastPage < pageToGo;
                 if (invalid) {
                     alert("Invalid value entered. The value is not a number or exceeds the available range( 1 to " + this.lastPage + " )");
