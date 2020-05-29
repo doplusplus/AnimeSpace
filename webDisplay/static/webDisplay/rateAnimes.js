@@ -19,40 +19,47 @@ var rateAnimesComponent = function(HTMLTemplate) {
         data: function() {
             return {
                 animeName: "",
+                animeSelected: false,
                 genre: null,
                 genreList: [],
                 characteristics: defaultCharacteristics,
                 charactCheckboxes: [false, false, false, false, false, false, false, false],
-                checkboxChanged: false,
-                allTicked: false, //todo CHANGE FOR COMPUTED PROPERTY
-                allTickedChanged: false,
+                allTicked: false,
                 tagEntry: "",
                 statsSent: false,
                 searchList: [],
                 rated: true,
+                read: false,
+                write: false,
             }
+        },
+        computed: {
+            canSend: function() {
+                return this.animeSelected && this.genre != null && this.genre.indexOf('No idea') == -1;
+            },
+            oneUnticked: function() {
+                for (let i = 0; i < this.charactCheckboxes.length; i++) {
+                    if (!this.charactCheckboxes[i]) {
+                        return true;
+                    }
+                }
+                return false;
+            },
         },
         watch: {
             allTicked: function(allRequested) {
-                if (this.checkboxChanged) {
-                    this.checkboxChanged = false;
-                    return;
+                if (!this.read) {
+                    this.charactCheckboxes = allRequested ? [true, true, true, true, true, true, true, true] : [false, false, false, false, false, false, false, false];
+                    this.write = true;
                 }
-                this.allTickedChanged = true;
-                this.charactCheckboxes = allRequested ? [true, true, true, true, true, true, true, true] : [false, false, false, false, false, false, false, false];
+                this.read = false;
             },
-            charactCheckboxes: function(value) {
-                if (this.allTickedChanged) {
-                    this.allTickedChanged = false;
-                    return;
+            oneUnticked: function(exist) {
+                if (!this.write) {
+                    this.allTicked = !exist;
+                    this.read = true;
                 }
-                for (let i = 0; i < value.length; i++) {
-                    if (value[i] == false && this.allTicked) {
-                        this.checkboxChanged = true;
-                        this.allTicked = false;
-                        break;
-                    }
-                }
+                this.write = false;
             },
             animeName: function(value) {
 
@@ -68,7 +75,10 @@ var rateAnimesComponent = function(HTMLTemplate) {
                                 //using the fact that name selection triggers a call
                                 this.getStats(this.animeName);
                                 this.getGenre(this.animeName);
+                                this.animeSelected = true;
                                 return;
+                            } else {
+                                this.animeSelected = false;
                             }
 
                             response.data.forEach(obj => { this.searchList.push(obj.name); });

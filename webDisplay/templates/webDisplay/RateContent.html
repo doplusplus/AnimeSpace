@@ -53,7 +53,7 @@
         <label>Un/Select all
                 <input type="checkbox" v-model="allTicked">
             </label>
-        <button class="button is-primary" @click="SendRatings">Send</button>
+        <button class="button is-primary" @click="SendRatings" v-bind:disabled="!canSend">Send</button>
     </div>
 
     <h2 v-show="statsSent" class="title is-2 announcement has-text-centered">STATS SENT</h2>
