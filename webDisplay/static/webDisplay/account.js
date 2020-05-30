@@ -7,19 +7,20 @@ var accountComponent = function(accountHTML) {
         data: function() {
             return {
                 top10: [],
-                currentSuggestion: "Suggested animes will be displayed here once you have some",
+                currentSuggestion: "",
 
                 //Ranking suggestion
                 animeName: "",
                 genre: "",
                 videoLink: "",
                 tags: "",
+                sendEnabled: false,
 
                 //Display Settings
                 themeColors: ['white', 'pink', 'yellow', 'blue', 'gray', 'cream'],
                 selectedColor: null,
                 extendedVideosAutoplay: "yes",
-                message: ""
+                message: "",
             };
         },
         watch: {
@@ -32,6 +33,9 @@ var accountComponent = function(accountHTML) {
                     document.body.style.backgroundColor = val;
                 }
             },
+            animeName: function(val) {
+                this.sendEnabled = val.trim() != '';
+            }
 
         },
         computed: {},
@@ -63,27 +67,38 @@ var accountComponent = function(accountHTML) {
                 };
                 axios.delete('accounts/deleteallfavorites/' + this.userid)
                     .then(response => {
-                        //todo add if sucessful blablabla
                         this.top10 = [];
+                        this.refreshFavorites();
                         this.$root.$emit('favouritesChanged', []);
                     })
                     .catch(error => { console.log(error); });
-            }
+
+            },
+
+            refreshFavorites: async function() {
+                await axios.get('accounts/favorite/' + this.userid)
+                    .then(async response => {
+                        let favoriteList = [];
+                        response.data.forEach(element => {
+                            favoriteList.push(element["animeName"]);
+                        });
+                        if (favoriteList.length == 0) {
+                            this.currentSuggestion = "No favourites, no suggestions";
+                            return;
+                        }
+                        this.top10 = favoriteList;
+                        this.$root.$emit('favouritesChanged', favoriteList);
+                        let suggestions = await recommendationService.recommendedAnimes(null, this.top10);
+                        suggestions = suggestions.filter(name => name.trim() != "");
+                        this.currentSuggestion = suggestions.length > 0 ? suggestions[0] : "There is no match to your favourites for now.";
+                    })
+                    .catch(error => { console.log(error); });
+
+            },
 
         },
         mounted: async function() {
-            await axios.get('accounts/favorite/' + this.userid)
-                .then(async response => {
-                    let favoriteList = [];
-                    response.data.forEach(element => {
-                        favoriteList.push(element["animeName"]);
-                    });
-                    this.top10 = favoriteList;
-                    this.$root.$emit('favouritesChanged', favoriteList);
-                    let suggestions = await recommendationService.recommendedAnimes(null, this.top10);
-                    this.currentSuggestion = suggestions.length > 0 ? suggestions[0] : "There is no match to your favourites for now.";
-                })
-                .catch(error => { console.log(error); });
+            await this.refreshFavorites();
 
             axios.get('accounts/settings/' + this.userid)
                 .then(response => {

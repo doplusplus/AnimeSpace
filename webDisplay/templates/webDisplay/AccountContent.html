@@ -35,7 +35,7 @@
                 <input class="input" type="text" v-model="tags" placeholder="Tags">
             </div>
         </div>
-        <button class="button is-primary" @click="sendSuggestedAnime()">SEND</button>
+        <button class="button is-primary" @click="sendSuggestedAnime()" v-bind:disabled="!sendEnabled">SEND</button>
         <div>[[message]]</div>
     </div>
 

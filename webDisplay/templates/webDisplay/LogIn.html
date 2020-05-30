@@ -7,21 +7,21 @@
             <p class="field">
                 <span class="control">
                         <label>Username:</label>
-                        <input class="input" type="text" placeholder="ex: kurococo" width="15" v-model="login">
+                        <input class="input" type="text" placeholder="ex: kurococo" width="15" v-model="login" v-on:keyup.enter="authenticate(true)">
                 </span>
             </p>
             <p class="field">
                 <span class="control">
                         <label>Password:</label>
-                        <input class="input" type="password"   width="15"  v-model="password">
+                        <input class="input" type="password"   width="15"  v-model="password" v-on:keyup.enter="authenticate(true)">
                 </span>
             </p>
             <div class="field is-grouped">
                 <p class="control">
-                    <button class="button is-primary" v-on:click="authenticate(true)">Log in</button>
+                    <button class="button is-primary" v-on:click="authenticate(true)" v-on:keyup.enter="authenticate(true)">Log in</button>
                 </p>
                 <p class="control">
-                    <button class="button is-danger" v-on:click="authenticate(false)">Cancel</button>
+                    <button class="button is-danger" v-on:click="authenticate(false)" v-on:keyup.enter="authenticate(false)">Cancel</button>
                 </p>
                 <p class="control">
                     <span class="clickable"> Register &GT; </span>
