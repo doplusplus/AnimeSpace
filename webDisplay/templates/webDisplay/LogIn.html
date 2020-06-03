@@ -1,7 +1,8 @@
 <div class="modal " v-bind:class="{ 'is-active':identify} ">
     <div class="modal-background "></div>
     <div class="modal-content ">
-        <div class="box">
+        <!-- LOGIN FORM -->
+        <div v-show="!register" class="box">
             <h4> <b>Would you like to log in? </b></h4>
             <div v-html="message"></div>
             <p class="field">
@@ -24,9 +25,51 @@
                     <button class="button is-danger" v-on:click="authenticate(false)" v-on:keyup.enter="authenticate(false)">Cancel</button>
                 </p>
                 <p class="control">
-                    <span class="clickable"> Register &GT; </span>
+                    <a class="clickable" @click="register=true"> Register </a>
                 </p>
             </div>
+        </div>
+
+        <!-- REGISTRATION FORM -->
+        <div v-show="register" class="box">
+            <h4> <b> Please enter your details</b> </h4>
+            <div v-html="message"></div>
+            <p class="field">
+                <span class="control">
+                        <label>Username:</label>
+                        <input class="input" type="text" placeholder="required" width="15" v-model="requestedLogin" v-on:keyup.enter="registerUser(true)">
+                </span>
+            </p>
+            <p class="field">
+                <span class="control">
+                        <label>Recovery Email:</label>
+                        <input class="input" type="text" placeholder="in case you lose you password.." width="15" v-model="email" v-on:keyup.enter="register(true)">
+                </span>
+            </p>
+            <p class="field">
+                <span class="control">
+                        <label>Password:</label>
+                        <input class="input" type="password"   width="15"  v-model="requestedPassword" v-on:keyup.enter="registerUser(true)">
+                </span>
+            </p>
+            <p class="field">
+                <span class="control">
+                        <label>Confirm password:</label>
+                        <input class="input" type="password"   width="15"  v-model="passwordBis" v-on:keyup.enter="registerUser(true)">
+                </span>
+            </p>
+            <div class="field is-grouped">
+                <p class="control">
+                    <button class="button is-primary" v-on:click="registerUser(true)" v-on:keyup.enter="registerUser(true)">Confirm</button>
+                </p>
+                <p class="control">
+                    <button class="button is-danger" v-on:click="registerUser(false)" v-on:keyup.enter="registerUser(false)">Cancel</button>
+                </p>
+            </div>
+            <p class="control">
+                ( already registered? <a class="clickable" @click="register=false"> Login </a> )
+            </p>
+
         </div>
     </div>
 </div>

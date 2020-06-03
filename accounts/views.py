@@ -16,6 +16,22 @@ def log_in(request):
     response = {"validUser" : True, "userID": user.id} if  user is not None else  {"validUser" : False}
     return HttpResponse(json.dumps(response), content_type='application/json')
     
+def register(request):
+    data = json.loads(request.body.decode("utf-8"))
+    login = data['login']
+    userEmail = data['email']
+    password = data['password']
+
+    if len(User.objects.filter(username=login))>0:
+        return HttpResponse("The user already exists",status=409,  content_type='application/json')
+    
+    if len(User.objects.filter(email=userEmail))>0:
+        return HttpResponse("The specified email is already registered, please use its credentials",status=409,  content_type='application/json')
+
+    User.objects.create_user(login, userEmail, password)
+
+    return HttpResponse("Account successfully registered",status=200, content_type='application/json')
+
 
 def settings(request , userID):
     settingsQuery = Settings.objects.filter(user_id = userID).values('themeColor','autoPlay')
