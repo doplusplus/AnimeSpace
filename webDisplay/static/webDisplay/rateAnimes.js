@@ -8,14 +8,15 @@ const defaultCharacteristics = [
     { name: "Sexy F", value: 5 },
     { name: "Violence", value: 5 },
     { name: "Story", value: 5 },
-    { name: "CharacterDesign", value: 5 },
-    { name: "FightChoreography", value: 5 }
+    { name: "Character design", value: 5 },
+    { name: "Fight scenes", value: 5 }
 ];
 
 
 var rateAnimesComponent = function(HTMLTemplate) {
     return {
         delimiters: ['[[', ']]'],
+        props: ['framesize'],
         data: function() {
             return {
                 animeName: "",
@@ -45,8 +46,14 @@ var rateAnimesComponent = function(HTMLTemplate) {
                 }
                 return false;
             },
+            long: function() {
+                return this.framesize < 631;
+            },
         },
         watch: {
+            // frameSize: function(newHeight) {
+            //     this.long = newHeight < 631;
+            // },
             allTicked: function(allRequested) {
                 if (!this.read) {
                     this.charactCheckboxes = allRequested ? [true, true, true, true, true, true, true, true] : [false, false, false, false, false, false, false, false];
@@ -141,6 +148,9 @@ var rateAnimesComponent = function(HTMLTemplate) {
                 .catch(function(error) {
                     console.log(error);
                 });
+
+            // let frameHeight = document.getElementById('mainDisplay').clientHeight;
+            // this.long = frameHeight < 631;
         },
 
         template: HTMLTemplate

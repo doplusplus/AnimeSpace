@@ -25,12 +25,13 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             playersGenerated: false,
             userid: -1,
             favourites: [],
+            framesize: 0,
         },
-        // watch: {
-        //     userid: async function(val) {
-        //         this.favourites = await getFavourites(val);
-        //     },
-        // },
+        watch: {
+            rate: async function(val) {
+                this.framesize = document.getElementById('mainDisplay').clientHeight;
+            },
+        },
         methods: {
             logIn: function() {
                 if (this.identified) {

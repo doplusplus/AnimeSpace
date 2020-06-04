@@ -187,3 +187,7 @@ li {
 #myRange {
     width: 100%;
 }
+
+.thinList {
+    column-count: 2
+}
