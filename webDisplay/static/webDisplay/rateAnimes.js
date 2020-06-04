@@ -20,7 +20,7 @@ var rateAnimesComponent = function(HTMLTemplate) {
             return {
                 animeName: "",
                 animeSelected: false,
-                genre: null,
+                genre: 'Genre',
                 genreList: [],
                 characteristics: defaultCharacteristics,
                 charactCheckboxes: [false, false, false, false, false, false, false, false],
