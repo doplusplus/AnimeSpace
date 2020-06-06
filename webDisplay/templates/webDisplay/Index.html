@@ -100,7 +100,7 @@
                     <anime-rating v-show="rate" :framesize='framesize'></anime-rating>
                     <advised v-show="advised"></advised>
                     <account v-if="account" :userid="userid"></account>
-                    <div v-if="shop">{% include './ShopContent.html' %}</div>
+                    <!-- <div v-if="shop">{% include './ShopContent.html' %}</div> -->
                 </div>
             </div>
 
@@ -119,22 +119,14 @@
     </div>
     <footer id="footer" class="footer">
         <div> {% include './FooterModal.html' %}</div>
-        <div class="container">
-            <div class=" columns">
-                <div class="column is-2"></div>
-                <div class="column is-4">
-                    <p class="clickable content" v-on:click="display('contact')">Contact</p>
-                    <p class="clickable content" v-on:click="display('donate')">Donate</p>
-                    <p class="clickable content" v-on:click="display('feedback')">Feedback</p>
-                </div>
-                <div class="column is-4">
-                    <p class="clickable content" v-on:click="display('otherrankings')">Other rankings</p>
-                    <p class="clickable content" v-on:click="display('wheretoread')">Where to read mangas</p>
-                    <p class="clickable content" v-on:click="display('wheretowatch')">Where to watch animes</p>
-                </div>
-                <div class="column is-2"></div>
-            </div>
-        </div>
+        <nav class="level">
+            <div class="clickable level-item has-text-centered" v-on:click="display('contact')">Contact</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('donate')">Donate</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('feedback')">Feedback</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('otherrankings')">Other rankings</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('wheretoread')">Where to read mangas</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('wheretowatch')">Where to watch animes</div>
+        </nav>
     </footer>
     <script type="text/javascript" src="{% static 'webDisplay/init.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/account.js' %}"></script>
