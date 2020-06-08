@@ -1,6 +1,7 @@
 'use strict';
 
-
+let initialHeight = window.innerHeight + 10;
+let initialWidth = window.innerWidth + 10;
 
 
 
@@ -26,11 +27,22 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             userid: -1,
             favourites: [],
             framesize: 0,
+            windowheight: initialHeight,
+            windowwidth: initialWidth,
         },
         watch: {
-            rate: async function(val) {
+            rate: function(val) {
                 this.framesize = document.getElementById('mainDisplay').clientHeight;
             },
+            home: function(val) {
+                this.windowheight = window.innerHeight + 10;
+                this.windowwidth = window.innerWidth + 10;
+            }
+        },
+        computed: {
+            viewbox: function() {
+                return "0 0 " + this.windowwidth + " " + this.windowheight;
+            }
         },
         methods: {
             logIn: function() {

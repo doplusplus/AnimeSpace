@@ -1,5 +1,5 @@
 <div id="homecontent">
-    <svg version="1.1" id="homeSvg" preserveAspectRatio="xMidYMid meet" viewBox="0 0 800 300">    
+    <svg version="1.1" id="homeSvg" preserveAspectRatio="xMidYMid meet" :view-box.camel="viewbox">    
             <defs>
                 <filter x="0" y="0" width="1" height="1" id="highlight">
                     <feFlood flood-color="snow" flood-opacity="0.7"/>
@@ -9,29 +9,28 @@
                   
 
             <g class="clickable" @click= "display( 'about' )" >
-                <circle style="fill:white;fill-opacity:0.7;"   cx="530"  cy="155" r="35"></circle>
-                <text   x="530"  y="160" text-anchor="middle"  >About</text>
+                <circle style="fill:white;fill-opacity:0.7;"   cx="850"  cy="280" r="35"></circle>
+                <text   x="850"  y="285" text-anchor="middle"  >About</text>
             </g>
 
-
             <g class="clickable" @click= "identified ? display( 'account' ) : logIn()" >
-                <circle style="fill:white;fill-opacity:0.7;"  cx="85"   cy="200" r="35"></circle>
-                <text  x="85"   y="205" text-anchor="middle"  >Account</text>
+                <circle style="fill:white;fill-opacity:0.7;"  cx="125"   cy="330" r="35"></circle>
+                <text  x="125"   y="335" text-anchor="middle"  >Account</text>
             </g>
 
             <g class="clickable" @click= "display( 'ranking' )" >
-                <circle style="fill:white;fill-opacity:0.7;"  cx="350"  cy="250" r="35"></circle>
-                <text  x="350"  y="255" text-anchor="middle"  >Ranking</text>
+                <circle style="fill:white;fill-opacity:0.7;"  cx="550"  cy="400" r="35"></circle>
+                <text  x="550"  y="405" text-anchor="middle"  >Ranking</text>
             </g>
 
             <g class="clickable" @click= "display( 'advised' )" >
-                <circle style="fill:white;fill-opacity:0.7;"  cx="660"  cy="250" r="35"></circle>
-                <text  x="660"  y="255" text-anchor="middle"  >Advised</text>
+                <circle style="fill:white;fill-opacity:0.7;"  cx="1110"  cy="390" r="35"></circle>
+                <text  x="1110"  y="395" text-anchor="middle"  >Advised</text>
             </g>
 
             <g class="clickable" @click= "display( 'rate' )" >
-                <circle style="fill:white;fill-opacity:0.7;"  cx="720" cy="190" r="35"></circle>
-                <text  x="720"  y="195" text-anchor="middle"  >Rate it!</text>
+                <circle style="fill:white;fill-opacity:0.7;"  cx="1150" cy="300" r="35"></circle>
+                <text  x="1150"  y="305" text-anchor="middle"  >Rate it!</text>
             </g>
      </svg>
 </div>
