@@ -1,10 +1,13 @@
 'use strict';
 
-let initialHeight = window.innerHeight + 10;
-let initialWidth = window.innerWidth + 10;
+let initialWidth = window.innerWidth + 10; // 1289
+let initialHeight = window.innerHeight + 10; // 628
 
-
-
+let accountLayout = { x: 0.1, y: 0.5 }
+let rankingLayout = { x: 0.42, y: 0.64 }
+let aboutLayout = { x: 0.66, y: 0.45 }
+let advisedLayout = { x: 0.86, y: 0.62 }
+let rateLayout = { x: 0.89, y: 0.48 }
 
 var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, mobile = false) {
 
@@ -42,7 +45,22 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
         computed: {
             viewbox: function() {
                 return "0 0 " + this.windowwidth + " " + this.windowheight;
-            }
+            },
+            positions: function() {
+                return {
+                    accountx: accountLayout.x * this.windowwidth,
+                    accounty: accountLayout.y * this.windowheight,
+                    rankingx: rankingLayout.x * this.windowwidth,
+                    rankingy: rankingLayout.y * this.windowheight,
+                    aboutx: aboutLayout.x * this.windowwidth,
+                    abouty: aboutLayout.y * this.windowheight,
+                    ratex: rateLayout.x * this.windowwidth,
+                    ratey: rateLayout.y * this.windowheight,
+                    advisedx: advisedLayout.x * this.windowwidth,
+                    advisedy: advisedLayout.y * this.windowheight,
+
+                };
+            },
         },
         methods: {
             logIn: function() {
