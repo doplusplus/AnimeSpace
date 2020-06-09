@@ -38,6 +38,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                 this.framesize = document.getElementById('mainDisplay').clientHeight;
             },
             home: function(val) {
+                //this will update the home svg viewbox, positions and discsize
                 this.windowheight = window.innerHeight + 10;
                 this.windowwidth = window.innerWidth + 10;
             }
@@ -60,6 +61,9 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                     advisedy: advisedLayout.y * this.windowheight,
 
                 };
+            },
+            discsize: function() {
+                return 0.058 * this.windowheight;
             },
         },
         methods: {
