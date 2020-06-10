@@ -43,6 +43,8 @@
         </section>
 
         <section id="mainDisplay" v-bind:class="{padded:!home , fullHeight:!home }">
+            <div v-if="loading"> {% include './LoadingScreen.html' %} </div>
+
             <div class="columns">
                 <div v-if="!home" class="column is-2">
                     <aside class="menu sticky">
@@ -56,9 +58,6 @@
                             <li v-bind:class={selected:advised} v-on:click="display('advised')">
                                 <a class="clickable has-text-black">{{advised}}</a>
                             </li>
-                            <!-- <li v-bind:class={selected:shop} v-on:click="display('shop')">
-                                <a class="clickable has-text-black">{{shop}}</a>
-                            </li> -->
                             <li v-if="identified" v-bind:class={selected:account} v-on:click="display('account')">
                                 <a class="clickable has-text-grey">{{account}}</a>
                             </li>
@@ -76,7 +75,7 @@
 
                 <div class="column">
                     <div v-if="home"> {% include './HomeContent.html' %} </div>
-                    <div v-if="about">{% include './AboutContent.html' %}</div>
+                    <about v-if="about"></about>
                     <ranking-display v-show="ranking" :favourites='favourites' :userid="userid"></ranking-display>
                     <anime-rating v-show="rate" :framesize='framesize'></anime-rating>
                     <advised v-show="advised"></advised>
@@ -110,6 +109,7 @@
         </nav>
     </footer>
     <script type="text/javascript" src="{% static 'webDisplay/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/about.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/account.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/videoService.js' %}"></script>
     <script type="text/javascript" src="{% static 'webDisplay/ranking.js' %}"></script>

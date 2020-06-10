@@ -8,6 +8,16 @@ html {
     }
 }
 
+#loadingscreen {
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    position: absolute;
+    z-index: 100;
+    background-image: url("../../static/webDisplay/bar.jpg");
+    background-size: cover;
+}
+
 li {
     margin: 0 0 3px 0;
 }

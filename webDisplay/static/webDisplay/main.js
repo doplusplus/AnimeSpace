@@ -9,12 +9,13 @@ let aboutLayout = { x: 0.66, y: 0.45 }
 let advisedLayout = { x: 0.86, y: 0.62 }
 let rateLayout = { x: 0.89, y: 0.48 }
 
-var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, mobile = false) {
+var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, aboutHtml, mobile = false) {
 
     return new Vue({
         el: '#app',
         delimiters: ['[[', ']]'],
         data: {
+            loading: false,
             home: true,
             about: false,
             ranking: false,
@@ -142,6 +143,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             'advised': adviseComponent(advisedHtml),
             'account': accountComponent(accountHTML),
             'login': loginComponent(loginHtml),
+            'about': aboutComponent(aboutHtml),
         },
         mounted: function() {
             this.$root.$on('favouritesChanged', data => {

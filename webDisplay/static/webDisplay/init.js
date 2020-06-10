@@ -40,16 +40,20 @@ if (axios != undefined) {
     let loginTemplate = isMobile ? "loginTemplate" : "loginTemplate";
     let loginTRequest = axios.get(loginTemplate);
 
+    let aboutTemplate = isMobile ? "aboutTemplate" : "aboutTemplate";
+    let aboutRequest = axios.get(aboutTemplate);
 
 
-    axios.all([rankingRequest, rateAnimesRequest, advisedTRequest, accountRequest, loginTRequest]).then(axios.spread((...responses) => {
+    axios.all([rankingRequest, rateAnimesRequest, advisedTRequest, accountRequest, loginTRequest, aboutRequest]).then(axios.spread((...responses) => {
         let rankingHtml = responses[0].data;
         let rateAnimesHtml = responses[1].data;
         let advisedHtml = responses[2].data;
         let accountHTML = responses[3].data;
         let loginHtml = responses[4].data;
+        let aboutHtml = responses[5].data;
 
-        var app = getmainVue(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, isMobile);
+        var app = getmainVue(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, aboutHtml, isMobile);
+
     })).catch(errors => {
         alert('some error occured');
     });

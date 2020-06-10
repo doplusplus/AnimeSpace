@@ -54,3 +54,8 @@ class LoginView(generic.TemplateView):
         address= 'webDisplay/LogIn.html'if request.path.find("loginTemplate") > -1 else 'webDisplay/LogIn.html'
         return render(request , address)
 
+class AboutView(generic.TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        address= 'webDisplay/AboutContent.html'if request.path.find("aboutTemplate") > -1 else 'webDisplay/AboutContent.html'
+        return render(request , address)
