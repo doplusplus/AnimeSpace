@@ -20,44 +20,25 @@
     <div id="app">
         <section class="hero is-primary is-bold">
             <div id="heroBanner" class="hero-body">
-                <div class="container">
-                    <div class="is-block is-pulled-right" v-on:click="logIn()">
-                        <i class="fas fa-user fa-2x clickable"></i>
+                <div class="columns">
+                    <div class="column is-3">
+                        <h1 class="title" v-bind:class="{ clickable: !home }" v-on:click="display('home')">
+                            THE ANIME BAR
+                        </h1>
                     </div>
-                    <h1 class="title" v-bind:class="{ clickable: !home }" v-on:click="display('home')">
-                        THE ANIME BAR
-                    </h1>
-                    <h2 class="subtitle">
-                        <div class="columns" v-if="home">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">Home ... Time for a anime shot</p>
+                    <div class="column is-5"></div>
+                    <div class="column is-4">
+                        <div class="is-block is-pulled-right" v-on:click="logIn()">
+                            <i class="fas fa-user fa-2x clickable"></i>
                         </div>
-                        <div class="columns" v-if="about">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">About ... This is what we are all about</p>
-                        </div>
-                        <div class="columns" v-if="ranking">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">Ranking ... The place for the bests</p>
-                        </div>
-                        <div class="columns" v-if="account">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">Account ... Well, just you own space you know...</p>
-                        </div>
-                        <div class="columns" v-if="rate">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">Rate it!... Vox populi</p>
-                        </div>
-                        <div class="columns" v-if="advised">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">Advised ... That s#@t is just for you bro</p>
-                        </div>
-                        <div class="columns" v-if="shop">
-                            <p class="column is-6"></p>
-                            <p class="column is-6">Shop ... Here are the goods</p>
-                        </div>
-                    </h2>
+                    </div>
                 </div>
+                <h2 class="subtitle">
+                    <div class="columns">
+                        <p class="column is-6"></p>
+                        <p class="column is-6" v-html="headerCatchPhrase[selectedMenu]"></p>
+                    </div>
+                </h2>
             </div>
         </section>
 

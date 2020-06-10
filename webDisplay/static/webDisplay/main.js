@@ -22,6 +22,17 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             rate: false,
             advised: false,
             shop: false,
+            selectedMenu: 'home',
+            headerCatchPhrase: {
+                home: 'Home ... Time for a anime shot',
+                about: 'About ... This is what we are all about',
+                ranking: 'Ranking ... The place for the bests',
+                account: 'Account ... Well, just you own space you know...',
+                rate: 'Rate it!... Vox populi',
+                advised: 'Advised... That s#@t is just for you bro',
+            },
+
+
             identify: false,
             identified: false,
             logout: false,
@@ -32,6 +43,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             framesize: 0,
             windowheight: initialHeight,
             windowwidth: initialWidth,
+
         },
         watch: {
             rate: function(val) {
@@ -96,6 +108,9 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                 this.rate = element == 'rate';
                 this.advised = element == 'advised';
                 this.shop = element == 'shop';
+                this.selectedMenu = element;
+
+
 
                 // players generated on first ranking display
                 if (!this.playersGenerated && this.ranking) {
@@ -117,6 +132,9 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                 videoService.PauseVideo(true);
                 this.playing = false;
             },
+
+
+
         },
         components: {
             'ranking-display': rankingComponent(rankingHtml),
