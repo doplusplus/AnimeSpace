@@ -36,7 +36,7 @@ li {
 }
 
 .selected {
-    background-image: linear-gradient(to right, aquamarine, white);
+    background-image: linear-gradient(to right, black, white);
 }
 
 #mainDisplay {
@@ -70,7 +70,7 @@ li {
 .scrollable {
     overflow-y: scroll;
     overflow-x: hidden;
-    scrollbar-color: white rgba(74, 204, 143, 1);
+    scrollbar-color: white black;
     ;
     scrollbar-width: thin;
 }
@@ -86,7 +86,7 @@ li {
 /* Track */
 
 .scrollable::-webkit-scrollbar-track {
-    background: #36ce9b;
+    background: black;
     box-shadow: inset 0 0 5px #f1f1f1;
     border-radius: 10px;
 }
@@ -200,4 +200,13 @@ li {
 
 .thinList {
     column-count: 2
+}
+
+img,
+embed,
+iframe,
+object,
+video {
+    height: auto;
+    max-width: 100%;
 }

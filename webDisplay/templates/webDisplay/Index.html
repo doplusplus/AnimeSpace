@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="{% static '/vue.js' %}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'bulma.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'custombulma.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/style.css' %}">
 </head>
 
@@ -50,19 +50,19 @@
                     <aside class="menu sticky">
                         <ul class="menu-list">
                             <li v-bind:class={selected:ranking}>
-                                <a v-on:click="display('ranking')" class="clickable has-text-black">{{ranking}}</a>
+                                <a v-on:click="display('ranking')" class="clickable" v-bind:class="{'has-text-white':ranking}">{{ranking}}</a>
                             </li>
-                            <li v-bind:class={selected:rate} v-on:click="display('rate')">
-                                <a class="clickable has-text-black">{{rate}}</a>
+                            <li v-bind:class="{selected:rate}" v-on:click="display('rate')">
+                                <a class="clickable" v-bind:class="{'has-text-white':rate}">{{rate}}</a>
                             </li>
                             <li v-bind:class={selected:advised} v-on:click="display('advised')">
-                                <a class="clickable has-text-black">{{advised}}</a>
+                                <a class="clickable " v-bind:class="{'has-text-white':advised}">{{advised}}</a>
                             </li>
                             <li v-if="identified" v-bind:class={selected:account} v-on:click="display('account')">
-                                <a class="clickable has-text-grey">{{account}}</a>
+                                <a class="clickable" v-bind:class="{'has-text-white':account,'has-text-grey':!account}">{{account}}</a>
                             </li>
                             <li v-bind:class={selected:about} v-on:click="display('about')">
-                                <a class="clickable has-text-grey">{{about}}</a>
+                                <a class="clickable" v-bind:class="{'has-text-white':about, 'has-text-grey':!about}">{{about}}</a>
                             </li>
                             <li id="toastmessage">
                             </li>
