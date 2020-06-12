@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="en">
+<html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
 
 {% load static %}
 
@@ -8,6 +8,13 @@
     <meta charset="utf-8">
     <meta name="The anime bar" content="Anime referencer , community space and shop">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="The anime bar" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://listman.pythonanywhere.com" />
+    <meta property="og:image" content="https://listman.pythonanywhere.com/bar.jpg" />
+    <meta property="og:description" content="Here we have a space for the anime community can discover and exchange about animes" />
+
     <title>The Anime bar</title>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="{% static '/vue.js' %}"></script>
