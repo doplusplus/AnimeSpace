@@ -3,11 +3,11 @@
 let initialWidth = window.innerWidth + 10; // 1289
 let initialHeight = window.innerHeight + 10; // 628
 
-let accountLayout = { x: 0.1, y: 0.5 }
-let rankingLayout = { x: 0.42, y: 0.64 }
-let aboutLayout = { x: 0.66, y: 0.45 }
-let advisedLayout = { x: 0.86, y: 0.62 }
-let rateLayout = { x: 0.89, y: 0.48 }
+let accountLayout = { x: 0.03, y: 0.8 }
+let rankingLayout = { x: 0.07, y: 0.52 }
+let aboutLayout = { x: 0.65, y: 0.4 }
+let advisedLayout = { x: 0.4, y: 0.66 }
+let rateLayout = { x: 0.84, y: 0.77 }
 
 var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML, loginHtml, aboutHtml, mobile = false) {
 
