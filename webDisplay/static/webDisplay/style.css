@@ -35,10 +35,6 @@ li {
     background-color: rgba(188, 238, 215, 0.8)
 }
 
-.selected {
-    background-image: linear-gradient(to right, black, white);
-}
-
 #mainDisplay {
     /* height: 100vh;*/
     position: relative;

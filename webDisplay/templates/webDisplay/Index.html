@@ -53,23 +53,58 @@
             <div v-if="loading"> {% include './LoadingScreen.html' %} </div>
 
             <div class="columns">
-                <div v-if="!home" class="column is-2">
-                    <aside class="menu sticky">
-                        <ul class="menu-list">
-                            <li v-bind:class={selected:ranking}>
-                                <a v-on:click="display('ranking')" class="clickable" v-bind:class="{'has-text-white':ranking}">{{ranking}}</a>
+                <div v-if="!home" class="column is-1">
+                    <aside>
+                        <ul>
+                            <li class="fa-stack clickable" v-on:click="display('ranking')" title="Animes ranking">
+                                <span v-show="! ranking" class="fa-stack fa-lg">
+                                    <i class="far fa-circle fa-stack-2x" ></i>
+                                    <i class="fas fa-medal fa-stack-1x"></i>
+                                </span>
+                                <span v-show="ranking" class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x" ></i>
+                                    <i class="fas fa-medal fa-stack-1x fa-inverse"></i>
+                                </span>
                             </li>
-                            <li v-bind:class="{selected:rate}" v-on:click="display('rate')">
-                                <a class="clickable" v-bind:class="{'has-text-white':rate}">{{rate}}</a>
+                            <li class="fa-stack clickable" v-bind:class="{selected:rate}" v-on:click="display('rate')" title="Rate your favourite animes">
+                                <span v-show="! rate" class="fa-stack fa-lg">
+                                    <i class="far fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-pen-fancy fa-stack-1x"></i>
+                                </span>
+                                <span v-show="rate" class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-pen-fancy fa-stack-1x fa-inverse"></i>
+                                </span>
                             </li>
-                            <li v-bind:class={selected:advised} v-on:click="display('advised')">
-                                <a class="clickable " v-bind:class="{'has-text-white':advised}">{{advised}}</a>
+                            <li class="fa-stack clickable" v-bind:class="{selected:advised}" v-on:click="display('advised')" title="Get animes recommendations">
+                                <span v-show="! advised" class="fa-stack fa-lg">
+                                    <i class="far fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-smile-wink fa-stack-1x"></i>
+                                </span>
+                                <span v-show="advised" class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-smile-wink fa-stack-1x fa-inverse"></i>
+                                </span>
                             </li>
-                            <li v-if="identified" v-bind:class={selected:account} v-on:click="display('account')">
-                                <a class="clickable" v-bind:class="{'has-text-white':account,'has-text-grey':!account}">{{account}}</a>
+                            <li v-show="identified" class="fa-stack clickable" v-bind:class="{selected:account}" v-on:click="display('account')" title="Access your user account">
+                                <span v-show="! account" class="fa-stack fa-lg">
+                                    <i class="far fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-user fa-stack-1x"></i>
+                                </span>
+                                <span v-show="account" class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-user fa-stack-1x fa-inverse"></i>
+                                </span>
                             </li>
-                            <li v-bind:class={selected:about} v-on:click="display('about')">
-                                <a class="clickable" v-bind:class="{'has-text-white':about, 'has-text-grey':!about}">{{about}}</a>
+                            <li class="fa-stack clickable" v-bind:class="{selected:about}" v-on:click="display('about')" title="Learn about this anime bar 🍸">
+                                <span v-show="! about" class="fa-stack fa-lg">
+                                    <i class="far fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-glasses fa-stack-1x"></i>
+                                </span>
+                                <span v-show="about" class="fa-stack fa-lg">
+                                    <i class="fas fa-circle fa-stack-2x"></i>
+                                    <i class="fas fa-glasses fa-stack-1x fa-inverse"></i>
+                                </span>
                             </li>
                             <li id="toastmessage">
                             </li>

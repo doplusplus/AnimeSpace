@@ -45,29 +45,30 @@
     </div>
     <!-------------------------------------------------   Page navigation   -------------------------------------------------------------------------------------- -->
     <div v-show="!extended" class="column is-3">
+        <div id="topArrow" class="clickable" @click="goUp()">
+            <i class="fas fa-angle-double-up"></i> Page top
+        </div>
+        <p>----------------------</p>
         <p>
             <span @click="previousPage()"><i class="fas fa-angle-left clickable"></i></span> Page [[displayedPage]]
-            <span @click="nextPage()"> <i class="fas fa-angle-right clickable"></i></span> Rank [[firstDisplayed]] to [[lastDisplayed]]
+            <span @click="nextPage()"> <i class="fas fa-angle-right clickable"></i></span>
         </p>
+        Rank [[firstDisplayed]] to [[lastDisplayed]]
         <div class="field has-addons">
-            <label class="label">GO TO </label>
+
             <div class="control">
-                <input class="input" type="text" placeholder="Page" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="2">
+                <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
             </div>
             <div class="control">
                 <button class="button is-info" @click="goToPage(requestedPage)">
-                    Go!
-                </button>
+                            Go!
+                        </button>
             </div>
         </div>
         <p>Total pages: [[lastPage]] - Total animes: [[totalAnimes]] </p>
-        <div id="arrowContainer">
-            <div id="topArrow" class="clickable" @click="goUp()">
-                <i class="fas fa-angle-double-up"></i> Page top
-            </div>
-            <div id="downArrow" class="clickable" @click="goDown()">
-                <i class="fas fa-angle-double-down"></i> Page bottom
-            </div>
+        <p>----------------------</p>
+        <div id="downArrow" class="clickable" @click="goDown()">
+            <i class="fas fa-angle-double-down"></i> Page bottom
         </div>
     </div>
 
