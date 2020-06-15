@@ -43,74 +43,90 @@
             </li>
         </ul>
     </div>
-    <!-------------------------------------------------   Page navigation   -------------------------------------------------------------------------------------- -->
-    <div v-show="!extended" class="column is-3">
-        <div id="topArrow" class="clickable" @click="goUp()">
-            <i class="fas fa-angle-double-up"></i> Page top
-        </div>
-        <p>----------------------</p>
-        <p>
-            <span @click="previousPage()"><i class="fas fa-angle-left clickable"></i></span> Page [[displayedPage]]
-            <span @click="nextPage()"> <i class="fas fa-angle-right clickable"></i></span>
-        </p>
-        Rank [[firstDisplayed]] to [[lastDisplayed]]
-        <div class="field has-addons">
 
-            <div class="control">
-                <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
-            </div>
-            <div class="control">
-                <button class="button is-info" @click="goToPage(requestedPage)">
-                            Go!
-                        </button>
+
+    <!-------------------------------------------------   Page navigation   ---------------------------------------------------------------------------------------->
+    <div id="rankingnav" v-show="!extended" class="column is-3">
+
+
+        <div id="goup" @click="goUp()">
+            <i class="fas fa-angle-double-up fa-2x"></i>
+        </div>
+
+
+        <div id="goprev" @click="previousPage()">
+            <i class="fas fa-angle-left fa-2x clickable prevNext">
+        </div>
+        
+        <div id="gonext" @click="nextPage()"> 
+            <i class="fas fa-angle-right t fa-2x clickable prevNext"></i>
+        </div>
+
+        <div id="pagenav">
+            <div id="navmiddle">
+                <p> Page [[displayedPage]] : Rank [[firstDisplayed]] to [[lastDisplayed]] </p>
+
+                <div class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
+                    </div>
+                    <div class="control">
+                        <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
+                    </div>
+                </div>
             </div>
         </div>
-        <p>Total pages: [[lastPage]] - Total animes: [[totalAnimes]] </p>
-        <p>----------------------</p>
-        <div id="downArrow" class="clickable" @click="goDown()">
-            <i class="fas fa-angle-double-down"></i> Page bottom
+
+        <div id="godown" class="clickable" @click="goDown()">
+            <i class="fas fa-angle-double-down fa-2x"></i>
         </div>
+
+
+        <h4 id="pagecount">Total pages: [[lastPage]] - Total animes: [[totalAnimes]] </h4>
     </div>
 
 
-    <!--Toolbar with descriptions and navigation for fullscreen mode-->
-    <div id="toolBar" class="has-background-light" v-if="extended">
-        <div id="compactAnimeInfo">
-            Score : [[animeDetails[currentSelection].popularity]] - Ranking : [[currentSelection + 1 ]]
+</div>
+
+
+<!------------------------------------------------- Toolbar with descriptions and navigation for fullscreen mode ------------------------------------------------->
+<div id="toolBar" class="has-background-light" v-if="extended">
+    <div id="compactAnimeInfo">
+        Score : [[animeDetails[currentSelection].popularity]] - Ranking : [[currentSelection + 1 ]]
+    </div>
+    <div v-if="compactDetails">
+        <div>
+            Genre : [[animeDetails[currentSelection].genre]]
         </div>
-        <div v-if="compactDetails">
-            <div>
-                Genre : [[animeDetails[currentSelection].genre]]
-            </div>
-            <div>
-                Description : [[animeDetails[currentSelection].description]]
-            </div>
+        <div>
+            Description : [[animeDetails[currentSelection].description]]
         </div>
-        <div class="field is-grouped">
-            <button class="button is-primary" @click="extended=false;compactDetails=false" title="reduce display">
+    </div>
+    <div class="field is-grouped">
+        <button class="button is-primary" @click="extended=false;compactDetails=false" title="reduce display">
                 <i class="fas fa-compress-alt"></i>
             </button>
-            <button class="button" @click="compactDetails=!compactDetails" title="show/hide description">
+        <button class="button" @click="compactDetails=!compactDetails" title="show/hide description">
                 <i class="fas fa-bars"></i>
             </button>
-            <button class="button" @mouseover="compactNav('buttonHovered')" @mouseleave="compactNav('buttonLeft')" title="navigate through menus">
+        <button class="button" @mouseover="compactNav('buttonHovered')" @mouseleave="compactNav('buttonLeft')" title="navigate through menus">
                 <i class="far fa-compass"></i>
             </button>
-        </div>
     </div>
-    <div id="compactNav" class="field is-grouped" v-show="buttonHovered || navMenuHovered" @mouseover="compactNav('menuHovered')" @mouseleave="compactNav('menuLeft')">
-        <button v-if="userid >-1" class="button" @click="switchTo('Account')" title="Account">
+</div>
+<div id="compactNav" class="field is-grouped" v-show="buttonHovered || navMenuHovered" @mouseover="compactNav('menuHovered')" @mouseleave="compactNav('menuLeft')">
+    <button v-if="userid >-1" class="button" @click="switchTo('Account')" title="Account">
             <i class="fa fa-user"></i>
         </button>
-        <button class="button" @click="switchTo('About')" title="About">
+    <button class="button" @click="switchTo('About')" title="About">
             <i class="fas fa-info"></i>
         </button>
-        <button class="button" @click="switchTo('RateIt')" title="Rate it!">
+    <button class="button" @click="switchTo('RateIt')" title="Rate it!">
             <i class="far fa-star"></i>
         </button>
-        <button class="button" @click="switchTo('Advised')" title="Advised">
+    <button class="button" @click="switchTo('Advised')" title="Advised">
             <i class="far fa-grin-wink"></i>
         </button>
-    </div>
-    <!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+</div>
+<!-------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 </div>

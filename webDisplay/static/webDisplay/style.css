@@ -177,19 +177,6 @@ li {
     left: 10px;
 }
 
-#arrowContainer {
-    position: absolute;
-    top: 30%;
-}
-
-#topArrow {
-    top: 0%;
-}
-
-#downArrow {
-    bottom: 0
-}
-
 #myRange {
     width: 100%;
 }
@@ -205,4 +192,54 @@ object,
 video {
     height: auto;
     max-width: 100%;
+}
+
+#rankingnav {
+    position: relative;
+}
+
+#goup {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+#godown {
+    position: absolute;
+    bottom: 30%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+#pagenav {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.prevNext {
+    transform: scale(1, 2);
+}
+
+#goprev {
+    position: absolute;
+    top: 30%;
+    left: 1%;
+    /* transform: translate(-50%, 0); */
+}
+
+#gonext {
+    position: absolute;
+    top: 30%;
+    right: 1%;
+    /* transform: translate(-50%, 0); */
+}
+
+#pagecount {
+    position: absolute;
+    bottom: 2%;
+    width: 100%;
+    text-align: center;
 }
