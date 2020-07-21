@@ -62,7 +62,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
             },
             positions: function() {
                 return {
-                    accountx: accountLayout.x * this.windowwidth,
+                    accountx: Math.max(accountLayout.x * this.windowwidth, this.discsize + 15),
                     accounty: accountLayout.y * this.windowheight,
                     rankingx: rankingLayout.x * this.windowwidth,
                     rankingy: rankingLayout.y * this.windowheight,
@@ -76,7 +76,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                 };
             },
             discsize: function() {
-                return 0.058 * this.windowheight;
+                return 40; //0.15 * this.windowheight;
             },
         },
         methods: {

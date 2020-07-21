@@ -20,13 +20,15 @@
     <script type="text/javascript" src="{% static '/vue.js' %}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'custombulma.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/style.css' %}">
+
 </head>
 
 <body>
     <div id="app">
         <section class="hero is-primary is-bold">
-            <div id="heroBanner" class="hero-body">
+            <div id="heroBanner" class="hero-body" v-bind:class="{'menu-overlay':home}">
                 <div class="columns">
                     <div class="column is-3">
                         <h1 class="title" v-bind:class="{ clickable: !home }" v-on:click="display('home')">
@@ -43,7 +45,7 @@
                 <h2 class="subtitle">
                     <div class="columns">
                         <p class="column is-6"></p>
-                        <p class="column is-6" v-html="headerCatchPhrase[selectedMenu]"></p>
+                        <p class="column is-6 catchphrase" v-html="headerCatchPhrase[selectedMenu]"></p>
                     </div>
                 </h2>
             </div>
