@@ -1,8 +1,8 @@
-<div class="columns" id="ranking">
+<div class="columns screenHigh " id="ranking">
     <!-- ///////////////////////////////////////////////////////////// Actual ranking ////////////////////////////////////////////////////////////////// -->
     <div class="column is-9">
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
-        <ul id="rankingContent" v-bind:class="{scrollable:!extended}">
+        <ul id="rankingContent" class="screenHigh" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
 
                 <!-- When in large display, only the selected video is shown.-->
@@ -62,15 +62,15 @@
             <i class="fas fa-angle-right t fa-2x clickable prevNext"></i>
         </div>
 
-        <div id="pagenav">
-            <p> Page [[displayedPage]] : Rank [[firstDisplayed]] to [[lastDisplayed]] </p>
-        </div>
-        <div id="pagejump" class="field has-addons">
-            <div class="control">
-                <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
-            </div>
-            <div class="control">
-                <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
+        <div id="currentpage">
+            <div> Page [[displayedPage]] : Rank [[firstDisplayed]] to [[lastDisplayed]] </div>
+            <div id="pagejump" class="field has-addons">
+                <div class="control">
+                    <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
+                </div>
+                <div class="control">
+                    <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
+                </div>
             </div>
         </div>
 
@@ -79,7 +79,7 @@
         </div>
 
 
-        <h4 id="pagecount">Total pages: [[lastPage]] - Total animes: [[totalAnimes]] </h4>
+        <h4 id="totalcount">Total pages: [[lastPage]] - Total animes: [[totalAnimes]] </h4>
     </div>
 
 
