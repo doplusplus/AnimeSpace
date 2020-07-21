@@ -52,7 +52,7 @@ li {
 }
 
 
-/* ----------------------- HOME Page -----------------------*/
+/* ----------------------- HOME Page ----------------------- */
 
 #homeSvg {
     top: 0;
@@ -68,22 +68,7 @@ li {
 }
 
 
-/* 
-
-#home {
-    width: 100%;
-    display: inline-block;7
-}
-
-#homecontent {
-    width: 100%;
-}
-
-
-*/
-
-
-/* RANKING */
+/* ----------------------- RANKING ----------------------- */
 
 .scrollable {
     overflow-y: scroll;
