@@ -56,7 +56,7 @@
 
             <div class="columns">
                 <div v-if="!home" class="column is-1">
-                    <aside>
+                    <aside id="sidenav">
                         <ul>
                             <li class=" clickable" v-on:click="display('ranking')" title="Animes ranking">
                                 <span v-show="! ranking" class="fa-stack fa-lg">
@@ -67,6 +67,7 @@
                                     <i class="fas fa-circle fa-stack-2x" ></i>
                                     <i class="fas fa-medal fa-stack-1x fa-inverse"></i>
                                 </span>
+                                <p>{{ranking}}</p>
                             </li>
                             <li class="clickable" v-bind:class="{selected:rate}" v-on:click="display('rate')" title="Rate your favourite animes">
                                 <span v-show="! rate" class="fa-stack fa-lg">
@@ -77,6 +78,7 @@
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-pen-fancy fa-stack-1x fa-inverse"></i>
                                 </span>
+                                <p>{{rate}}</p>
                             </li>
                             <li class="clickable" v-bind:class="{selected:advised}" v-on:click="display('advised')" title="Get animes recommendations">
                                 <span v-show="! advised" class="fa-stack fa-lg">
@@ -87,6 +89,7 @@
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-smile-wink fa-stack-1x fa-inverse"></i>
                                 </span>
+                                <p>{{advised}}</p>
                             </li>
                             <li v-show="identified" class="clickable" v-bind:class="{selected:account}" v-on:click="display('account')" title="Access your user account">
                                 <span v-show="! account" class="fa-stack fa-lg">
@@ -97,6 +100,7 @@
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-user fa-stack-1x fa-inverse"></i>
                                 </span>
+                                <p>{{account}}</p>
                             </li>
                             <li class="clickable" v-bind:class="{selected:about}" v-on:click="display('about')" title="Learn about this anime bar 🍸">
                                 <span v-show="! about" class="fa-stack fa-lg">
@@ -107,6 +111,7 @@
                                     <i class="fas fa-circle fa-stack-2x"></i>
                                     <i class="fas fa-glasses fa-stack-1x fa-inverse"></i>
                                 </span>
+                                <p>{{about}}</p>
                             </li>
                             <li id="toastmessage">
                             </li>

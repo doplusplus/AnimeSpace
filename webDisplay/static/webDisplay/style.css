@@ -51,6 +51,19 @@ li {
     background-size: cover;
 }
 
+#sidenav {
+    text-align: center;
+    font-weight: bold;
+}
+
+#sidenav p {
+    color: darkgray;
+}
+
+#sidenav li {
+    margin-bottom: 25px;
+}
+
 
 /* ----------------------- HOME Page ----------------------- */
 
@@ -190,7 +203,7 @@ li {
 }
 
 
-/*
+/* 
 
 
 #compactAnimeInfo {
