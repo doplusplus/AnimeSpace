@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div v-show="!anime.fake" class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
-                    <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index"> - LAUNCH IN WIDE DISPLAY</span> </div>
+                    <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index" class="careful"> - LAUNCH IN WIDE DISPLAY</span> </div>
                     <div v-show="!anime.fake && !extended">
                         <div>Genre: [[anime.genre]] </div>
                         <div>[[anime.description]]</div>
@@ -43,11 +43,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="column is-2"></div>
-                <div v-show="!anime.fake" id="rankingMiscelleanous" class="column">
-                    <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
+                <div class="column is-1"></div>
+                <div class="column is-1">
                     <div v-show="authenticated && !extended && !anime.favourite" title="favourite" class="clickable" @click="favour(anime.name)"><i class="far fa-star"></i></div>
                     <div v-show="authenticated && !extended && anime.favourite" title="favourite" class="clickable" @click="unfavour(anime.name)"><i class="fas fa-star favourite"></i></div>
+                </div>
+                <div v-show="!anime.fake" id="rankingMiscelleanous" class="column">
+                    <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
                 </div>
             </li>
         </ul>
@@ -58,17 +60,17 @@
     <div id="rankingnav" v-show="!extended" class="column is-3">
 
 
-        <div id="goup" @click="goUp()">
+        <div id="goup" class="clickable" @click="goUp()">
             <i class="fas fa-angle-double-up fa-2x"></i>
         </div>
 
 
-        <div id="goprev" @click="previousPage()">
-            <i class="fas fa-angle-left fa-2x clickable prevNext"></i>
+        <div id="goprev" class="clickable" @click="previousPage()">
+            <i class="fas fa-angle-left fa-2x  prevNext"></i>
         </div>
 
-        <div id="gonext" @click="nextPage()">
-            <i class="fas fa-angle-right t fa-2x clickable prevNext"></i>
+        <div id="gonext" class="clickable" @click="nextPage()">
+            <i class="fas fa-angle-right t fa-2x  prevNext"></i>
         </div>
 
         <div id="currentpage">

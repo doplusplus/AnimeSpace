@@ -26,6 +26,10 @@ li {
     color: rgba(74, 204, 143, 1);
 }
 
+.careful {
+    color: fuchsia;
+}
+
 .menu-overlay {
     position: absolute;
     top: 0px;
@@ -203,12 +207,29 @@ li {
 }
 
 
-/* 
-
+/* wide screen navigation */
 
 #compactAnimeInfo {
     color: navy;
 }
+
+#toolBar {
+    bottom: 20%;
+    left: 1%;
+    position: fixed;
+    border-radius: 5px;
+    color: black;
+}
+
+#compactNav {
+    bottom: 10%;
+    left: 1%;
+    position: fixed;
+    border-radius: 5px;
+}
+
+
+/* out of screen controls */
 
 #playerControl {
     position: fixed;
@@ -216,34 +237,9 @@ li {
     left: 10px;
 }
 
-#reduce {
-    position: fixed;
-    bottom: 15vh;
-    left: 20vh;
-}
 
-#toolBar {
-    bottom: 20%;
-    left: 0;
-    position: fixed;
-    border-radius: 5px;
-}
+/* 
 
-#compactNav {
-    bottom: 10%;
-    left: 0;
-    position: fixed;
-    border-radius: 5px;
-}
-
-#expand {
-    position: absolute;
-    bottom: 20%;
-}
-
-#rankingMiscelleanous {
-    position: relative;
-}
 
 
 */
