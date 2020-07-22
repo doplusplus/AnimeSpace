@@ -18,27 +18,36 @@
                     <div v-show="!anime.fake && !extended">
                         <div>Genre: [[anime.genre]] </div>
                         <div>[[anime.description]]</div>
-                        <div>
-                            <h6 class="title is-6 has-text-centered"> ---- STATS /10 ---- </h6>
+                        <div class="stats">
+                            <h6 class="title is-6 has-text-centered"> STATS /10 </h6>
                             <div class="columns ">
-                                <div class="column is-6 ">
+                                <div class="column is-2 ">
                                     <p>visuals: 4</p>
+                                </div>
+                                <div class="column is-2 ">
                                     <p>audio: 2</p>
+                                </div>
+                                <div class="column is-2 ">
                                     <p>fight: 5</p>
                                 </div>
-                                <div class="column is-6 ">
+                                <div class="column is-2 ">
                                     <p>story: 5</p>
+                                </div>
+                                <div class="column is-2 ">
                                     <p>violence: 9</p>
+                                </div>
+                                <div class="column is-2 ">
                                     <p>blood: 7</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="column is-2"></div>
                 <div v-show="!anime.fake" id="rankingMiscelleanous" class="column">
                     <div v-show="!extended" title="score over 100">[[anime.popularity]]</div>
                     <div v-show="authenticated && !extended && !anime.favourite" title="favourite" class="clickable" @click="favour(anime.name)"><i class="far fa-star"></i></div>
-                    <div v-show="authenticated && !extended && anime.favourite" title="favourite" class="clickable" @click="unfavour(anime.name)"><i class="fas fa-star favoured"></i></div>
+                    <div v-show="authenticated && !extended && anime.favourite" title="favourite" class="clickable" @click="unfavour(anime.name)"><i class="fas fa-star favourite"></i></div>
                 </div>
             </li>
         </ul>
