@@ -238,30 +238,30 @@ li {
 }
 
 
-/* 
-
-
-
-*/
-
-
 /* ADVISED AND RATE */
 
-
-/*
 .thinList {
     column-count: 2
 }
 
- #rateContent {
-    background-image: url("DBZScouter2.svg");
-    background-size: cover;
+#characteristics {
+    color: goldenrod;
+    font-weight: bold;
+    margin-right: 24px;
 }
 
-
-#characteristics {
+#rateContent {
     font-family: orbitron;
-    color: rgb(243, 255, 132);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#rateIllustration {
+    position: absolute;
+    max-height: 183px;
+    width: auto;
+    right: 2px;
+    top: 2px;
 }
 
 #myRange {
@@ -270,8 +270,17 @@ li {
 }
 
 #myRange::-moz-range-track {
-    background-color: rgb(243, 255, 132);
+    background-color: goldenrod;
 }
+
+
+/*
+
+ #rateContent {
+}
+
+
+
 
 
 

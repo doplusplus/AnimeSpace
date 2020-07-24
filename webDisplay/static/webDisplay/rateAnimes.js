@@ -46,9 +46,10 @@ var rateAnimesComponent = function(HTMLTemplate) {
                 }
                 return false;
             },
-            long: function() {
-                return this.framesize < 631;
-            },
+            //not used anymore
+            // long: function() {
+            //     return this.framesize < 631;
+            // },
         },
         watch: {
             // frameSize: function(newHeight) {
