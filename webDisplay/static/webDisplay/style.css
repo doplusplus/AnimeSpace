@@ -88,6 +88,13 @@ span.line {
     fill: #ffffff;
 }
 
+#homeSvg circle {
+    stroke: #9fffff;
+    fill: black;
+    fill-opacity: 0.3;
+    stroke-width: 2;
+}
+
 
 /* ----------------------- RANKING ----------------------- */
 
