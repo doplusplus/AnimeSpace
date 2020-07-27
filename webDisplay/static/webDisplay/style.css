@@ -5,6 +5,10 @@ li {
     margin: 0 0 3px 0;
 }
 
+span.line {
+    display: inline-block;
+}
+
 .title,
 .subtitle {
     cursor: default;
@@ -162,6 +166,10 @@ li {
     max-width: 100px;
 }
 
+#pagejump input {
+    min-width: 45px;
+}
+
 #gonext {
     position: absolute;
     top: 30%;
@@ -283,13 +291,13 @@ li {
 #myRange {
     width: 100%;
     height: 13px;
-    color: lime;
-    background: linear-gradient(lime, #91ff91);
+    /* color: lime; */
+    background: linear-gradient(#aeffae, white);
     border-radius: 25px;
 }
 
 #myRange::-moz-range-track {
-    background-color: lime;
+    background: linear-gradient(#aeffae, white);
 }
 
 #rateIllustration {

@@ -1,6 +1,6 @@
 <div class="columns screenHigh " id="ranking">
     <!-- ///////////////////////////////////////////////////////////// Actual ranking ////////////////////////////////////////////////////////////////// -->
-    <div class="column is-9">
+    <div class="column is-10">
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
         <ul id="rankingContent" class="screenHigh" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
@@ -13,13 +13,13 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="!anime.fake" class="column is-7" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
+                <div v-show="!anime.fake" class="column is-8" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
                     <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index" class="careful"> - LAUNCH IN WIDE DISPLAY</span> </div>
                     <div v-show="!anime.fake && !extended">
                         <div>Genre: [[anime.genre]] </div>
                         <div>[[anime.description]]</div>
-                        <div class="stats">
-                            <h6 class="title is-6 has-text-centered"> STATS /10 </h6>
+                        <div class="stats mt-4">
+                            <h6 class="title is-6 mb-0"> STATS /10 </h6>
                             <div class="columns ">
                                 <div class="column is-2 ">
                                     <p>visuals: 4</p>
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="column is-1"></div>
+                <!-- <div class="column is-1"></div> -->
                 <div class="column is-1">
                     <div v-show="authenticated && !extended && !anime.favourite" title="favourite" class="clickable" @click="favour(anime.name)"><i class="far fa-star"></i></div>
                     <div v-show="authenticated && !extended && anime.favourite" title="favourite" class="clickable" @click="unfavour(anime.name)"><i class="fas fa-star favourite"></i></div>
@@ -57,7 +57,7 @@
 
 
     <!-------------------------------------------------   Page navigation   ---------------------------------------------------------------------------------------->
-    <div id="rankingnav" v-show="!extended" class="column is-3">
+    <div id="rankingnav" v-show="!extended" class="column is-2">
 
 
         <div id="goup" class="clickable" @click="goUp()">
@@ -74,15 +74,21 @@
         </div>
 
         <div id="currentpage">
-            <div> Page [[displayedPage]] : Rank [[firstDisplayed]] to [[lastDisplayed]] </div>
-            <div id="pagejump" class="field has-addons">
-                <div class="control">
-                    <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
+            <p>
+                <span class="line">
+                    Page [[displayedPage]] :
+                </span>
+                <span class="line">
+                    Rank [[firstDisplayed]] to [[lastDisplayed]] </p>
+                </span>
+                <div id="pagejump" class="field has-addons">
+                    <div class="control">
+                        <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
+                    </div>
+                    <div class="control">
+                        <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
+                    </div>
                 </div>
-                <div class="control">
-                    <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
-                </div>
-            </div>
         </div>
 
         <div id="godown" class="clickable" @click="goDown()">
