@@ -245,10 +245,14 @@ li {
 }
 
 #characteristics {
-    color: #02d702;
-    font-weight: bold;
-    margin-right: 24px;
+    color: yellow;
+    background-color: #1bba86ba;
+    border-radius: 42px;
+    padding: 30px 0 30px 0;
+    margin-right: 25px;
+    margin-bottom: 25px;
     font-family: orbitron;
+    font-weight: bold;
 }
 
 
@@ -262,7 +266,7 @@ li {
     height: 15px;
     width: 15px;
     background: #fff;
-    border: 1px solid #02d702;
+    border: 1px solid yellow;
 }
 
 #characteristics input[type="checkbox"]:checked {
@@ -278,11 +282,14 @@ li {
 
 #myRange {
     width: 100%;
-    height: 3px;
+    height: 13px;
+    color: lime;
+    background: linear-gradient(lime, #91ff91);
+    border-radius: 25px;
 }
 
 #myRange::-moz-range-track {
-    background-color: #02d702;
+    background-color: lime;
 }
 
 #rateIllustration {
