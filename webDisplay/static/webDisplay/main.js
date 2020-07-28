@@ -111,6 +111,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
                 this.advised = element == 'advised';
                 this.shop = element == 'shop';
                 this.selectedMenu = element;
+                this.burgerON = false;
 
 
 
