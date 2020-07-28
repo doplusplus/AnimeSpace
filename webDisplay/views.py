@@ -46,20 +46,20 @@ class IndexView(generic.TemplateView):
 class RankingView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
-        address= 'webDisplay/MobileRankingContent.html'if request.path.find("rankingMobileTemplate")> -1 else 'webDisplay/RankingContent.html'
+        address= 'webDisplay/RankingContent.html'if request.path.find("rankingTemplate")> -1 else 'webDisplay/RankingContentMobile.html'
         return render(request , address)
 
 
 class RateAnimesView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
-        address= 'webDisplay/RateContent.html'if request.path.find("rateAnimesTemplate")> -1 else 'webDisplay/RateContent.html'
+        address= 'webDisplay/RateContent.html'if request.path.find("rateAnimesTemplate")> -1 else 'webDisplay/RateContentMobile.html'
         return render(request , address)
 
 class AdvisedView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
-        address= 'webDisplay/AdvisedContent.html'if request.path.find("advisedTemplate")> -1 else 'webDisplay/AdvisedContent.html'
+        address= 'webDisplay/AdvisedContent.html'if request.path.find("advisedTemplate")> -1 else 'webDisplay/AdvisedContentMobile.html'
         return render(request , address)
 
 class AccountView(generic.TemplateView):

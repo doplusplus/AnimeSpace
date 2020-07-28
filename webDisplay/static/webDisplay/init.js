@@ -28,10 +28,10 @@ if (axios != undefined) {
     let Rankingtemplate = isMobile ? "rankingMobileTemplate" : "rankingTemplate";
     let rankingRequest = axios.get(Rankingtemplate);
 
-    let RateAnimestemplate = isMobile ? "rateAnimesTemplate" : "rateAnimesTemplate";
+    let RateAnimestemplate = isMobile ? "rateAnimesMobileTemplate" : "rateAnimesTemplate";
     let rateAnimesRequest = axios.get(RateAnimestemplate);
 
-    let AdvisedTemplate = isMobile ? "advisedTemplate" : "advisedTemplate";
+    let AdvisedTemplate = isMobile ? "advisedMobileTemplate" : "advisedTemplate";
     let advisedTRequest = axios.get(AdvisedTemplate);
 
     let accountTemplate = isMobile ? "accountTemplate" : "accountTemplate";

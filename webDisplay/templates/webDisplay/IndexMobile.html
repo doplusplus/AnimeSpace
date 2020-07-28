@@ -30,7 +30,7 @@
     <div id="app">
         <nav id="topbar" class="navbar is-black " role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <a class="navbar-item">
+                <a class="navbar-item" @click="display('home')">
                     The Anime Cafe
 
                 <a role="button" class="navbar-burger burger" v-bind:class="{'is-active':burgerON}" @click="burgerON=!burgerON" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
