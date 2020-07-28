@@ -1,11 +1,7 @@
 #topbar {
     width: 100vw;
-    color: white;
-}
-
-#burger-menu {
+    background-color: #0000005e;
     position: absolute;
-    top: 10px;
 }
 
 #homecontent {

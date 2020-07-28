@@ -28,9 +28,40 @@
 
 <body>
     <div id="app">
-        <section id="topbar" class="hero">
-            <i id="burger-menu" class="fas fa-bars fa-2x"></i>
-        </section>
+        <nav id="topbar" class="navbar is-black " role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="navbar-item">
+                    The Anime Cafe
+
+                <a role="button" class="navbar-burger burger" v-bind:class="{'is-active':burgerON}" @click="burgerON=!burgerON" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{'is-active':burgerON}">
+                <div class="navbar-start">
+                    <a class="navbar-item"> About </a>
+                    <a class="navbar-item"> Contact </a>
+                    <a class="navbar-item"> Home </a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary">
+                                <strong>Register</strong>
+                            </a>
+                            <a class="button is-light">
+                                Log in
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
         <section id="mainDisplay">
             <div v-if="home"> {% include './HomeContentMobile.html' %} </div>
             <about v-if="about"></about>

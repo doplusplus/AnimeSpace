@@ -15,6 +15,7 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
         el: '#app',
         delimiters: ['[[', ']]'],
         data: {
+            burgerON: false,
             loading: false,
             home: true,
             about: false,
