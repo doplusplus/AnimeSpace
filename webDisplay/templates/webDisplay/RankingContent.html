@@ -79,16 +79,17 @@
                     Page [[displayedPage]] :
                 </span>
                 <span class="line">
-                    Rank [[firstDisplayed]] to [[lastDisplayed]] </p>
+                    Rank [[firstDisplayed]] to [[lastDisplayed]]
                 </span>
-                <div id="pagejump" class="field has-addons">
-                    <div class="control">
-                        <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
-                    </div>
-                    <div class="control">
-                        <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
-                    </div>
+            </p>
+            <div id="pagejump" class="field has-addons">
+                <div class="control">
+                    <input class="input" type="text" v-model:value="requestedPage" @keydown.enter="goToPage(requestedPage)" maxlength="2" size="6">
                 </div>
+                <div class="control">
+                    <button class="button is-info" @click="goToPage(requestedPage)">Go! </button>
+                </div>
+            </div>
         </div>
 
         <div id="godown" class="clickable" @click="goDown()">
