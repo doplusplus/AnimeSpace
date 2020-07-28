@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://ogp.me/ns/fb#">
+
+{% load static %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="The anime bar" content="Anime referencer , community space and shop">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:title" content="The anime bar" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://listman.pythonanywhere.com" />
+    <meta property="og:image" content="https://listman.pythonanywhere.com/static/bar.jpg" />
+    <meta property="og:description" content="Here we have a space for the anime community can discover and exchange about animes" />
+
+    <title>The Anime bar</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="{% static '/vue.js' %}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'custombulma.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'webDisplay/styleMobile.css' %}">
+
+</head>
+
+
+<body>
+    <div id="app">
+        <section id="topbar" class="hero">
+            <i id="burger-menu" class="fas fa-bars fa-2x"></i>
+        </section>
+        <section id="mainDisplay">
+            <div v-if="home"> {% include './HomeContentMobile.html' %} </div>
+            <about v-if="about"></about>
+            <ranking-display v-show="ranking" :favourites='favourites' :userid="userid"></ranking-display>
+            <anime-rating v-show="rate" :framesize='framesize'></anime-rating>
+            <advised v-show="advised"></advised>
+            <account v-if="account" :userid="userid"></account>
+        </section>
+
+    </div>
+    <footer id="footer" class="footer">
+        <nav class="level">
+            <div class="clickable level-item has-text-centered" v-on:click="display('contact')">Contact</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('donate')">Donate / Contribute</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('feedback')">Feedback</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('otherrankings')">Other rankings</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('wheretoread')">Where to read mangas</div>
+            <div class="clickable level-item has-text-centered" v-on:click="display('wheretowatch')">Where to watch animes</div>
+        </nav>
+    </footer>
+
+    <script type="text/javascript" src="{% static 'webDisplay/init.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/about.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/account.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/videoService.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/ranking.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/rateAnimes.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/advised.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/login.js' %}"></script>
+    <script type="text/javascript" src="{% static 'webDisplay/main.js' %}"></script>
+
+
+
+</body>

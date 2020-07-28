@@ -1,0 +1,35 @@
+#topbar {
+    width: 100vw;
+    color: white;
+}
+
+#burger-menu {
+    position: absolute;
+    top: 10px;
+}
+
+#homecontent {
+    background-image: url('cafeTable.jpg');
+    background-size: cover;
+    height: 100vh;
+    color: white;
+}
+
+#homecontent h1 {
+    height: 13vh;
+    width: 60vw;
+    border: solid white;
+    border-width: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    background-color: #0000004f;
+    font-weight: 500;
+}
+
+#menus {
+    position: absolute;
+    left: 25vw;
+    top: 30vh;
+}
