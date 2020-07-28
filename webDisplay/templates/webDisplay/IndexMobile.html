@@ -42,9 +42,9 @@
 
             <div id="navbarBasicExample" class="navbar-menu" v-bind:class="{'is-active':burgerON}">
                 <div class="navbar-start">
-                    <a class="navbar-item"> About </a>
-                    <a class="navbar-item"> Contact </a>
-                    <a class="navbar-item"> Home </a>
+                    <a class="navbar-item" @click="display( 'about' )"> About </a>
+                    <a class="navbar-item" @click="display( 'contact' )"> Contact </a>
+                    <a class="navbar-item" @click="display( 'home' )"> Home </a>
                 </div>
 
                 <div class="navbar-end">
