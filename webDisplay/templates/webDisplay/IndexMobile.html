@@ -28,7 +28,7 @@
 
 <body>
     <div id="app">
-        <nav id="topbar" class="navbar is-black " role="navigation" aria-label="main navigation">
+        <nav id="topbar" class="navbar is-black" v-bind:class="{hometop:home}" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" @click="display('home')">
                     The Anime Cafe

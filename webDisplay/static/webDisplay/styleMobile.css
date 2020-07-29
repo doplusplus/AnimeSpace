@@ -1,6 +1,14 @@
+#app {
+    min-height: 100vh;
+}
+
 #topbar {
+    background-color: darkblue;
+}
+
+.hometop {
+    background-color: #00008b3b !important;
     width: 100vw;
-    background-color: #0000005e;
     position: absolute;
 }
 
@@ -28,4 +36,10 @@
     position: absolute;
     left: 25vw;
     top: 30vh;
+}
+
+#bottom-nav {
+    width: 100vw;
+    position: absolute;
+    bottom: 30px;
 }
