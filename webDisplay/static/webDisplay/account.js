@@ -72,7 +72,6 @@ var accountComponent = function(accountHTML) {
                         this.$root.$emit('favouritesChanged', []);
                     })
                     .catch(error => { console.log(error); });
-
             },
 
             refreshFavorites: async function() {

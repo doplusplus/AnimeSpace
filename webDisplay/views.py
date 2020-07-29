@@ -25,7 +25,7 @@ class DeviceIdentifier:
 
 class IndexView(generic.TemplateView):
 
-    @xframe_options_exempt
+    # @xframe_options_exempt
     @method_decorator(ensure_csrf_cookie)
     def get(self, request, *args, **kwargs):
 
