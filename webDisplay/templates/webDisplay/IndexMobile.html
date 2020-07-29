@@ -71,6 +71,14 @@
             <account v-if="account" :userid="userid"></account>
         </section>
 
+        <section id="bottom-nav">
+            <div class="buttons is-centered" v-show="!home">
+                <button class="button is-rounded is-link is-outlined" @click="display('ranking')" :disabled="ranking">Ranking</button>
+                <button class="button is-rounded is-link is-outlined" @click="display('rate')" :disabled="rate">Rate it</button>
+                <button class="button is-rounded is-link is-outlined" @click="display('advised')" :disabled="advised">Recomm.</button>
+            </div>
+        </section>
+
     </div>
     <footer id="footer" class="footer">
         <nav class="level">
