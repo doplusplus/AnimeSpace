@@ -39,8 +39,8 @@ var videoService = {
 
         for (let indx = 0; indx < animesNumber; indx++) {
             let player = new YT.Player('player' + indx, {
-                height: '500',
-                width: '2000',
+                // height: isMobile ? '100' : '500',
+                // width: isMobile ? '300' : '2000',
                 enablejsapi: 1,
                 host: 'https://www.youtube-nocookie.com',
                 videoId: this.videoIds[indx],
