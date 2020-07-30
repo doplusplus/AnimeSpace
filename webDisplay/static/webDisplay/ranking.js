@@ -19,7 +19,7 @@ var rankingComponent = function(HTMLTemplate) {
                 animeDetails: [],
                 extended: false,
                 compactDetails: false,
-                unfold: true,
+                // unfold: true,
                 buttonHovered: false,
                 navMenuHovered: false,
                 sliderMoved: false,
@@ -184,6 +184,7 @@ var rankingComponent = function(HTMLTemplate) {
                 data.forEach(element => {
                     element.fake = false;
                     element.favourite = this.favourites.includes(element.name);
+                    element.folded = true;
                 });
 
                 //Adding empty rows to avoid video iframes destruction in the last page
@@ -228,6 +229,14 @@ var rankingComponent = function(HTMLTemplate) {
                 this.displayedPage = pageToGo;
                 this.loadAnimePage(this.displayedPage, animePerPage, true);
             },
+            unfold: function(index) {
+                var a = 2;
+                //this.animeDetails[index].folded = false;
+                this.animeDetails.forEach((x, i) => {
+                    x.folded = i != index;
+                });
+            },
+
         },
         mounted: function() {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
@@ -238,7 +247,9 @@ var rankingComponent = function(HTMLTemplate) {
             });
         },
         updated: function() {
-            rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;
+            if (!isMobile) {
+                rankingCutHeight = rankingContentDiv.scrollHeight - rankingContentDiv.clientHeight;
+            }
         },
         template: HTMLTemplate
     };

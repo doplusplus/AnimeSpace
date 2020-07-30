@@ -43,3 +43,17 @@
     position: absolute;
     bottom: 30px;
 }
+
+
+/* RANKING */
+
+#animelist {
+    height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ------- */
