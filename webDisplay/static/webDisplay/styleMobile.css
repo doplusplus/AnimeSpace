@@ -48,12 +48,33 @@
 /* RANKING */
 
 #animelist {
-    height: 60vh;
+    height: 75vh;
     overflow-y: scroll;
     overflow-x: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
+.small {
+    height: 20vh;
+}
+
+.large {
+    height: 50vh;
+}
+
+.listed {
+    height: 100%;
+    width: 100%;
+}
+
 
 /* ------- */
+
+
+/* RATE IT*/
+
+#rateContent>div {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}

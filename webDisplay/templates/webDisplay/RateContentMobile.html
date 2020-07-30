@@ -1,3 +1,16 @@
-<div class="columns" id="rateContent">
-    SORRY, Rate has yet to be implemented
+<div id="rateContent">
+    <div class="control">
+        <input @focus="select('genre')" type="text" class="input" placeholder="Genre" v-model="genre" list="nameSearch">
+    </div>
+    <div class="control">
+        <input @focus="select('name')" type="text" class="input " placeholder="Anime name " v-model="animeName " list="nameSearch">
+    </div>
+    <div id="selectField ">
+        <div>This is the field of possibilities, select one</div>
+        <div class="tags " v-show="showgenre"> <span class="tag " v-for="animeGenre in genreList ">[[animeGenre]]</span> </div>
+        <div class="tags " v-show="!showgenre"> <span class="tag " v-for="name in searchList ">[[name]]</span> </div>
+    </div>
+
+
+
 </div>

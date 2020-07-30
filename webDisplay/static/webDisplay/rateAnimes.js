@@ -32,6 +32,9 @@ var rateAnimesComponent = function(HTMLTemplate) {
                 rated: true,
                 read: false,
                 write: false,
+
+                //mobile only
+                showgenre: true,
             }
         },
         computed: {
@@ -139,6 +142,9 @@ var rateAnimesComponent = function(HTMLTemplate) {
                         console.log(error);
                     });
             },
+            select: function(element) {
+                this.showgenre = element == 'genre';
+            }
         },
 
         mounted: function() {
