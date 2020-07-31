@@ -74,7 +74,36 @@
 
 /* RATE IT*/
 
-#rateContent>div {
+#rateContent {
+    position: relative;
+}
+
+#nameScreen>div {
     margin-bottom: 30px;
     margin-top: 20px;
+}
+
+#characteristics>div {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+}
+
+#charlabel {
+    display: block;
+}
+
+#rateSliders {
+    height: 65vh;
+    overflow: scroll;
+}
+
+#charslider {
+    width: 100%;
+}
+
+#sendChar {
+    position: absolute;
+    top: 0px;
+    right: 10px;
 }

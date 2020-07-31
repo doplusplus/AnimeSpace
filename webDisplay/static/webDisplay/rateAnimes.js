@@ -2,14 +2,14 @@
 'use strict';
 const universalCharRegex = /^([a-zA-Z0-9\u0600-\u06FF\u0660-\u0669\u06F0-\u06F9 _.-]+)$/; //todo tester
 const defaultCharacteristics = [
-    { name: "Visuals", value: 5 },
-    { name: "Audio", value: 5 },
-    { name: "Sexy M", value: 5 },
-    { name: "Sexy F", value: 5 },
-    { name: "Violence", value: 5 },
-    { name: "Story", value: 5 },
-    { name: "Character design", value: 5 },
-    { name: "Fight scenes", value: 5 }
+    { name: "Visuals", value: 5, selected: true },
+    { name: "Audio", value: 5, selected: true },
+    { name: "Sexy M", value: 5, selected: true },
+    { name: "Sexy F", value: 5, selected: true },
+    { name: "Violence", value: 5, selected: true },
+    { name: "Story", value: 5, selected: true },
+    { name: "Character design", value: 5, selected: true },
+    { name: "Fight scenes", value: 5, selected: true }
 ];
 
 
@@ -21,10 +21,10 @@ var rateAnimesComponent = function(HTMLTemplate) {
             return {
                 animeName: "",
                 animeSelected: false,
-                genre: 'Genre',
+                genre: isMobile ? '' : 'Genre',
                 genreList: [],
                 characteristics: defaultCharacteristics,
-                charactCheckboxes: [false, false, false, false, false, false, false, false],
+                charactCheckboxes: [false, false, false, false, false, false, false, false], //use characteristics.selected instead ?
                 allTicked: false,
                 tagEntry: "",
                 statsSent: false,
@@ -32,9 +32,9 @@ var rateAnimesComponent = function(HTMLTemplate) {
                 rated: true,
                 read: false,
                 write: false,
-
                 //mobile only
                 showgenre: true,
+                screen: 'name',
             }
         },
         computed: {
@@ -49,6 +49,8 @@ var rateAnimesComponent = function(HTMLTemplate) {
                 }
                 return false;
             },
+
+
             //not used anymore
             // long: function() {
             //     return this.framesize < 631;
@@ -142,9 +144,19 @@ var rateAnimesComponent = function(HTMLTemplate) {
                         console.log(error);
                     });
             },
+            //mobile only
             select: function(element) {
                 this.showgenre = element == 'genre';
-            }
+            },
+            selectScreen: function(element) {
+                this.screen = element;
+            },
+            toggle: function(index) {
+                // this.charactCheckboxes[index] = !this.charactCheckboxes[index];
+                let value = this.characteristics[index];
+                value.selected = !value.selected
+                this.characteristics.splice(index, 1, value)
+            },
         },
 
         mounted: function() {

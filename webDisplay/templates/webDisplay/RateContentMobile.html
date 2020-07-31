@@ -1,16 +1,41 @@
 <div id="rateContent">
-    <div class="control">
-        <input @focus="select('genre')" type="text" class="input" placeholder="Genre" v-model="genre" list="nameSearch">
-    </div>
-    <div class="control">
-        <input @focus="select('name')" type="text" class="input " placeholder="Anime name " v-model="animeName " list="nameSearch">
-    </div>
-    <div id="selectField ">
-        <div>This is the field of possibilities, select one</div>
-        <div class="tags " v-show="showgenre"> <span class="tag " v-for="animeGenre in genreList ">[[animeGenre]]</span> </div>
-        <div class="tags " v-show="!showgenre"> <span class="tag " v-for="name in searchList ">[[name]]</span> </div>
-    </div>
+    <div id="nameScreen" v-show="screen == 'name' ">
+        <div class="control">
+            <input @focus="select('genre')" type="text" class="input" placeholder="Genre" v-model="genre" list="nameSearch">
+        </div>
+        <div class="control">
+            <input @focus="select('name')" type="text" class="input " placeholder="Anime name " v-model="animeName " list="nameSearch">
+        </div>
+        <div id="selectField ">
+            <div>This is the field of possibilities, select one</div>
+            <div class="tags " v-show="showgenre"> <span class="tag " v-for="animeGenre in genreList" @click="genre = animeGenre">[[animeGenre]]</span> </div>
+            <div class="tags " v-show="!showgenre"> <span class="tag " v-for="name in searchList" @click="animeName = name">[[name]]</span> </div>
+        </div>
 
-
-
+        <div class="level is-centered is-mobile" v-show=" genre != '' && animeName != '' "><button class="button level-item" @click="selectScreen('characteristics')">Next</button></div>
+    </div>
+    <div id="characteristics" v-show="screen == 'characteristics' ">
+        <div @click="selectScreen('name')">
+            <i class="fa fa-arrow-left fa-2x " aria-hidden="true"></i>
+        </div>
+        <div id="rateSliders">
+            <ul>
+                <li class="columns is-mobile is-vcentered" v-for="( characteristic,index) in characteristics" :key="index">
+                    <div class="control column is-10">
+                        <label id="charlabel" for="charslider"> [[characteristic.name]]  [[characteristic.value]]</label>
+                        <input id="charslider" type="range" min="0" max="10" v-model:value="characteristic.value" class="slider clickable">
+                    </div>
+                    <div id="charact-box" class="checkbox column is-2" @click="toggle(index)">
+                        <div v-show="characteristic.selected">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                        </div>
+                        <div v-show="!characteristic.selected">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <button id="sendChar" class="button is-primary" @click="SendRatings" v-bind:disabled="!canSend">Send</button>
+    </div>
 </div>
