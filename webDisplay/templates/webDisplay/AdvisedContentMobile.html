@@ -11,6 +11,11 @@
                     <div class="media-content">
                         <p class="title is-4">Similar animes filter</p>
                     </div>
+                    <label class="switch media-right">
+                        <!-- Rounded switch -->
+                        <input type="checkbox" v-model="similarON">
+                        <span class="slider round"></span>
+                     </label>
                 </div>
                 <div v-show="selected == 'similar' " class="content">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
@@ -30,6 +35,11 @@
                     <div class="media-content">
                         <p class="title is-4">Characteristics filter</p>
                     </div>
+                    <label class="switch media-right">
+                        <!-- Rounded switch -->
+                        <input type="checkbox" v-model="charactON">
+                        <span class="slider round"></span>
+                     </label>
                 </div>
 
                 <div v-show="selected == 'characteristics' " class="content">
@@ -39,7 +49,7 @@
         </div>
     </div>
 
-    <button id="find" class="button"> Find</button>
+    <button id="find" class="button is-primary" v-bind:disabled="!charactON && !similarON"> Find</button>
 
 
 </div>

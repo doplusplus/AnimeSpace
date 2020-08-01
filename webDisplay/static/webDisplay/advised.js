@@ -22,7 +22,9 @@ var adviseComponent = function(HTMLTemplate) {
                 results: null,
 
                 //mobile only
-                selected: ''
+                selected: '',
+                similarON: false,
+                charactON: false,
             }
         },
         watch: {
