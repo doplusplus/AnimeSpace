@@ -107,3 +107,17 @@
     top: 0px;
     right: 10px;
 }
+
+
+/* Recommendation */
+
+#advisedContent>div {
+    margin-top: 19px;
+    margin-bottom: 17px;
+}
+
+#find {
+    position: absolute;
+    right: 10px;
+    bottom: 90px;
+}

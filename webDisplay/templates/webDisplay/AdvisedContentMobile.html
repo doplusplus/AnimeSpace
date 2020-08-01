@@ -1,3 +1,45 @@
 <div class="columns" id="advisedContent">
-    SORRY, recommendation has yet to be implemented
+    <div id="bysimilar">
+        <div class="card">
+            <div class="card-content">
+                <div class="media" @click="selected='similar'">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img src="../static/webDisplay/thumbupTenma.png" alt="Tenma">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">Similar animes filter</p>
+                    </div>
+                </div>
+                <div v-show="selected == 'similar' " class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="bycharac">
+        <div class="card">
+            <div class="card-content">
+                <div class="media" @click="selected='characteristics'">
+                    <div class="media-left">
+                        <figure class="image is-48x48">
+                            <img src="../static/webDisplay/kid_raditz.png" alt="Tenma">
+                        </figure>
+                    </div>
+                    <div class="media-content">
+                        <p class="title is-4">Characteristics filter</p>
+                    </div>
+                </div>
+
+                <div v-show="selected == 'characteristics' " class="content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="find" class="button"> Find</button>
+
+
 </div>

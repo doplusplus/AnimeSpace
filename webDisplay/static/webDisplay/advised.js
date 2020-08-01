@@ -20,6 +20,9 @@ var adviseComponent = function(HTMLTemplate) {
                 selectedCharIndex: -1,
 
                 results: null,
+
+                //mobile only
+                selected: ''
             }
         },
         watch: {
