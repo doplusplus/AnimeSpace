@@ -1,30 +1,31 @@
 <div id="ranking">
     <ul id="animelist">
         <li v-for="(anime,index) in animeDetails">
-            <div class="columns is-mobile">
-                <div class="column is-10">
-                    [[anime.name]]
-                </div>
-                <div class="column is-2">
-                    <div @click="unfold(index)" v-show="anime.folded"><i class="fa fa-plus" aria-hidden="true"></i></div>
-                    <div @click="anime.folded=true" v-show="!anime.folded"><i class="fa fa-minus" aria-hidden="true"></i></div>
-                </div>
-            </div>
             <div v-show="!anime.fake">
+                <div class="columns is-mobile">
+                    <div class="column is-10">
+                        [[anime.name]]
+                    </div>
+                    <div class="column is-2">
+                        <div @click="unfold(index)" v-show="anime.folded"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                        <div @click="anime.folded=true" v-show="!anime.folded"><i class="fa fa-minus" aria-hidden="true"></i></div>
+                    </div>
+                </div>
                 <div id="playerWrapper" v-bind:class="{small: anime.folded , large:!anime.folded  }">
                     <div class="listed" v-bind:id="'player' + index">
                         <!-- the 'player#' divs will become iframes-->
                     </div>
                 </div>
-            </div>
-            <div id="description" v-show="!anime.folded">
-                <div> <b>Genre:</b> [[anime.genre]] </div>
-                <h6 class="title is-6 mb-0"> DESCRIPTION </h6>
-                <div>[[anime.description]]</div>
-                <h6 class="title is-6 mb-0"> STATS /10 </h6>
-                <div class="box">visuals: 4 audio: 2 fight: 5 story: 5 violence: 9 blood: 7 </div>
-
+                <div id="description" v-show="!anime.folded">
+                    <div> <b>Genre:</b> [[anime.genre]] </div>
+                    <h6 class="title is-6 mb-0"> DESCRIPTION </h6>
+                    <div>[[anime.description]]</div>
+                    <h6 class="title is-6 mb-0"> STATS /10 </h6>
+                    <div class="box">visuals: 4 audio: 2 fight: 5 story: 5 violence: 9 blood: 7 </div>
+                </div>
             </div>
         </li>
     </ul>
+    <button id="ranking-prev" @click="previousPage()"><i class=" fas fa-chevron-left fa-2x "></i></button>
+    <button id="ranking-next" @click="nextPage()"><i class="fas fa-chevron-right fa-2x"></i></button>
 </div>
