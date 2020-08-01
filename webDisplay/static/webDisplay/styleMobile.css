@@ -111,7 +111,7 @@
 
 /* Recommendation */
 
-#advisedContent>div {
+#filters>div {
     margin-top: 19px;
     margin-bottom: 17px;
 }
@@ -194,4 +194,15 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+#recom-results {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+#restartRecomm {
+    position: absolute;
+    bottom: 10em;
+    right: 3em;
 }

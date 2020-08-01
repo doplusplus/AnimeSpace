@@ -1,55 +1,96 @@
-<div class="columns" id="advisedContent">
-    <div id="bysimilar">
-        <div class="card">
-            <div class="card-content">
-                <div class="media" @click="selected='similar'">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="../static/webDisplay/thumbupTenma.png" alt="Tenma">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">Similar animes filter</p>
-                    </div>
-                    <label class="switch media-right">
+<div id="advisedContent">
+    <div id="filters" v-show="!resultScreen">
+        <div id="bysimilar">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media" @click="selected='similar'">
+                        <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img src="../static/webDisplay/thumbupTenma.png" alt="Tenma">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">Similar animes filter</p>
+                        </div>
+                        <label class="switch media-right">
                         <!-- Rounded switch -->
-                        <input type="checkbox" v-model="similarON">
+                        <input type="checkbox" v-model="bySimilarities">
                         <span class="slider round"></span>
                      </label>
-                </div>
-                <div v-show="selected == 'similar' " class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                    </div>
+                    <div v-show="selected == 'similar' " class="content">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <input class="input" type="text" placeholder="anime name ex: Naruto" v-model="animeName" list="advisedNameSearch">
+                                <datalist id="advisedNameSearch">
+                              <option v-for="names in searchList" v-bind:value="names"></option>
+                            </datalist>
+                            </div>
+                            <div class="control">
+                                <button class="button" @click="addAnime(animeName)"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div class="control">
+                                <button class="button" @click="clearAll()"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+                        <ul>
+                            <li v-for="anime in animeList">[[anime]]</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div id="bycharac">
-        <div class="card">
-            <div class="card-content">
-                <div class="media" @click="selected='characteristics'">
-                    <div class="media-left">
-                        <figure class="image is-48x48">
-                            <img src="../static/webDisplay/kid_raditz.png" alt="Tenma">
-                        </figure>
-                    </div>
-                    <div class="media-content">
-                        <p class="title is-4">Characteristics filter</p>
-                    </div>
-                    <label class="switch media-right">
+        <div id="bycharac">
+            <div class="card">
+                <div class="card-content">
+                    <div class="media" @click="selected='characteristics'">
+                        <div class="media-left">
+                            <figure class="image is-48x48">
+                                <img src="../static/webDisplay/kid_raditz.png" alt="Tenma">
+                            </figure>
+                        </div>
+                        <div class="media-content">
+                            <p class="title is-4">Characteristics filter</p>
+                        </div>
+                        <label class="switch media-right">
                         <!-- Rounded switch -->
-                        <input type="checkbox" v-model="charactON">
+                        <input type="checkbox" v-model="byCharateristics">
                         <span class="slider round"></span>
                      </label>
-                </div>
+                    </div>
 
-                <div v-show="selected == 'characteristics' " class="content">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a>@bulmaio</a>.
+                    <div v-show="selected == 'characteristics' " class="content">
+                        <div class="field">
+                            <div class="select">
+                                <select v-model="genre">
+                                    <option  hidden selected>Genre</option>
+                                    <option >None </option>
+                                    <option v-for="animeGenre in genreList">[[animeGenre]]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <p class="tags">
+                            <span class="tag" v-for="(characteristic,index) in characteristics" @click="setCharact(index)"> [[characteristic.name]]:[[characteristic.value]]</span>
+                        </p>
+                        <div class="control" v-if="selectedCharact != null">
+                            <label> [[selectedCharact.name]]
+                            <input id="myRange" type="range" min="0" max="10" v-model:value="selectedCharact.value">
+                        </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <button id="find" class="button is-primary" v-bind:disabled="!bySimilarities && !byCharateristics" @click="searchAdvice()"> Find</button>
     </div>
+    <div id="recom-results" v-show="resultScreen">
+        <h5 class="title is-5">Results</h5>
+        <ul>
+            <li v-for="result in results">[[result]] <a class="clickable" @click="gotoRanking(result)">see in ranking</a></li>
+        </ul>
 
-    <button id="find" class="button is-primary" v-bind:disabled="!charactON && !similarON"> Find</button>
+        <div id="restartRecomm" @click="resultScreen=false"> <i class="fas fa-undo fa-2x"></i> </div>
 
-
+    </div>
 </div>

@@ -23,8 +23,8 @@ var adviseComponent = function(HTMLTemplate) {
 
                 //mobile only
                 selected: '',
-                similarON: false,
-                charactON: false,
+                selectedCharact: null,
+                resultScreen: false,
             }
         },
         watch: {
@@ -91,12 +91,16 @@ var adviseComponent = function(HTMLTemplate) {
                 }
                 let characteristicsFilter = this.byCharateristics ? { genre: this.genre, characteristics: characteristicsToSend, tagEntry: this.tagEntry } : null;
                 this.results = await recommendationService.recommendedAnimes(characteristicsFilter, similarAnimesData);
+                this.resultScreen = true;
             },
             selectCharIndex: function(index) {
                 this.selectedCharIndex = index != this.selectedCharIndex ? index : -1;
             },
             gotoRanking: function(name) {
                 alert("going to ranking");
+            },
+            setCharact: function(index) {
+                this.selectedCharact = this.characteristics[index];
             },
         },
         mounted: function() {
