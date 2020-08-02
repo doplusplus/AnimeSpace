@@ -1,10 +1,10 @@
 <div id="rateContent">
     <div id="nameScreen" v-show="screen == 'name' ">
         <div class="control">
-            <input @focus="select('genre')" type="text" class="input" placeholder="Genre" v-model="genre" list="nameSearch">
+            <input @focus="select('name')" type="text" class="input " placeholder="Anime name " v-model="animeName " list="nameSearch">
         </div>
         <div class="control">
-            <input @focus="select('name')" type="text" class="input " placeholder="Anime name " v-model="animeName " list="nameSearch">
+            <input @focus="select('genre')" type="text" class="input" placeholder="Genre" v-model="genre" list="nameSearch">
         </div>
         <div id="selectField ">
             <div>This is the field of possibilities, select one</div>
@@ -23,7 +23,8 @@
                 <li class="columns is-mobile is-vcentered" v-for="( characteristic,index) in characteristics" :key="index">
                     <div class="control column is-10">
                         <label id="charlabel" for="charslider"> [[characteristic.name]]  [[characteristic.value]]</label>
-                        <input id="charslider" type="range" min="0" max="10" v-model:value="characteristic.value" class="slider clickable">
+                        <input id="charslider" type="range" min="0" max="10" v-model:value="characteristic.value" class="slider">
+
                     </div>
                     <div id="charact-box" class="checkbox column is-2" @click="toggle(index)">
                         <div v-show="characteristic.selected">

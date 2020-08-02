@@ -183,7 +183,7 @@ div#ranking-jump button {
 
 /* The slider */
 
-.slider {
+#advisedContent .slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -195,7 +195,7 @@ div#ranking-jump button {
     transition: .4s;
 }
 
-.slider:before {
+#advisedContent .slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -207,15 +207,15 @@ div#ranking-jump button {
     transition: .4s;
 }
 
-input:checked+.slider {
+#advisedContent input:checked+.slider {
     background-color: #2196F3;
 }
 
-input:focus+.slider {
+#advisedContent input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
 }
 
-input:checked+.slider:before {
+#advisedContent input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
