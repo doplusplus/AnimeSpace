@@ -30,6 +30,10 @@ var rankingComponent = function(HTMLTemplate) {
                 requestedPage: 1,
                 lastPage: 1,
                 autoplay: true,
+
+                //mobile only
+                jumping: false,
+                requestedRank: null,
             };
         },
         watch: {
@@ -236,6 +240,10 @@ var rankingComponent = function(HTMLTemplate) {
                     x.folded = i != index;
                 });
             },
+            goToRank: function(rankToGo) {
+                let pageToGo = rankToGo % animePerPage == 0 ? rankToGo / animePerPage : Math.floor(rankToGo / animePerPage) + 1;
+                this.goToPage(pageToGo);
+            }
 
         },
         mounted: function() {

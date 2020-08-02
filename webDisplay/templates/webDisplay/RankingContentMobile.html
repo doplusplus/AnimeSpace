@@ -28,4 +28,9 @@
     </ul>
     <button id="ranking-prev" @click="previousPage()"><i class=" fas fa-chevron-left fa-2x "></i></button>
     <button id="ranking-next" @click="nextPage()"><i class="fas fa-chevron-right fa-2x"></i></button>
+    <button id="ranking-jump" class="button is-rounded is-danger is-outlined" v-show="!jumping" @click="jumping=true">Jump </button>
+    <div id="ranking-jump" v-show="jumping" class="field has-addons">
+        <input class="input " type="text " placeholder="rank" size="4" maxlength="4" v-model:value="requestedRank">
+        <button class="button is-rounded is-danger is-outlined" v-show="jumping" @click="goToRank(requestedRank)">GO! </button>
+    </div>
 </div>
