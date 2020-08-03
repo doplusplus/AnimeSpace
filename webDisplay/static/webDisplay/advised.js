@@ -12,7 +12,7 @@ var adviseComponent = function(HTMLTemplate) {
                 animeList: [],
                 message: '',
 
-                byCharateristics: true,
+                byCharateristics: false,
                 genre: 'Genre',
                 genreList: [],
                 characteristics: defaultCharacteristics,
