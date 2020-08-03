@@ -32,8 +32,8 @@ var rankingComponent = function(HTMLTemplate) {
                 autoplay: true,
 
                 //mobile only
-                jumping: false,
                 requestedRank: null,
+                ranknav: false,
             };
         },
         watch: {

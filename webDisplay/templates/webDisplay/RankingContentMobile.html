@@ -26,11 +26,21 @@
             </div>
         </li>
     </ul>
-    <button id="ranking-prev" @click="previousPage()"><i class=" fas fa-chevron-left fa-2x "></i></button>
-    <button id="ranking-next" @click="nextPage()"><i class="fas fa-chevron-right fa-2x"></i></button>
-    <button id="ranking-jump" class="button is-rounded is-danger is-outlined" v-show="!jumping" @click="jumping=true">Jump </button>
-    <div id="ranking-jump" v-show="jumping" class="field has-addons">
-        <input class="input " type="text " placeholder="rank" size="4" maxlength="4" v-model:value="requestedRank">
-        <button class="button is-rounded is-danger is-outlined" v-show="jumping" @click="goToRank(requestedRank)">GO! </button>
+
+    <div id="ranking-move-icon" class="fa-stack fa-lg" @click="ranknav=!ranknav">
+        <i class="far fa-circle fa-stack-2x "></i>
+        <i class="fas fa-arrows-alt fa-stack-1x"></i>
     </div>
+    <div id="ranking-move-panel" v-show="ranknav">
+        <div @click="previousPage()"> <i class=" fas fa-chevron-left fa-2x "></i></div>
+        <div id="jump-control">
+            <input class="input" type="text " placeholder="rank" size="4" maxlength="4" v-model:value="requestedRank">
+            <div @click="goToRank(requestedRank)" class="fa-stack fa-lg">
+                <i class="far fa-circle fa-stack-2x "></i>
+                <i class="fas fa-magic fa-stack-1x"></i>
+            </div>
+        </div>
+        <div @click="nextPage()"> <i class=" fas fa-chevron-right fa-2x "></i></div>
+    </div>
+
 </div>
