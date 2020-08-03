@@ -1,5 +1,8 @@
 #app {
     min-height: 100vh;
+}
+
+.home-background {
     background-image: url('cafeTable.jpg');
     background-size: cover;
 }
