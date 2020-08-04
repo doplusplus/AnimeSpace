@@ -10,7 +10,7 @@
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4">Similar animes filter</p>
+                            <p class="title is-4">Filter by similarity</p>
                         </div>
                         <label class="switch media-right">
                         <!-- Rounded switch -->
@@ -50,7 +50,7 @@
                             </figure>
                         </div>
                         <div class="media-content">
-                            <p class="title is-4">Characteristics filter</p>
+                            <p class="title is-4">Filter by minimum rating</p>
                         </div>
                         <label class="switch media-right">
                         <!-- Rounded switch -->
@@ -90,7 +90,9 @@
             <li v-for="result in results">[[result]] <a class="clickable" @click="gotoRanking(result)">see in ranking</a></li>
         </ul>
 
-        <div id="restartRecomm" @click="resultScreen=false"> <i class="fas fa-undo fa-2x"></i> </div>
+        <div id="restartRecomm">
+            <div @click="resultScreen=false"><i class="fas fa-undo fa-3x"></i></div>
+        </div>
 
     </div>
 </div>

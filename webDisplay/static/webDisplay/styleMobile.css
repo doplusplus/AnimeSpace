@@ -242,7 +242,11 @@
 }
 
 #restartRecomm {
-    position: absolute;
-    bottom: 10em;
-    right: 3em;
+    display: flex;
+    justify-content: center;
+    margin: 5vh;
+}
+
+#filters .media-content {
+    padding: 5px;
 }
