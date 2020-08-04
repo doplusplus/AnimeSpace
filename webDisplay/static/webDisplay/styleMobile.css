@@ -250,3 +250,11 @@
 #filters .media-content {
     padding: 5px;
 }
+
+
+/* about */
+
+#aboutContent {
+    height: 80vh;
+    overflow-y: scroll;
+}
