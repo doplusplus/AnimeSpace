@@ -13,9 +13,9 @@
 }
 
 #bottom-nav {
-    width: 100vw;
-    position: absolute;
-    bottom: 30px;
+    width: 100%;
+    background: white;
+    margin-top: 20px;
 }
 
 
@@ -91,7 +91,7 @@
 #ranking-move-icon {
     position: absolute;
     right: 5vw;
-    bottom: 15vh;
+    bottom: 20vh;
     color: fuchsia;
 }
 
@@ -159,9 +159,7 @@
 }
 
 #find {
-    position: absolute;
-    right: 10px;
-    bottom: 90px;
+    width: 100%;
 }
 
 
