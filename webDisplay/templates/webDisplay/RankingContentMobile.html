@@ -3,8 +3,8 @@
         <li v-for="(anime,index) in animeDetails">
             <div v-show="!anime.fake">
                 <div class="columns is-mobile">
-                    <div class="column is-10">
-                        [[anime.name]]
+                    <div id="animeNames" class="column is-10">
+                        <h5 class="title is-5">[[anime.name]]</h5>
                     </div>
                     <div class="column is-2">
                         <div @click="unfold(index)" v-show="anime.folded"><i class="fa fa-plus" aria-hidden="true"></i></div>
@@ -17,11 +17,12 @@
                     </div>
                 </div>
                 <div id="description" v-show="!anime.folded">
-                    <div> <b>Genre:</b> [[anime.genre]] </div>
+                    <h6 class="title is-6 mb-0">GENRE</h6>
+                    <div>[[anime.genre]] </div>
                     <h6 class="title is-6 mb-0"> DESCRIPTION </h6>
                     <div>[[anime.description]]</div>
                     <h6 class="title is-6 mb-0"> STATS /10 </h6>
-                    <div class="box">visuals: 4 audio: 2 fight: 5 story: 5 violence: 9 blood: 7 </div>
+                    <div>visuals: 4 | audio: 2 | fight: 5 | story: 5 | violence: 9 | blood: 7 </div>
                 </div>
             </div>
         </li>

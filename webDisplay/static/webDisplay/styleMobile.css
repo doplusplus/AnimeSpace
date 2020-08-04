@@ -64,6 +64,17 @@
     white-space: nowrap;
 }
 
+#animeNames {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+#description {
+    margin: 10px;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
+
 .small {
     height: 20vh;
 }
