@@ -4,15 +4,16 @@
         <!-- List of anime with videos, description XOR the selected fullscreen anime video-->
         <ul id="rankingContent" class="screenHigh" v-bind:class="{scrollable:!extended}">
             <li class="columns" v-for="(anime,index) in animeDetails">
-
-                <!-- When in large display, only the selected video is shown.-->
+                <!-- YOUTUBE PLAYERS -->
                 <div v-show="!anime.fake" class="column is-2 ">
+                    <!-- When in large display, only the selected video is shown.-->
                     <div v-bind:class="{fullWrapper : extended , listed:!extended }" v-show="!extended || selected(index)">
                         <div v-bind:id="'player' + index" v-bind:class="{fullScreen : extended , listed:!extended }">
                             <!-- the 'player#' divs will become iframes-->
                         </div>
                     </div>
                 </div>
+                <!-- --------------------------- -->
                 <div v-show="!anime.fake" class="column is-8" v-bind:class="{clickable : !extended}" @mouseover="hovered(index)" @click="expand( index , extended)">
                     <div v-show="!extended"><strong class="is-size-6 is-uppercase">[[anime.name]]</strong><span v-show="hoveredItem == index" class="careful"> - LAUNCH IN WIDE DISPLAY</span> </div>
                     <div v-show="!anime.fake && !extended">
