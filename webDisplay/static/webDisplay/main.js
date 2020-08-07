@@ -115,15 +115,15 @@ var getmainVue = function(rankingHtml, rateAnimesHtml, advisedHtml, accountHTML,
 
 
 
-                // players generated on first ranking display
-                if (!this.playersGenerated && this.ranking) {
-                    videoService.generatePlayers(videoService.videoIds.length);
-                    this.playersGenerated = true;
-                }
+                // // players generated on first ranking display
+                // if (!this.playersGenerated && this.ranking) {
+                //     videoService.generatePlayers(videoService.videoIds.length);
+                //     this.playersGenerated = true;
+                // }
 
-                if (this.playersGenerated) {
-                    this.playing = videoService.playing();
-                }
+                //  if (this.playersGenerated) {
+                this.playing = videoService.playing();
+                //}
             },
             ResumeVideo: function() {
                 videoService.ResumeVideo();

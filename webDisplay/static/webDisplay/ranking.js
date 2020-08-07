@@ -160,7 +160,7 @@ var rankingComponent = function(HTMLTemplate) {
             goDown: function() {
                 rankingContentDiv.scrollTo(0, rankingCutHeight);
             },
-            loadAnimePage: function(page, NbOfAnimesPerPage, refreshPlayers = false) {
+            loadAnimePage: function(page, NbOfAnimesPerPage, refreshPlayers = false, generate = false) {
 
                 this.firstDisplayed = 1 + (page - 1) * NbOfAnimesPerPage;
 
@@ -178,6 +178,8 @@ var rankingComponent = function(HTMLTemplate) {
                         videoService.fillVideoIds(videoService.videoIds, response.data);
                         if (refreshPlayers) {
                             videoService.UpdateVideos();
+                        } else if (generate) {
+                            videoService.generatePlayers(videoService.videoIds.length);
                         }
                         this.loadDetails(response.data);
                     });
@@ -248,7 +250,7 @@ var rankingComponent = function(HTMLTemplate) {
         },
         mounted: function() {
             videoService.loadYoutubeAPI('mainDisplay'); //Loads youtube <script> just before mainDisplay
-            this.loadAnimePage(this.displayedPage, animePerPage);
+            this.loadAnimePage(this.displayedPage, animePerPage, false, true); //Youtube players generation launched even before thee screen is requested
             rankingContentDiv = document.getElementById("rankingContent");
             this.$root.$on('autoplayChanged', data => {
                 this.autoplay = data;

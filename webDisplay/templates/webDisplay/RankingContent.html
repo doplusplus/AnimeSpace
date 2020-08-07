@@ -9,7 +9,7 @@
                     <!-- When in large display, only the selected video is shown.-->
                     <div v-bind:class="{fullWrapper : extended , listed:!extended }" v-show="!extended || selected(index)">
                         <div v-bind:id="'player' + index" v-bind:class="{fullScreen : extended , listed:!extended }">
-                            <!-- the 'player#' divs will become iframes-->
+                            <!-- those 'player#' divs will become iframes-->
                         </div>
                     </div>
                 </div>

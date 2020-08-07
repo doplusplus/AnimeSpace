@@ -83,6 +83,10 @@
     height: 50vh;
 }
 
+div.listed {
+    background-image: url('brouillage.gif');
+}
+
 .listed {
     height: 100%;
     width: 100%;
