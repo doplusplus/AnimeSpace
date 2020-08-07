@@ -22,6 +22,7 @@ function onPlayerStateChange(event) {
 
 var videoService = {
 
+    self: this,
     players: [],
     videoIds: [],
     YouTubeReady: false,
@@ -35,7 +36,10 @@ var videoService = {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     },
     generatePlayers: function(animesNumber) {
-        if (!this.YouTubeReady) { setTimeout(() => generatePlayers(animesNumber), 3000); return; }
+        if (!this.YouTubeReady) {
+            setTimeout(() => videoService.generatePlayers(animesNumber), 3000);
+            return;
+        }
 
         for (let indx = 0; indx < animesNumber; indx++) {
             let player = new YT.Player('player' + indx, {
