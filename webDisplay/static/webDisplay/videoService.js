@@ -35,8 +35,16 @@ var videoService = {
         var firstScriptTag = document.getElementById(divName);
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     },
+    divsReady: function(divprefix, number) {
+        for (let indx = 0; indx < number; indx++) {
+            if (!document.getElementById(divprefix + indx)) {
+                return false;
+            }
+        }
+        return true;
+    },
     generatePlayers: function(animesNumber) {
-        if (!this.YouTubeReady) {
+        if (!this.YouTubeReady || !videoService.divsReady('player', animesNumber)) {
             setTimeout(() => videoService.generatePlayers(animesNumber), 3000);
             return;
         }
