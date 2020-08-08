@@ -12,6 +12,10 @@
     height: 5vh;
 }
 
+.current-menu {
+    color: grey;
+}
+
 #bottom-nav {
     width: 100%;
     background: white;
@@ -155,7 +159,7 @@ div.listed {
 }
 
 
-/* Recommendation */
+/* RECOMMENDING */
 
 #filters>div {
     margin-top: 19px;
