@@ -328,6 +328,15 @@ div.listed {
     top: 2px;
 }
 
+#advisedContent h5 {
+    display: inline;
+    vertical-align: text-bottom;
+}
+
+#advisedContent .buttons {
+    display: inline;
+}
+
 
 /*  checkboxes in advised screen */
 

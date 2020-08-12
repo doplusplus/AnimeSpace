@@ -58,6 +58,9 @@ var adviseComponent = function(HTMLTemplate) {
             animeListEmpty: function() {
                 return this.animeList.length == 0;
             },
+            recommendationListEmpty: function() {
+                return !this.results || this.results.length == 0;
+            },
             searchEnabled: function() {
                 //to figure out later on
             },
@@ -70,7 +73,16 @@ var adviseComponent = function(HTMLTemplate) {
                 this.animeList.push(name);
             },
             clearAll: function() {
+                this.animeName = '';
                 this.animeList = [];
+            },
+            clearAllScreen: function() {
+                this.clearAll();
+                this.characteristics = defaultCharacteristics;
+                this.genre = 'Genre';
+                this.tagEntry = "";
+                this.selectedCharIndex = -1;
+                this.results = null;
             },
             searchAdvice: async function() {
 

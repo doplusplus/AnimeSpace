@@ -24,9 +24,6 @@
             <ul>
                 <li v-for="anime in animeList">[[anime]]</li>
             </ul>
-            <div class="control">
-                <button class="button is-primary" v-bind:disabled="!filteringMethodTicked" v-bind:title="searchButtonTitle" @click="searchAdvice()">SEARCH</button>
-            </div>
             <p id="message" v-html="message"></p>
         </div>
         <div class="column is-4">
@@ -34,10 +31,10 @@
             <div class="field">
                 <div class="select">
                     <select v-model="genre">
-                    <option  hidden selected>Genre</option>
-                    <option >None </option>
-                    <option v-for="animeGenre in genreList">[[animeGenre]]</option>
-                </select>
+                        <option  hidden selected>Genre</option>
+                        <option >None </option>
+                        <option v-for="animeGenre in genreList">[[animeGenre]]</option>
+                    </select>
                 </div>
             </div>
             <div>
@@ -69,7 +66,14 @@
             </div>
         </div>
         <div class="column is-4" id="advisedAnimes">
-            <h5 class="title is-5">Results</h5>
+
+            <h5 class="title is-5">Results
+                <div class="buttons" v-if="!recommendationListEmpty">
+                    <button class="button" @click="searchAdvice()"><i class="fas fa-redo-alt"></i></button>
+                    <button class="button" v-if="!recommendationListEmpty" @click="clearAllScreen()"><i class="fas fa-times"></i></button>
+                </div>
+                <button class="button is-primary" v-if="recommendationListEmpty" v-bind:disabled="!filteringMethodTicked" v-bind:title="searchButtonTitle" @click="searchAdvice()">SEARCH</button>
+            </h5>
             <ol>
                 <li v-for="result in results">[[result]] <a class="clickable" @click="gotoRanking(result)">see in ranking</a></li>
             </ol>
